@@ -13,6 +13,7 @@
  *   - 与 Legal 一致的返回首页按钮
  */
 
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
@@ -125,6 +126,11 @@ function SectionCard({
 export default function Privacy() {
   const { t } = useI18n();
   const navigate = useNavigate();
+
+  /* 进入页面时滚动到顶部（修复 SPA 路由切换后停留滚动位置的问题） */
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   /* 章节数据（顺序即渲染顺序） */
   const sections: Section[] = [

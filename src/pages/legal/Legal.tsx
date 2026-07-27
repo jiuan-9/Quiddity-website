@@ -10,6 +10,7 @@
  * v2.1: 使用动画库 + 双语 + 黑蓝主题
  */
 
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, Scale, ShieldAlert } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -33,6 +34,11 @@ import {
 export default function Legal() {
   const { t } = useI18n();
   const navigate = useNavigate();
+
+  /* 进入页面时滚动到顶部（修复 SPA 路由切换后停留滚动位置的问题） */
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="min-h-screen bg-dark-950 relative overflow-hidden">

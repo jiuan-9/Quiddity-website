@@ -5,6 +5,7 @@
  * 包含导航栏和页脚，保持与首页一致的布局
  */
 
+import { useEffect } from "react";
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Announcements from "@/components/Announcements";
@@ -15,6 +16,11 @@ import { backToHome } from "@/content/announcements";
 export default function AnnouncementsPage() {
   const navigate = useNavigate();
   const { t } = useI18n();
+
+  /* 进入页面时滚动到顶部（修复 SPA 路由切换后停留滚动位置的问题） */
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <main className="min-h-screen bg-dark-950">

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useI18n } from "@/store/i18n";
 import {
@@ -15,6 +16,11 @@ import {
 export default function NotFound() {
   const navigate = useNavigate();
   const { t } = useI18n();
+
+  /* 进入页面时滚动到顶部（修复 SPA 路由切换后停留滚动位置的问题） */
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="min-h-screen bg-dark-950 flex items-center justify-center px-6 overflow-hidden relative">
