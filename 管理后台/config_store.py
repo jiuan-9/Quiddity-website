@@ -22,8 +22,8 @@ CONFIG_FILE = CONFIG_DIR / "config.json"
 @dataclass
 class AdminConfig:
     """管理后台配置项"""
-    project_root: str = "D:/quiddity-website"
-    github_repo: str = "jiuan-9/quiddity-website"  # 真实仓库名（历史曾叫 quiddity-website）
+    project_root: str = "D:/Quiddity-website"
+    github_repo: str = "jiuan-9/Quiddity-website"  # 真实仓库名（历史曾叫 Quiddity-website）
     github_token: str = field(default="", repr=False)
     window_width: int = 1280
     window_height: int = 800

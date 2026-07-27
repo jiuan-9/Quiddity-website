@@ -19,7 +19,7 @@ Quiddity 官网独立桌面管理后台。替代原网站内的 `/admin` 路由�
 ## 安装
 
 ```bash
-cd "D:\quiddity-website\管理后台"
+cd "D:\Quiddity-website\管理后台"
 pip install -r requirements.txt
 ```
 
@@ -32,14 +32,14 @@ pip install -r requirements.txt
 方式三：命令行
 
 ```bash
-cd "D:\quiddity-website\管理后台"
+cd "D:\Quiddity-website\管理后台"
 python main.py
 ```
 
 ## 首次使用
 
 1. 启动后进入 **Settings** 页
-2. 确认「项目根目录」指向 `D:\quiddity-website`（或你的官网仓库目录）
+2. 确认「项目根目录」指向 `D:\Quiddity-website`（或你的官网仓库目录）
 3. （可选）填写 GitHub 仓库名和 Personal Access Token，提升 API 配额
 4. 点击「保存设置」
 5. 切换到 **Dashboard** 页，点击「刷新数据」测试 GitHub 连接

@@ -3,7 +3,7 @@
  * 从 GitHub Releases API 同步下载链接到 public/downloads.json
  * 同时更新 public/version.json 的 downloadUrl 与 releaseNotes
  *
- * 根因修复：旧 version.json 的 downloadUrl 指向历史仓库，已统一为 quiddity-website。
+ * 根因修复：旧 version.json 的 downloadUrl 指向历史仓库，已统一为 Quiddity-website。
  * 现在直接从 GitHub Releases API 获取最新资产直链，永远不会失效。
  *
  * 用法：npm run sync:downloads

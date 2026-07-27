@@ -30,7 +30,7 @@ async function checkUrl(url: string, label: string): Promise<CheckResult> {
   log.step(`校验：${label} → ${url}`);
   try {
     const headers: Record<string, string> = {
-      "User-Agent": "quiddity-website-link-checker",
+      "User-Agent": "Quiddity-website-link-checker",
     };
     if (GITHUB_TOKEN && url.includes("github.com")) {
       headers.Authorization = `Bearer ${GITHUB_TOKEN}`;

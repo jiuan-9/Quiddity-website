@@ -2,7 +2,7 @@
 
 > Quiddity AI 桌面应用官方网站 — 多模型 AI 桌面应用
 
-[![CI](https://github.com/jiuan-9/quiddity-website/actions/workflows/ci.yml/badge.svg)](https://github.com/jiuan-9/quiddity-website/actions/workflows/ci.yml)
+[![CI](https://github.com/jiuan-9/Quiddity-website/actions/workflows/ci.yml/badge.svg)](https://github.com/jiuan-9/Quiddity-website/actions/workflows/ci.yml)
 
 ## 技术栈
 
@@ -24,8 +24,8 @@
 ### 安装
 
 ```bash
-git clone https://github.com/jiuan-9/quiddity-website.git
-cd quiddity-website
+git clone https://github.com/jiuan-9/Quiddity-website.git
+cd Quiddity-website
 npm install
 npx playwright install  # 可选：安装 E2E 浏览器
 ```
@@ -84,7 +84,7 @@ npm run format:check  # Prettier 检查
 ## 项目结构
 
 ```
-quiddity-website/
+Quiddity-website/
 ├── .github/workflows/    # CI/CD 配置
 │   ├── ci.yml            # 主 CI（lint + test + build + e2e）
 │   └── check-links.yml   # 下载链接巡检
@@ -130,7 +130,7 @@ quiddity-website/
 网站不再提供 `/admin` 页面。公告管理、GitHub 数据查看与一键部署已迁移到独立的桌面应用：
 
 ```
-D:\quiddity-website\管理后台\
+D:\Quiddity-website\管理后台\
 ├── main.py              # CustomTkinter 桌面应用入口
 ├── start.bat            # 本目录启动脚本
 ├── config_store.py      # 本地配置持久化
@@ -146,10 +146,10 @@ D:\quiddity-website\管理后台\
 
 ```bash
 # 方式一：根目录启动脚本（推荐）
-双击 D:\quiddity-website\启动管理后台.bat
+双击 D:\Quiddity-website\启动管理后台.bat
 
 # 方式二：命令行
-cd "D:\quiddity-website\管理后台"
+cd "D:\Quiddity-website\管理后台"
 pip install -r requirements.txt
 python main.py
 ```
@@ -189,7 +189,7 @@ python main.py
 
 ## 法律信息
 
-本项目涉及多国法规，详见 [/legal](https://jiuan-9.github.io/quiddity-website/#/legal) 页面。
+本项目涉及多国法规，详见 [/legal](https://jiuan-9.github.io/Quiddity-website/#/legal) 页面。
 
 ## 相关仓库
 

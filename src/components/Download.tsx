@@ -34,7 +34,7 @@ type DownloadsInfo = {
 };
 
 const FALLBACK_DOWNLOAD_URL =
-  "https://github.com/jiuan-9/quiddity-website/releases/latest";
+  "https://github.com/jiuan-9/Quiddity-website/releases/latest";
 
 function useDownloadsInfo() {
   const [info, setInfo] = useState<DownloadsInfo | null>(null);

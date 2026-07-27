@@ -19,16 +19,16 @@ def main():
     print(f"  project_root: {cfg.project_root}")
 
     print("[OK] github_client imported")
-    client = GitHubClient(repo="jiuan-9/quiddity-website")
+    client = GitHubClient(repo="jiuan-9/Quiddity-website")
     print(f"  repo: {client.repo}")
 
     print("[OK] announcements imported")
-    store = AnnouncementStore(Path("D:/quiddity-website/public/announcements.json"))
+    store = AnnouncementStore(Path("D:/Quiddity-website/public/announcements.json"))
     data = store.load()
     print(f"  important: {len(data['important'])}, latest: {len(data['latest'])}")
 
     print("[OK] deployer imported")
-    version = load_settings_json(Path("D:/quiddity-website/public/version.json"))
+    version = load_settings_json(Path("D:/Quiddity-website/public/version.json"))
     print(f"  version.json keys: {list(version.keys())}")
 
     print("[OK] main imported")

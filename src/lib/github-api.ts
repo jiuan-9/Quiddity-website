@@ -2,12 +2,12 @@
  * github-api — GitHub 仓库真实数据集成
  *
  * 用途：
- *   - 获取 jiuan-9/quiddity-website 仓库的真实指标（Stars / Forks / Issues）
+ *   - 获取 jiuan-9/Quiddity-website 仓库的真实指标（Stars / Forks / Issues）
  *   - 聚合所有 Release 的 Assets 下载次数（即安装包真实下载量）
  *   - 替代 Stats 区"虚假数据"的核心数据源
  *
  * 注意：
- *   本地项目目录名与 GitHub 远程仓库名一致，均为 quiddity-website。
+ *   本地项目目录名与 GitHub 远程仓库名一致，均为 Quiddity-website。
  *   如需切换仓库，修改下方 REPO_NAME 即可。
  *
  * Rate Limit 策略：
@@ -21,7 +21,7 @@
  */
 
 const REPO_OWNER = "jiuan-9";
-const REPO_NAME = "quiddity-website";
+const REPO_NAME = "Quiddity-website";
 const REPO_FULL = `${REPO_OWNER}/${REPO_NAME}`;
 const API_BASE = "https://api.github.com";
 

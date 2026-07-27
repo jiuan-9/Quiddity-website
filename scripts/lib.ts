@@ -22,8 +22,8 @@ export const QUIDDITY_APP_DIR =
   process.env.QUIDDITY_APP_DIR ?? path.resolve(PROJECT_ROOT, "..", "Quiddity");
 
 /** GitHub 仓库（用于 Releases API）
- * 真实仓库为 quiddity-website */
-export const GITHUB_REPO = process.env.GITHUB_REPO ?? "jiuan-9/quiddity-website";
+ * 真实仓库为 Quiddity-website */
+export const GITHUB_REPO = process.env.GITHUB_REPO ?? "jiuan-9/Quiddity-website";
 
 /** GitHub API Token（可选，避免速率限制；CI 中通过 GITHUB_TOKEN 注入） */
 export const GITHUB_TOKEN = process.env.GITHUB_TOKEN ?? process.env.GH_TOKEN ?? "";
@@ -92,7 +92,7 @@ export async function fetchLatestRelease(repo: string): Promise<{
   const url = `https://api.github.com/repos/${repo}/releases/latest`;
   const headers: Record<string, string> = {
     Accept: "application/vnd.github+json",
-    "User-Agent": "quiddity-website-sync",
+    "User-Agent": "Quiddity-website-sync",
   };
   if (GITHUB_TOKEN) headers.Authorization = `Bearer ${GITHUB_TOKEN}`;
 
