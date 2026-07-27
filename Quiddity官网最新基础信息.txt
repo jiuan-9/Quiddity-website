@@ -1,10 +1,67 @@
-官网地址 | https://quiddity-3by.pages.dev/（主用，Cloudflare CDN） |
-GitHub Pages 备用 | https://jiuan-9.github.io/quiddity-website/ |
-GitHub 仓库 | https://github.com/jiuan-9/quiddity-website |
-联系邮箱 | qu9190agent@163.com（反馈邮箱） |
-隐私声明页面 | https://quiddity-3by.pages.dev/#/privacy |
-法律信息页面 | https://quiddity-3by.pages.dev/#/legal |
-应用位置 | d:\Quiddity\ |
-安装包位置 | d:\Quiddity\dist\Quiddity 1.0.0.exe（约 69MB） |
-下载地址 | https://github.com/jiuan-9/quiddity-website/releases/download/v1.0.0/Quiddity-1.0.0.exe |
-注意 | 此网站 GitHub 仓库名是 quiddity-website，而桌面应用产品名是 Quiddity（应用曾用名 jiuyu / Quiddity Agent） |
+Quiddity 官网基础信息
+最后更新：2026-07-27
+
+【站点 URL】
+官网地址（主用） | https://quiddity-3by.pages.dev/（Cloudflare CDN）
+GitHub Pages 备用 | https://jiuan-9.github.io/Quiddity-website/
+
+【GitHub 仓库】
+仓库地址 | https://github.com/jiuan-9/Quiddity-website
+仓库 ID | 147217216（Cloudflare GitHub App 安装 ID）
+本地目录 | d:\quiddity-website\
+本地 remote | https://github.com/jiuan-9/Quiddity-website.git
+最近 commit | 6f25531 fix: scroll to top on route change in all sub-pages
+         | 9a0e186 style: correct repo name case to match canonical GitHub URL
+         | 5ad6a50 feat: add privacy policy page + rename jiuyu to quiddity
+
+【联系】
+联系邮箱 | qu9190agent@163.com
+反馈邮箱 | 同上
+
+【网站路由（HashRouter）】
+/              | 首页（Hero / Features / HowItWorks / ProviderShowcase / UseCases / FAQ / Download）
+/demo          | Demo 演示页（全屏聊天）
+/timeline      | 版本历程
+/legal         | 法律信息页
+/privacy       | 隐私声明页（2026-07-27 新增）
+/announcements | 公告中心
+*              | 404 NotFound
+
+【页面静态资源】
+版本信息     | https://quiddity-3by.pages.dev/version.json
+下载信息     | https://quiddity-3by.pages.dev/downloads.json
+当前版本     | v1.0.0
+发布资产名   | Jiuyu-1.0.0.exe（GitHub Release 实际资产名，下次发版应改 Quiddity-1.0.0.exe）
+
+【桌面应用】
+应用源位置 | d:\Quiddity\
+安装包位置 | d:\Quiddity\dist\Quiddity 1.0.0.exe（约 69MB）
+应用仓库 | https://github.com/jiuan-9/quiddity-agent
+下载地址 | https://github.com/jiuan-9/Quiddity-website/releases/download/v1.0.0/Quiddity-1.0.0.exe
+         | 实际为 Jiuyu-1.0.0.exe（GitHub Release 上传时的实际文件名）
+
+【Cloudflare Pages】
+项目 ID | f6ed3b5d82db79290a5cd9a300a3c2c7
+项目名 | quiddity
+默认 URL | quiddity-3by.pages.dev
+Build cmd | npm run build
+Build output | dist
+Production branch | main
+Build system | Version 3
+Git 集成状态 | 已重连至 jiuan-9/Quiddity-website（新仓库 ID）
+
+【关键历史】
+1. 2026-07-08 | v1.0.0 发布
+2. 2026-07-24 | 桌面应用曾用名 jiuyu / Quiddity Agent，统一为 Quiddity
+3. 2026-07-27 | GitHub 仓库 jiuyu-website 改名为 Quiddity-website
+4. 2026-07-27 | Cloudflare Pages 重新连接到新仓库
+5. 2026-07-27 | 新增 /privacy 隐私声明页，承诺不收集用户信息
+6. 2026-07-27 | 修复路由切换滚动位置问题
+
+【注意】
+- GitHub 仓库名为 Quiddity-website（Q 大写）
+- GitHub Pages URL 区分大小写：/Quiddity-website/ 而非 /quiddity-website/
+- GitHub 自动大小写重定向生效，旧 URL 仍可访问
+- 网站是纯静态前端（Vite + React 18 + HashRouter），部署时只构建 dist/
+- 安装包信息由 GitHub Releases API 实时同步（npm run sync:downloads）
+- 桌面应用源代码在独立仓库 quiddity-agent，网站部署不涉及
