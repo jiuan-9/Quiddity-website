@@ -25,6 +25,8 @@ export const footerLinks: FooterGroup[] = [
     links: [
       { label: { zh: "关于 Quiddity", en: "About Quiddity" }, href: "#hero" },
       { label: { zh: "联系我们", en: "Contact" }, href: "mailto:qu9190agent@163.com" },
+      { label: { zh: "法律信息", en: "Legal" }, href: "#/legal" },
+      { label: { zh: "隐私声明", en: "Privacy Policy" }, href: "#/privacy" },
     ],
   },
 ];
@@ -42,7 +44,7 @@ export const footerDescription = {
 
 /** 社交链接（占位，后续接入真实账号） */
 export const footerSocial = {
-  github: "https://github.com/jiuan-9/jiuyu-website",
+  github: "https://github.com/jiuan-9/quiddity-website",
   twitter: "#",
   email: "mailto:qu9190agent@163.com",
 };
