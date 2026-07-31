@@ -77,29 +77,37 @@ async function main() {
   await writeJson(VERSION_JSON_PATH, versionInfo);
   log.ok("已写入 version.json");
 
-  // 写入 downloads.json（资产为空时也写入占位，便于 check-links 报警）
-  const downloads: DownloadsInfo = {
-    version: releaseVersion,
-    releaseDate: versionInfo.releaseDate,
-    releaseNotes: versionInfo.releaseNotes,
-    assets: release.assets.map((a) => ({
-      platform: "windows",
-      arch: "x64" as const,
-      label: a.name,
-      url: a.browserDownloadUrl,
-      size: a.size,
-      contentType: a.contentType,
-    })),
-    fallbackUrl: versionInfo.downloadUrl,
-    lastSyncedAt: nowIso(),
-  };
-  await writeJson(DOWNLOADS_JSON_PATH, downloads);
-  log.ok("已写入 downloads.json");
+  // ⚠️ 2026-07-31 重要修复：sync-version 不再覆盖 downloads.json。
+  // 历史原因：原代码会把所有 asset 硬编码为 windows/x64，并仅取最新 release，
+  //   导致旧版 Windows .exe 资产丢失、Android APK 被错标。
+  // 修复方案：downloads.json 由 sync-downloads.ts 独立维护（聚合所有 release），
+  //   仓库内 public/downloads.json 作为唯一真实源。
+  if (process.env.LEGACY_SYNC_VERSION === "1") {
+    // 兼容旧行为：仅在显式开启时执行
+    const downloads: DownloadsInfo = {
+      version: releaseVersion,
+      releaseDate: versionInfo.releaseDate,
+      releaseNotes: versionInfo.releaseNotes,
+      assets: release.assets.map((a) => ({
+        platform: "windows",
+        arch: "x64" as const,
+        label: a.name,
+        url: a.browserDownloadUrl,
+        size: a.size,
+        contentType: a.contentType,
+      })),
+      fallbackUrl: versionInfo.downloadUrl,
+      lastSyncedAt: nowIso(),
+    };
+    await writeJson(DOWNLOADS_JSON_PATH, downloads);
+    log.warn("已写入 downloads.json（LEGACY 模式，请改用 sync-downloads.ts）");
+  } else {
+    log.info("⏭ 跳过 downloads.json 写入（请使用 npm run sync:downloads 维护）");
+  }
 
   log.info("=== 同步完成 ===");
   console.log(`  版本：v${releaseVersion}`);
   console.log(`  发布日期：${versionInfo.releaseDate}`);
-  console.log(`  资产数：${downloads.assets.length}`);
 }
 
 main().catch((err) => {
