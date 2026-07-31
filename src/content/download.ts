@@ -96,7 +96,7 @@ export const androidIndependentNote: I18nText = {
 
 /** 底部 meta tags */
 export const downloadMetaTags: { icon: string; label: I18nText }[] = [
-  { icon: "Sparkles", label: { zh: "版本 1.0.0", en: "Version 1.0.0" } },
+  { icon: "Sparkles", label: { zh: "版本 1.0.1", en: "Version 1.0.1" } },
   { icon: "Dot", label: { zh: "Windows 10+", en: "Windows 10+" } },
   { icon: "Dot", label: { zh: "完全免费", en: "Completely Free" } },
   { icon: "Dot", label: { zh: "无需注册", en: "No Sign-up" } },
