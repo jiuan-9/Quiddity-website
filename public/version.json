@@ -1,6 +1,6 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.2",
   "releaseDate": "2026-07-31",
-  "downloadUrl": "https://github.com/jiuan-9/Quiddity-website/releases/download/v1.0.1/quiddity-1.0.1.apk",
-  "releaseNotes": "Quiddity-Android v1.0.1（versionCode=2）正式版已上线。\nQuiddity-Chat 与 Quiddity-Agent 为两个不同定位的桌面产品，下载通道目前临时关闭（维护中）。\n\n**当前可用下载：**\n- Quiddity-Android v1.0.1：https://github.com/jiuan-9/Quiddity-website/releases/download/v1.0.1/quiddity-1.0.1.apk\n- 在线体验（模拟 Quiddity-Chat）：https://quiddity-3by.pages.dev/#/demo\n\n**维护中：**\n- Quiddity-Chat v1.0.0 桌面端（请关注公告恢复通知）\n- Quiddity-Agent v1.0.0 桌面端（请关注公告恢复通知）\n\n**Quiddity-Android 特性：**\n- 11 家 AI 服务商接入，60+ 模型可选\n- 模型分配方案：按场景自动匹配最优模型\n- 多轮对话 / 上下文记忆 / 角色卡 / Markdown / Vision\n- 暗黑 / 浅色主题 / 离线草稿 / 消息搜索\n\n**源码：**\n- Android 端：https://github.com/jiuan-9/quiddity-android\n- Chat / Agent 桌面端：源码暂未公开"
+  "downloadUrl": "./downloads/quiddity-1.0.2.apk",
+  "releaseNotes": "Quiddity-Android v1.0.2（versionCode=3）正式版已上线。\nQuiddity-Chat 与 Quiddity-Agent 为两个不同定位的桌面产品，下载通道目前临时关闭（维护中）。\n\n**当前可用下载：**\n- Quiddity-Android v1.0.2：https://quiddity-3by.pages.dev/downloads/quiddity-1.0.2.apk\n- 在线体验（模拟 Quiddity-Chat）：https://quiddity-3by.pages.dev/#/demo\n\n**维护中：**\n- Quiddity-Chat v1.0.0 桌面端（请关注公告恢复通知）\n- Quiddity-Agent v1.0.0 桌面端（请关注公告恢复通知）\n\n**Quiddity-Android 特性：**\n- 11 家 AI 服务商接入，60+ 模型可选\n- 模型分配方案：按场景自动匹配最优模型\n- 多轮对话 / 上下文记忆 / 角色卡 / Markdown / Vision\n- 暗黑 / 浅色主题 / 离线草稿 / 消息搜索\n\n**源码：**\n- Android 端：https://github.com/jiuan-9/quiddity-android\n- Chat / Agent 桌面端：源码暂未公开"
 }

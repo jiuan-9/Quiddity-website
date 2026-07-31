@@ -54,7 +54,10 @@ export type DownloadsInfo = {
     platform: "windows" | "macos" | "linux" | "android";
     arch: "x64" | "arm64";
     label: string;
+    /** 主下载地址（建议使用 Cloudflare Pages 自托管或稳定 CDN） */
     url: string;
+    /** 备用下载地址（GitHub Releases 兜底，主地址不稳定时使用） */
+    mirrorUrl?: string;
     size: number; // bytes
     contentType: string;
   }>;

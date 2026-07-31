@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Download, Monitor, Smartphone, Globe, Sparkles, Wrench, Lock } from "lucide-react";
+import { Download, Monitor, Smartphone, Globe, Sparkles, Wrench, Lock, ExternalLink } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 import { useI18n } from "@/store/i18n";
 import {
@@ -19,6 +19,7 @@ import {
   mobileBadge,
   mobileVersion,
   androidNote,
+  androidMirrorLabel,
   downloadMetaTags,
 } from "@/content";
 
@@ -34,6 +35,8 @@ type DownloadsInfo = {
     arch: "x64" | "arm64";
     label: string;
     url: string;
+    /** 备用下载地址（GitHub Releases），主地址（Cloudflare CDN）不稳定时使用 */
+    mirrorUrl?: string;
     size: number;
     contentType: string;
   }>;
@@ -156,31 +159,46 @@ export default function DownloadSection() {
 
             {/* Mobile (Android) - 已上线 */}
             {androidUrl ? (
-              <a
-                href={androidUrl}
-                download={androidAsset?.label}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative flex items-center gap-3 px-4 sm:px-5 py-3.5 sm:py-4 rounded-xl glass glow-border-strong w-full transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-brand-500/15 hover:border-brand-500/30 active:scale-[0.98] active:bg-white/[0.04] overflow-hidden min-h-[64px]"
-              >
+              <div className="group relative flex flex-col gap-1.5 px-4 sm:px-5 py-3.5 sm:py-4 rounded-xl glass glow-border-strong w-full transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-brand-500/15 hover:border-brand-500/30 active:scale-[0.98] active:bg-white/[0.04] overflow-hidden min-h-[64px]">
                 <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/[0.03] via-transparent to-brand-500/[0.03] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center group-hover:bg-gradient-to-br from-emerald-500/20 to-brand-500/15 transition-all duration-300 shrink-0">
-                  <Smartphone size={22} className="text-emerald-400" />
-                </div>
-                <div className="text-left min-w-0 flex-1 relative z-10">
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-sm font-semibold text-white">{t(mobileTitle)}</span>
-                    <span className="inline-flex items-center px-1.5 py-0.5 rounded-md bg-gradient-to-r from-emerald-500/20 to-brand-500/15 text-[9px] font-bold text-emerald-400">
-                      {t(mobileBadge)}
-                    </span>
+                <a
+                  href={androidUrl}
+                  download={androidAsset?.label}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative flex items-center gap-3 w-full"
+                >
+                  <div className="relative w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center group-hover:bg-gradient-to-br from-emerald-500/20 to-brand-500/15 transition-all duration-300 shrink-0">
+                    <Smartphone size={22} className="text-emerald-400" />
                   </div>
-                  <div className="text-xs text-dark-400 mt-0.5">
-                    {t(mobileVersion)}
-                    {androidSize ? ` · ${androidSize}` : ""}
+                  <div className="text-left min-w-0 flex-1 relative z-10">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-sm font-semibold text-white">{t(mobileTitle)}</span>
+                      <span className="inline-flex items-center px-1.5 py-0.5 rounded-md bg-gradient-to-r from-emerald-500/20 to-brand-500/15 text-[9px] font-bold text-emerald-400">
+                        {t(mobileBadge)}
+                      </span>
+                    </div>
+                    <div className="text-xs text-dark-400 mt-0.5">
+                      {t(mobileVersion)}
+                      {androidSize ? ` · ${androidSize}` : ""}
+                    </div>
                   </div>
-                </div>
-                <Download size={16} className="text-dark-500 group-hover:text-emerald-400 transition-colors ml-auto shrink-0 relative z-10" />
-              </a>
+                  <Download size={16} className="text-dark-500 group-hover:text-emerald-400 transition-colors ml-auto shrink-0 relative z-10" />
+                </a>
+                {androidAsset?.mirrorUrl && (
+                  <a
+                    href={androidAsset.mirrorUrl}
+                    download={androidAsset.label}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative z-10 inline-flex items-center gap-1 self-end text-[10px] sm:text-[11px] text-dark-500 hover:text-emerald-400 transition-colors px-1 py-0.5 rounded -mr-1"
+                    title={androidAsset.mirrorUrl}
+                  >
+                    <ExternalLink size={10} className="shrink-0" />
+                    <span>{t(androidMirrorLabel)}</span>
+                  </a>
+                )}
+              </div>
             ) : (
               <div className="relative flex items-center gap-3 px-4 sm:px-5 py-3.5 sm:py-4 rounded-xl glass border border-white/[0.05] w-full">
                 <div className="w-10 h-10 rounded-lg bg-white/[0.02] flex items-center justify-center shrink-0">
