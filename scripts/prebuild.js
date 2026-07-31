@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
- * prebuild — 构建前同步脚本（容错版 / v2）
+ * prebuild — 构建前同步脚本（容错版 / v3）
  *
- * ⚠️ 重要变更：从 2026-07-31 起，prebuild 不再自动执行 sync 脚本。
+ * ⚠️ 重要变更：从 2026-07-31 起，prebuild 不再自动执行 sync:downloads。
  * 原因：sync-downloads 在 CI 中频繁受 GitHub API 限流/网络抖动影响，
  *      会用旧/不完整数据覆盖 public/downloads.json，导致 Windows v1.0.0
  *      等历史资产丢失。改用：仓库内 public/downloads.json 作为唯一真实源，
@@ -13,16 +13,13 @@
  * 为什么不直接在 package.json 里写？
  *   多层转义（JSON → shell → node）在跨平台时容易出问题，
  *   尤其是 Windows PowerShell 和 Linux bash 的引号行为不同。
+ *
+ * 兼容性：使用 process.cwd() 而非 import.meta.url，兼容 Node 12+（Cloudflare Pages 默认）
  */
 
 import { execSync } from "node:child_process";
 import { existsSync } from "node:fs";
-import { fileURLToPath } from "node:url";
-import { dirname, resolve } from "node:path";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-const PUBLIC_DIR = resolve(__dirname, "..", "public");
+import { resolve } from "node:path";
 
 const isCI =
   process.env.CI ||
@@ -53,9 +50,9 @@ function runStep(name, cmd) {
 
 let allOk = true;
 
-// 检查关键文件存在性（兜底防御）
-const downloadsJson = resolve(PUBLIC_DIR, "downloads.json");
-const versionJson = resolve(PUBLIC_DIR, "version.json");
+// 检查关键文件存在性（兜底防御）— 使用 process.cwd() 避免 import.meta.url
+const downloadsJson = resolve(process.cwd(), "public", "downloads.json");
+const versionJson = resolve(process.cwd(), "public", "version.json");
 if (!existsSync(downloadsJson)) {
   console.error("[prebuild] ✗ public/downloads.json 缺失！");
   process.exit(1);
@@ -69,8 +66,6 @@ console.log("[prebuild] ✓ public/version.json 存在");
 console.log("");
 
 // ⚠️ 不再自动执行 sync:downloads（避免被限流破坏数据）
-//   若确实需要在 CI 刷新数据，请手动删除 public/downloads.json 后再 build，
-//   或者显式设置环境变量 FORCE_SYNC=1
 if (process.env.FORCE_SYNC === "1") {
   allOk = runStep("同步下载链接（强制）", "npm run sync:downloads") && allOk;
   console.log("");
