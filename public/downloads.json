@@ -15,8 +15,7 @@
       "platform": "android",
       "arch": "arm64",
       "label": "quiddity-1.0.1.apk",
-      "url": "https://cdn.jsdelivr.net/gh/jiuan-9/Quiddity-website@main/public/downloads/quiddity-1.0.1.apk",
-      "mirror": "https://github.com/jiuan-9/Quiddity-website/releases/download/v1.0.1/quiddity-1.0.1.apk",
+      "url": "https://github.com/jiuan-9/Quiddity-website/releases/download/v1.0.1/quiddity-1.0.1.apk",
       "size": 2882105,
       "contentType": "application/vnd.android.package-archive"
     }
