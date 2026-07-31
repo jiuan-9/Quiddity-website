@@ -76,6 +76,61 @@ export async function writeJson(filePath: string, data: unknown): Promise<void> 
   await fs.writeFile(filePath, JSON.stringify(data, null, 2) + "\n", "utf-8");
 }
 
+/** 调用 GitHub Releases API：获取所有 release */
+export async function fetchAllReleases(repo: string): Promise<Array<{
+  tagName: string;
+  name: string;
+  body: string;
+  publishedAt: string;
+  assets: Array<{
+    name: string;
+    browserDownloadUrl: string;
+    size: number;
+    contentType: string;
+  }>;
+}>> {
+  const url = `https://api.github.com/repos/${repo}/releases?per_page=20`;
+  const headers: Record<string, string> = {
+    Accept: "application/vnd.github+json",
+    "User-Agent": "Quiddity-website-sync",
+  };
+  if (GITHUB_TOKEN) headers.Authorization = `Bearer ${GITHUB_TOKEN}`;
+
+  const resp = await fetch(url, { headers });
+  if (resp.status === 404) {
+    throw new Error(
+      `GitHub Release 未找到（仓库 ${repo} 还没有任何 Release）。请先创建一个 Release。`
+    );
+  }
+  if (!resp.ok) {
+    throw new Error(`GitHub API 错误 ${resp.status}: ${await resp.text()}`);
+  }
+  const data = (await resp.json()) as Array<{
+    tag_name: string;
+    name: string;
+    body: string;
+    published_at: string;
+    assets: Array<{
+      name: string;
+      browser_download_url: string;
+      size: number;
+      content_type: string;
+    }>;
+  }>;
+  return data.map((r) => ({
+    tagName: r.tag_name,
+    name: r.name,
+    body: r.body ?? "",
+    publishedAt: r.published_at,
+    assets: (r.assets ?? []).map((a) => ({
+      name: a.name,
+      browserDownloadUrl: a.browser_download_url,
+      size: a.size,
+      contentType: a.content_type,
+    })),
+  }));
+}
+
 /** 调用 GitHub Releases API */
 export async function fetchLatestRelease(repo: string): Promise<{
   tagName: string;
