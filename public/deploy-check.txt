@@ -1,0 +1,4 @@
+deployed=2026-07-31T19:30:00Z
+sync-script=fetchAllReleases
+windows-asset=Jiuyu-1.0.0.exe
+android-asset=quiddity-1.0.1.apk
