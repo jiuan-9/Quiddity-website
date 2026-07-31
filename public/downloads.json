@@ -1,7 +1,7 @@
 {
-  "version": "1.0.2",
+  "version": "1.0.3",
   "releaseDate": "2026-07-31",
-  "releaseNotes": "Quiddity-Android v1.0.2 正式版（versionCode=3）已上线。\n\n**更新：**\n- 版本号递增到 1.0.2（versionCode 3）\n- APK 已重新签名并发布到 v1.0.2 Release\n- v1.0.0 / v1.0.1 仍可在对应 Release 中下载\n\n**Quiddity-Android 特性：**\n- 11 家 AI 服务商接入，60+ 模型可选\n- 模型分配方案：按场景自动匹配最优模型\n- 多轮对话 / 上下文记忆\n- 角色卡（System Prompt）\n- Markdown 渲染 + 代码高亮\n- 图像识别（Vision 模型）\n- 暗黑 / 浅色主题\n- 离线草稿、消息搜索、会话导出\n\n**桌面端：** Quiddity-Chat / Quiddity-Agent 下载通道临时关闭（维护中）\n**产品区分：** Quiddity-Android、Quiddity-Chat、Quiddity-Agent 三个产品完全独立，数据互不互通\n**源码：** Android 端已开源（https://github.com/jiuan-9/quiddity-android），Chat / Agent 桌面端暂未公开",
+  "releaseNotes": "Quiddity-Android v1.0.3 正式版（versionCode=4）已上线。\n\n**更新（修复 + 优化）：**\n- **修复** 应用内「检查更新」下载链路：重写 UpdateChecker，使用系统 DownloadManager + FileProvider，APK 下载完成后可直接在应用内唤起安装，无需跳浏览器\n- **优化** 下载体验：实时进度条 + 状态回调（pending / running / paused / successful / failed / canceled），下载失败可一键重试\n- **优化** 版本解析：raw.githubusercontent 兜底 → GitHub Releases API 自动取最新 APK 直链\n- **优化** URL 兜底：官网首页 / 空 URL 自动回退到 GitHub Releases latest\n- **修复** Android 7.0+ 安装必须用 FileProvider 的 content:// URI（之前用 file:// 会抛 FileUriExposedException）\n- **修复** DownloadManager 在 Android 13+ 必须用 RECEIVER_NOT_EXPORTED 注册广播（之前会抛 SecurityException）\n- **新增** 「不再提醒此版本」持久化（SharedPreferences）\n- **兼容** v1.0.0 / v1.0.1 / v1.0.2 数据可保留，直接覆盖安装即可\n\n**Quiddity-Android 特性：**\n- 11 家 AI 服务商接入，60+ 模型可选\n- 模型分配方案：按场景自动匹配最优模型\n- 多轮对话 / 上下文记忆\n- 角色卡（System Prompt）\n- Markdown 渲染 + 代码高亮\n- 图像识别（Vision 模型）\n- 暗黑 / 浅色主题\n- 离线草稿、消息搜索、会话导出\n\n**桌面端：** Quiddity-Chat / Quiddity-Agent 下载通道临时关闭（维护中）\n**产品区分：** Quiddity-Android、Quiddity-Chat、Quiddity-Agent 三个产品完全独立，数据互不互通\n**源码：** Android 端已开源（https://github.com/jiuan-9/quiddity-android），Chat / Agent 桌面端暂未公开",
   "assets": [
     {
       "platform": "windows",
@@ -14,13 +14,13 @@
     {
       "platform": "android",
       "arch": "arm64",
-      "label": "quiddity-1.0.2.apk",
-      "url": "./downloads/quiddity-1.0.2.apk",
-      "mirrorUrl": "https://github.com/jiuan-9/Quiddity-website/releases/download/v1.0.2/quiddity-1.0.2.apk",
-      "size": 2882201,
+      "label": "quiddity-1.0.3.apk",
+      "url": "./downloads/quiddity-1.0.3.apk",
+      "mirrorUrl": "https://github.com/jiuan-9/Quiddity-website/releases/download/v1.0.3/quiddity-1.0.3.apk",
+      "size": 2900565,
       "contentType": "application/vnd.android.package-archive"
     }
   ],
   "fallbackUrl": "https://github.com/jiuan-9/Quiddity-website/releases/latest",
-  "lastSyncedAt": "2026-07-31T20:30:00.000Z"
+  "lastSyncedAt": "2026-07-31T21:00:00.000Z"
 }
