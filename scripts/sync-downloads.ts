@@ -56,7 +56,10 @@ async function main() {
       }
     }
   }
-  const assets = Array.from(seen.values());
+  // 过滤 null（toAsset 可能在 platform 无法识别时返回 null）— 修复 TS2322
+  const assets = Array.from(seen.values()).filter(
+    (a): a is NonNullable<ReturnType<typeof toAsset>> => a !== null
+  );
 
   if (assets.length === 0) {
     log.warn("未识别到任何可下载资产。请确认 Release 已上传 .exe/.apk 等安装包。");
