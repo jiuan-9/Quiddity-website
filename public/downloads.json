@@ -1,18 +1,25 @@
 {
   "version": "1.0.0",
-  "releaseDate": "2026-07-08",
-  "releaseNotes": "首个正式版本：支持 11 家 AI 服务商、60+ 模型；AI 智能体；代码高亮；视觉理解；本地知识库；Markdown 渲染；多模态输入(Vision 等)。系统要求: Windows 10+",
+  "releaseDate": "2026-07-31",
+  "releaseNotes": "Quiddity 全平台正式版同步上线！\n\n**Android 端首发：**\n- 全新 Android 客户端，UI 全面重构\n- 11 家 AI 服务商接入，60+ 模型可选\n- 模型分配方案：按场景自动匹配最优模型\n- 多轮对话 / 上下文记忆\n- 角色卡（System Prompt）\n- Markdown 渲染 + 代码高亮\n- 图像识别（Vision 模型）\n- 暗黑 / 浅色主题\n- 离线草稿、消息搜索、会话导出\n\n**桌面端：** Windows 10+ 持续维护\n**源码：** 全部开源至 GitHub（Android 与 桌面端）",
   "assets": [
     {
       "platform": "windows",
       "arch": "x64",
-      "label": "Quiddity-1.0.0.exe",
-      "url": "https://github.com/jiuan-9/Quiddity-website/releases/download/v1.0.0/Quiddity-1.0.0.exe",
+      "label": "Jiuyu-1.0.0.exe",
+      "url": "https://github.com/jiuan-9/Quiddity-website/releases/download/v1.0.0/Jiuyu-1.0.0.exe",
       "size": 72568522,
       "contentType": "application/octet-stream"
+    },
+    {
+      "platform": "android",
+      "arch": "arm64",
+      "label": "quiddity-1.0.0.apk",
+      "url": "/downloads/quiddity-1.0.0.apk",
+      "size": 2882105,
+      "contentType": "application/vnd.android.package-archive"
     }
   ],
   "fallbackUrl": "https://github.com/jiuan-9/Quiddity-website/releases/latest",
-  "lastSyncedAt": "2026-07-19T13:30:00.000Z",
-  "_comment": "真实 Release v1.0.0，资产 Quiddity-1.0.0.exe（69.2 MB）。已下载 3 次（截至 2026-07-19）。仓库当前名为 Quiddity-website。"
+  "lastSyncedAt": "2026-07-31T18:30:00.000Z"
 }

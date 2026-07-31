@@ -51,7 +51,7 @@ export type DownloadsInfo = {
   releaseDate: string;
   releaseNotes: string;
   assets: Array<{
-    platform: "windows" | "macos" | "linux";
+    platform: "windows" | "macos" | "linux" | "android";
     arch: "x64" | "arm64";
     label: string;
     url: string;
@@ -134,13 +134,15 @@ export async function fetchLatestRelease(repo: string): Promise<{
 /** 根据资产名推断平台与架构 */
 export function inferPlatform(
   name: string
-): { platform: "windows" | "macos" | "linux"; arch: "x64" | "arm64" } | null {
+): { platform: "windows" | "macos" | "linux" | "android"; arch: "x64" | "arm64" } | null {
   const lower = name.toLowerCase();
-  let platform: "windows" | "macos" | "linux";
+  let platform: "windows" | "macos" | "linux" | "android";
   if (lower.endsWith(".exe") || lower.includes("win")) {
     platform = "windows";
   } else if (lower.endsWith(".dmg") || lower.includes("mac") || lower.includes("darwin")) {
     platform = "macos";
+  } else if (lower.endsWith(".apk") || lower.includes("android")) {
+    platform = "android";
   } else if (
     lower.endsWith(".deb") ||
     lower.endsWith(".appimage") ||
