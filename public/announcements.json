@@ -2,15 +2,15 @@
   "important": [
     {
       "id": 2,
-      "title": "Windows 桌面端下载通道临时关闭（维护中）",
-      "content": "感谢大家对 Quiddity 的支持。\n\n由于近期发现 Windows 桌面端（v1.0.0）在部分环境下存在稳定性问题，我们决定临时关闭桌面端的下载通道，紧急进行修复。\n\n当前状态：\n- 官网桌面端下载按钮已变更为「维护中」状态，不可点击\n- 已下载安装的桌面端仍可正常使用，暂不受影响\n- 修复完成后会在本公告区第一时间通知\n\n替代方案：\n- Android 客户端已正式上线，可前往下载区直接下载\n- 在线体验（Demo）页面无需安装，浏览器即开即用\n\n关于数据安全：\n- 已下载桌面端的本地数据完全保留，不受维护影响\n- Android 与桌面端为两个独立产品，不互通数据\n\n修复进度我们会持续同步，给您带来不便深表歉意。\n\n知所不尽，往复不止！",
+      "title": "Quiddity-Chat 下载通道临时关闭（维护中）",
+      "content": "感谢大家对 Quiddity 的支持。\n\n由于近期发现 Quiddity-Chat（v1.0.0 便携版）在部分环境下存在稳定性问题，我们决定临时关闭 Chat 端的下载通道，紧急进行修复。\n\n当前状态：\n- 官网 Chat 端下载按钮已变更为「维护中」状态，不可点击\n- 已下载安装的 Quiddity-Chat 仍可正常使用，暂不受影响\n- 修复完成后会在本公告区第一时间通知\n\n替代方案：\n- Quiddity-Android 已正式上线，可前往下载区直接下载\n- 在线体验（Demo）页面无需安装，浏览器即开即用\n\n关于产品区分：\n- Quiddity-Chat 与 Quiddity-Agent 是两个不同定位的桌面产品（Chat 偏聊天，Agent 偏本地进阶 Agent），目前均不在官网开放下载\n- Quiddity-Android 是独立的移动端产品，与 Chat / Agent 数据互不互通\n- 已下载用户的本地数据完全保留，不受维护影响\n\n修复进度我们会持续同步，给您带来不便深表歉意。\n\n知所不尽，往复不止！",
       "date": "2026-07-31",
       "tag": "紧急维护"
     },
     {
       "id": 3,
       "title": "Quiddity-Android 正式上线",
-      "content": "经过漫长的重整与精调，Quiddity-Android 正式版（v1.0.0）已在官网下载页上线。\n\n核心特性：\n- 11 家 AI 服务商接入，60+ 模型可选\n- 模型分配方案：按场景自动匹配最优模型\n- 多轮对话 + 上下文记忆\n- 会话压缩（记忆库）\n- 角色卡 / System Prompt\n- Markdown 渲染 + 代码高亮\n- 图像识别（Vision 模型）\n- 暗黑 / 浅色主题\n- 离线草稿、消息搜索、会话导出\n- 本地加密存储（API Key 与对话记录）\n\n重要提示：\n- Android 客户端与桌面端为两个独立产品，会话、API Key、设置等数据互不互通\n- 系统要求：Android 8.0（API 26）及以上\n- 1.0.0 暂不提供联网搜索功能，智能体的记忆与知识仅停留在对应模型的知识库日期\n\n源码：\n- Android 端：https://github.com/jiuan-9/quiddity-android\n- 桌面端：源码暂未公开\n\n知所不尽，往复不止！",
+      "content": "经过漫长的重整与精调，Quiddity-Android 正式版（v1.0.0）已在官网下载页上线。\n\n核心特性：\n- 11 家 AI 服务商接入，60+ 模型可选\n- 模型分配方案：按场景自动匹配最优模型\n- 多轮对话 + 上下文记忆\n- 会话压缩（记忆库）\n- 角色卡 / System Prompt\n- Markdown 渲染 + 代码高亮\n- 图像识别（Vision 模型）\n- 暗黑 / 浅色主题\n- 离线草稿、消息搜索、会话导出\n- 本地加密存储（API Key 与对话记录）\n\n重要提示：\n- Quiddity-Android 与 Quiddity-Chat、Quiddity-Agent 为三个独立产品，会话、API Key、设置等数据互不互通\n- 系统要求：Android 8.0（API 26）及以上\n- 1.0.0 暂不提供联网搜索功能，智能体的记忆与知识仅停留在对应模型的知识库日期\n\n源码：\n- Android 端：https://github.com/jiuan-9/quiddity-android\n- Chat / Agent 桌面端：源码暂未公开\n\n知所不尽，往复不止！",
       "date": "2026-07-31",
       "tag": "重要更新"
     }

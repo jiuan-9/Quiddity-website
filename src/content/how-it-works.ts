@@ -31,8 +31,8 @@ export const howItWorksSteps: Step[] = [
     icon: "Download",
     title: { zh: "下载安装", en: "Download" },
     description: {
-      zh: "下载 Quiddity 桌面客户端，无需安装，解压即可运行",
-      en: "Download the Quiddity desktop client. No installation needed — just extract and run.",
+      zh: "下载 Quiddity-Chat 桌面客户端，无需安装，解压即可运行",
+      en: "Download the Quiddity-Chat desktop client. No installation needed — just extract and run.",
     },
     gradient: "from-blue-500/20 to-cyan-500/10",
   },

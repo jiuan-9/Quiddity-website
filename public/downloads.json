@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
   "releaseDate": "2026-07-31",
-  "releaseNotes": "Quiddity 全平台正式版同步上线！\n\n**Android 端首发：**\n- 全新 Android 客户端，UI 全面重构\n- 11 家 AI 服务商接入，60+ 模型可选\n- 模型分配方案：按场景自动匹配最优模型\n- 多轮对话 / 上下文记忆\n- 角色卡（System Prompt）\n- Markdown 渲染 + 代码高亮\n- 图像识别（Vision 模型）\n- 暗黑 / 浅色主题\n- 离线草稿、消息搜索、会话导出\n\n**桌面端：** Windows 10+ 持续维护\n**源码：** 全部开源至 GitHub（Android 与 桌面端）",
+  "releaseNotes": "Quiddity-Android 正式版（v1.0.0）已上线。Quiddity-Chat 与 Quiddity-Agent 为两个不同定位的桌面产品，下载通道目前已关闭（维护中）。三个产品数据互不互通。\n\n**Android 端：**\n- 全新 Android 客户端，UI 全面重构\n- 11 家 AI 服务商接入，60+ 模型可选\n- 模型分配方案：按场景自动匹配最优模型\n- 多轮对话 / 上下文记忆\n- 角色卡（System Prompt）\n- Markdown 渲染 + 代码高亮\n- 图像识别（Vision 模型）\n- 暗黑 / 浅色主题\n- 离线草稿、消息搜索、会话导出\n\n**桌面端：** Quiddity-Chat / Quiddity-Agent 下载通道临时关闭（维护中）\n**源码：** Android 端已开源（https://github.com/jiuan-9/quiddity-android），Chat / Agent 桌面端暂未公开",
   "assets": [
     {
       "platform": "windows",

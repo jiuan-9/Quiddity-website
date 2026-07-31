@@ -14,27 +14,27 @@ export const downloadSectionTitle: I18nText = {
 
 /** 下载区副标题 */
 export const downloadSectionSubtitle: I18nText = {
-  zh: "Android 客户端已上线，可直接下载。Windows 桌面端下载通道临时关闭（维护中），恢复时间另行通知。Android 与桌面端为两个独立产品，不互通数据。",
-  en: "The Android client is live and ready to download. The Windows desktop download channel is temporarily closed (under maintenance); restoration will be announced separately. Android and desktop are independent products with no data sync.",
+  zh: "Quiddity-Android 已正式上线，可直接下载。Quiddity-Chat 桌面端下载通道临时关闭（维护中），恢复时间另行通知。Android、Chat、Agent 为三个独立产品，数据互不互通。",
+  en: "Quiddity-Android is live and ready to download. The Quiddity-Chat desktop download channel is temporarily closed (under maintenance); restoration will be announced separately. Android, Chat, and Agent are three independent products with no data sync.",
 };
 
-/** Windows 桌面端 */
+/** Quiddity-Chat 桌面端 */
 export const desktopTitle: I18nText = {
-  zh: "Windows 桌面端",
-  en: "Windows Desktop",
+  zh: "Quiddity-Chat",
+  en: "Quiddity-Chat",
 };
 
 export const desktopVersion: I18nText = {
-  zh: "v1.0.0 · 便携版",
-  en: "v1.0.0 · Portable",
+  zh: "v1.0.0 · 桌面端 · 维护中",
+  en: "v1.0.0 · Desktop · Maintenance",
 };
 
 export const desktopBadge: I18nText = {
-  zh: "NEW",
-  en: "NEW",
+  zh: "Chat",
+  en: "Chat",
 };
 
-/** 桌面端维护中文案（下载按钮临时停用时显示） */
+/** Chat 端维护中文案（下载按钮临时停用时显示） */
 export const desktopMaintenanceBadge: I18nText = {
   zh: "维护中",
   en: "Maintenance",
@@ -46,8 +46,8 @@ export const desktopMaintenanceVersion: I18nText = {
 };
 
 export const desktopMaintenanceNote: I18nText = {
-  zh: "桌面端下载通道暂时关闭，正在紧急修复中。恢复时间另行通知，敬请关注公告。",
-  en: "The desktop download channel is temporarily closed and is under urgent repair. Restoration time will be announced separately — please check the announcements.",
+  zh: "Quiddity-Chat 下载通道暂时关闭，正在紧急修复中。恢复时间另行通知，敬请关注公告。",
+  en: "The Quiddity-Chat download channel is temporarily closed and is under urgent repair. Restoration time will be announced separately — please check the announcements.",
 };
 
 /** 在线体验 */
@@ -84,14 +84,14 @@ export const mobileVersion: I18nText = {
 
 /** Android 安装提示 */
 export const androidNote: I18nText = {
-  zh: "注意：Android 客户端与桌面端为两个独立产品，会话、API Key 等数据互不互通。首次安装需在系统设置中允许「安装来自此来源的应用」，APK 已被官方签名，可放心安装。",
-  en: "Note: The Android client and desktop app are independent products — sessions and API keys do not sync. On first install, allow \"Install from this source\" in system settings. The APK is officially signed and safe to install.",
+  zh: "注意：Quiddity-Android、Quiddity-Chat、Quiddity-Agent 为三个独立产品，会话、API Key 等数据互不互通。首次安装需在系统设置中允许「安装来自此来源的应用」，APK 已被官方签名，可放心安装。",
+  en: "Note: Quiddity-Android, Quiddity-Chat, and Quiddity-Agent are three independent products — sessions and API keys do not sync. On first install, allow \"Install from this source\" in system settings. The APK is officially signed and safe to install.",
 };
 
 /** 桌面 / Android 关系说明（tooltip 备用） */
 export const androidIndependentNote: I18nText = {
-  zh: "Android 与桌面端不互通数据",
-  en: "Android and desktop do not sync data",
+  zh: "Android 与 Chat、Agent 桌面端不互通数据",
+  en: "Android does not sync data with Chat or Agent desktop",
 };
 
 /** 底部 meta tags */

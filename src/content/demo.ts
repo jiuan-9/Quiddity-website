@@ -2,8 +2,8 @@ import type { I18nText } from "./types";
 
 /** Demo 页面标题 */
 export const demoPageTitle: I18nText = {
-  zh: "Quiddity桌面端 · 在线体验",
-  en: "Quiddity Desktop · Online Demo",
+  zh: "Quiddity-Chat · 在线体验",
+  en: "Quiddity-Chat · Online Demo",
 };
 
 /** 返回首页 tooltip / aria-label */
@@ -144,8 +144,8 @@ export const demoCheckUpdateFailedAlert: I18nText = {
 };
 
 export const demoFooterNote = (version: string): I18nText => ({
-  zh: `Quiddity桌面端 v${version} 在线体验。此页面仅展示基础对话功能，完整功能请下载桌面端。`,
-  en: `Quiddity Desktop v${version} online demo. This page only shows basic chat features; download the desktop app for the full experience.`,
+  zh: `Quiddity-Chat v${version} 在线体验。此页面仅展示基础对话功能，完整功能请下载 Quiddity-Chat 桌面端。`,
+  en: `Quiddity-Chat v${version} online demo. This page only shows basic chat features; download Quiddity-Chat for the full experience.`,
 });
 
 /** 输入区占位符 */
@@ -162,8 +162,8 @@ export const demoSessionSettingsTooltip: I18nText = {
 
 /** 欢迎消息（含版本号变量） */
 export const demoWelcomeMessage = (version: string): I18nText => ({
-  zh: `你好！这是Quiddity (v${version}) 的在线体验版。\n\n请在左侧配置 API Key 和参数后开始对话。\n\n**新功能：** 代码块自动高亮、独立分框、一键复制！\n\n本页面仅展示基础聊天功能。实际桌面端还支持多会话管理、AI 人设精调等更完整的功能。`,
-  en: `Hello! This is the Quiddity (v${version}) online demo.\n\nPlease configure your API Key and parameters in the sidebar to start chatting.\n\n**New features:** automatic code highlighting, standalone code blocks, one-click copy!\n\nThis page only demonstrates basic chat features. The desktop app offers more complete features like multi-session management and AI persona tuning.`,
+  zh: `你好！这是 Quiddity-Chat (v${version}) 的在线体验版。\n\n请在左侧配置 API Key 和参数后开始对话。\n\n**新功能：** 代码块自动高亮、独立分框、一键复制！\n\n本页面仅展示基础聊天功能。Quiddity-Chat 桌面端还支持多会话管理、AI 人设精调等更完整的功能。`,
+  en: `Hello! This is the Quiddity-Chat (v${version}) online demo.\n\nPlease configure your API Key and parameters in the sidebar to start chatting.\n\n**New features:** automatic code highlighting, standalone code blocks, one-click copy!\n\nThis page only demonstrates basic chat features. Quiddity-Chat offers more complete features like multi-session management and AI persona tuning.`,
 });
 
 /** 更新通知 */
