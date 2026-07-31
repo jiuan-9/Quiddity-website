@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
   "releaseDate": "2026-07-31",
-  "downloadUrl": "https://github.com/jiuan-9/Quiddity-website/releases/latest",
-  "releaseNotes": "Quiddity 桌面端 v1.0.0 同步发布；Quiddity-Android v1.0.0 正式版（独立客户端，与桌面端不互通数据）首次发布。\n\n**Android 客户端特性：**\n- 全新 Android 客户端，UI 全面重构\n- 11 家 AI 服务商接入，60+ 模型可选\n- 模型分配方案：按场景自动匹配最优模型\n- 多轮对话 / 上下文记忆\n- 角色卡（System Prompt）\n- Markdown 渲染 + 代码高亮\n- 图像识别（Vision 模型）\n- 暗黑 / 浅色主题\n- 离线草稿、消息搜索、会话导出\n\n**桌面端：** Windows 10+ 持续维护\n**源码：** 全部开源（Android 与 桌面端分别位于独立仓库）"
+  "downloadUrl": "https://github.com/jiuan-9/Quiddity-website/releases/download/v1.0.0/",
+  "releaseNotes": "Quiddity 桌面端 v1.0.0 维护中（下载通道临时关闭）。\nQuiddity-Android v1.0.0 正式版（独立客户端，与桌面端不互通数据）已上线。\n\n**当前可用下载：**\n• Android 客户端：https://github.com/jiuan-9/Quiddity-website/releases/download/v1.0.0/quiddity-1.0.0.apk\n• 在线体验：https://quiddity-3by.pages.dev/#/demo\n\n**维护中：**\n• Windows 桌面端 v1.0.0（请关注公告恢复通知）\n\n**Android 客户端特性：**\n- 11 家 AI 服务商接入，60+ 模型可选\n- 模型分配方案：按场景自动匹配最优模型\n- 多轮对话 / 上下文记忆 / 角色卡 / Markdown / Vision\n- 暗黑 / 浅色主题 / 离线草稿 / 消息搜索\n\n**源码开源：**\n- 桌面端：https://github.com/jiuan-9/quiddity-agent\n- Android 端：https://github.com/jiuan-9/quiddity-android"
 }
