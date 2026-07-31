@@ -14,8 +14,8 @@ export const downloadSectionTitle: I18nText = {
 
 /** 下载区副标题 */
 export const downloadSectionSubtitle: I18nText = {
-  zh: "桌面端完全免费，无需注册即可使用。Android 端与桌面端为两个独立产品（不互通数据），共享同一套多模型内核。",
-  en: "The desktop app is completely free with no sign-up required. The Android client and desktop app are two independent products (no data sync) sharing the same multi-model engine.",
+  zh: "Android 客户端已上线，可直接下载。Windows 桌面端下载通道临时关闭（维护中），恢复时间另行通知。Android 与桌面端为两个独立产品，不互通数据。",
+  en: "The Android client is live and ready to download. The Windows desktop download channel is temporarily closed (under maintenance); restoration will be announced separately. Android and desktop are independent products with no data sync.",
 };
 
 /** Windows 桌面端 */
@@ -32,6 +32,22 @@ export const desktopVersion: I18nText = {
 export const desktopBadge: I18nText = {
   zh: "NEW",
   en: "NEW",
+};
+
+/** 桌面端维护中文案（下载按钮临时停用时显示） */
+export const desktopMaintenanceBadge: I18nText = {
+  zh: "维护中",
+  en: "Maintenance",
+};
+
+export const desktopMaintenanceVersion: I18nText = {
+  zh: "下载暂不可用 · 修复中",
+  en: "Download unavailable · Under repair",
+};
+
+export const desktopMaintenanceNote: I18nText = {
+  zh: "桌面端下载通道暂时关闭，正在紧急修复中。恢复时间另行通知，敬请关注公告。",
+  en: "The desktop download channel is temporarily closed and is under urgent repair. Restoration time will be announced separately — please check the announcements.",
 };
 
 /** 在线体验 */

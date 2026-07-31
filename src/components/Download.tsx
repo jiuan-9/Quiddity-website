@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Download, Monitor, Smartphone, Globe, Sparkles } from "lucide-react";
+import { Download, Monitor, Smartphone, Globe, Sparkles, Wrench, Lock } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 import { useI18n } from "@/store/i18n";
 import {
@@ -9,6 +9,9 @@ import {
   desktopTitle,
   desktopVersion,
   desktopBadge,
+  desktopMaintenanceBadge,
+  desktopMaintenanceVersion,
+  desktopMaintenanceNote,
   demoTitle,
   demoDesc,
   mobileTitle,
@@ -38,6 +41,13 @@ type DownloadsInfo = {
 
 const FALLBACK_DOWNLOAD_URL =
   "https://github.com/jiuan-9/Quiddity-website/releases/latest";
+
+/**
+ * 桌面端下载通道开关
+ * 设为 false → 桌面按钮变为"维护中"状态，不可点击
+ * 恢复后改回 true 即可
+ */
+const DESKTOP_AVAILABLE = false;
 
 /** 把字节数格式化为人类可读的文件大小 */
 function formatSize(bytes: number): string {
@@ -97,27 +107,52 @@ export default function DownloadSection() {
         <ScrollReveal threshold={0.2}>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-8 sm:mb-10 max-w-4xl mx-auto">
             {/* Desktop */}
-            <a
-              href={downloadUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative flex items-center gap-3 px-4 sm:px-5 py-3.5 sm:py-4 rounded-xl glass glow-border-strong w-full transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-brand-500/15 hover:border-brand-500/30 active:scale-[0.98] active:bg-white/[0.04] overflow-hidden min-h-[64px]"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-brand-500/[0.02] via-transparent to-brand-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative w-10 h-10 rounded-lg bg-brand-500/10 flex items-center justify-center group-hover:bg-gradient-to-br from-brand-500/20 to-brand-600/15 transition-all duration-300 shrink-0">
-                <Monitor size={22} className="text-brand-400" />
-              </div>
-              <div className="text-left min-w-0 flex-1 relative z-10">
-                <div className="flex items-center gap-1.5">
-                  <span className="text-sm font-semibold text-white">{t(desktopTitle)}</span>
-                  <span className="inline-flex items-center px-1.5 py-0.5 rounded-md bg-gradient-to-r from-brand-500/20 to-brand-600/15 text-[9px] font-bold text-brand-400">
-                    {t(desktopBadge)}
-                  </span>
+            {DESKTOP_AVAILABLE ? (
+              <a
+                href={downloadUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative flex items-center gap-3 px-4 sm:px-5 py-3.5 sm:py-4 rounded-xl glass glow-border-strong w-full transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-brand-500/15 hover:border-brand-500/30 active:scale-[0.98] active:bg-white/[0.04] overflow-hidden min-h-[64px]"
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-brand-500/[0.02] via-transparent to-brand-500/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative w-10 h-10 rounded-lg bg-brand-500/10 flex items-center justify-center group-hover:bg-gradient-to-br from-brand-500/20 to-brand-600/15 transition-all duration-300 shrink-0">
+                  <Monitor size={22} className="text-brand-400" />
                 </div>
-                <div className="text-xs text-dark-400 mt-0.5">{t(desktopVersion)}</div>
+                <div className="text-left min-w-0 flex-1 relative z-10">
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-sm font-semibold text-white">{t(desktopTitle)}</span>
+                    <span className="inline-flex items-center px-1.5 py-0.5 rounded-md bg-gradient-to-r from-brand-500/20 to-brand-600/15 text-[9px] font-bold text-brand-400">
+                      {t(desktopBadge)}
+                    </span>
+                  </div>
+                  <div className="text-xs text-dark-400 mt-0.5">{t(desktopVersion)}</div>
+                </div>
+                <Download size={16} className="text-dark-500 group-hover:text-brand-400 transition-colors ml-auto shrink-0 relative z-10" />
+              </a>
+            ) : (
+              <div
+                role="status"
+                aria-disabled="true"
+                className="group relative flex items-center gap-3 px-4 sm:px-5 py-3.5 sm:py-4 rounded-xl glass border border-amber-500/20 w-full overflow-hidden min-h-[64px] cursor-not-allowed select-none"
+                title={t(desktopMaintenanceNote)}
+              >
+                <div className="absolute inset-0 bg-gradient-to-r from-amber-500/[0.02] via-transparent to-amber-500/[0.02] opacity-60" />
+                <div className="relative w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center shrink-0">
+                  <Monitor size={22} className="text-dark-500" />
+                </div>
+                <div className="text-left min-w-0 flex-1 relative z-10">
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-sm font-semibold text-dark-300">{t(desktopTitle)}</span>
+                    <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-gradient-to-r from-amber-500/25 to-orange-500/15 text-[9px] font-bold text-amber-300">
+                      <Wrench size={9} className="shrink-0" />
+                      {t(desktopMaintenanceBadge)}
+                    </span>
+                  </div>
+                  <div className="text-xs text-dark-500 mt-0.5">{t(desktopMaintenanceVersion)}</div>
+                </div>
+                <Lock size={14} className="text-dark-600 ml-auto shrink-0 relative z-10" />
               </div>
-              <Download size={16} className="text-dark-500 group-hover:text-brand-400 transition-colors ml-auto shrink-0 relative z-10" />
-            </a>
+            )}
 
             {/* Mobile (Android) - 已上线 */}
             {androidUrl ? (
@@ -173,6 +208,14 @@ export default function DownloadSection() {
               </div>
             </a>
           </div>
+
+          {/* 桌面端维护公告（仅在关闭时显示） */}
+          {!DESKTOP_AVAILABLE && (
+            <p className="text-[11px] sm:text-xs text-amber-300/80 max-w-xl mx-auto mb-4 sm:mb-5 px-3 leading-relaxed flex items-start gap-1.5 justify-center text-center">
+              <Wrench size={11} className="mt-0.5 shrink-0" />
+              <span>{t(desktopMaintenanceNote)}</span>
+            </p>
+          )}
 
           {/* Android 安装提示 */}
           {androidUrl && (
