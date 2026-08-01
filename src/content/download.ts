@@ -78,8 +78,8 @@ export const mobileBadge: I18nText = {
 };
 
 export const mobileVersion: I18nText = {
-  zh: "v1.0.3 · Android 8.0+",
-  en: "v1.0.3 · Android 8.0+",
+  zh: "v1.1.0 · Android 8.0+",
+  en: "v1.1.0 · Android 8.0+",
 };
 
 /** Android 安装提示 */

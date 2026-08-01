@@ -1,6 +1,6 @@
 {
-  "version": "1.0.3",
-  "releaseDate": "2026-07-31",
-  "downloadUrl": "./downloads/quiddity-1.0.3.apk",
-  "releaseNotes": "Quiddity-Android v1.0.3（versionCode=4）正式版已上线。\n\n**本次更新重点：修复并优化应用内更新下载链路**\n\n- 重写 UpdateChecker，使用系统 DownloadManager + FileProvider\n- APK 下载完成后可直接在应用内唤起安装，无需跳浏览器\n- 实时下载进度 + 状态回调，下载失败可一键重试\n- 修复 Android 7.0+ FileUriExposedException 与 Android 13+ RECEIVER_NOT_EXPORTED 报错\n- 「不再提醒此版本」持久化支持\n\nQuiddity-Chat 与 Quiddity-Agent 为两个不同定位的桌面产品，下载通道目前临时关闭（维护中）。\n\n**当前可用下载：**\n- Quiddity-Android v1.0.3：https://quiddity-3by.pages.dev/downloads/quiddity-1.0.3.apk\n- 在线体验（模拟 Quiddity-Chat）：https://quiddity-3by.pages.dev/#/demo\n\n**维护中：**\n- Quiddity-Chat v1.0.0 桌面端（请关注公告恢复通知）\n- Quiddity-Agent v1.0.0 桌面端（请关注公告恢复通知）\n\n**Quiddity-Android 特性：**\n- 11 家 AI 服务商接入，60+ 模型可选\n- 模型分配方案：按场景自动匹配最优模型\n- 多轮对话 / 上下文记忆 / 角色卡 / Markdown / Vision\n- 暗黑 / 浅色主题 / 离线草稿 / 消息搜索\n\n**源码：**\n- Android 端：https://github.com/jiuan-9/quiddity-android\n- Chat / Agent 桌面端：源码暂未公开"
+  "version": "1.1.0",
+  "releaseDate": "2026-08-01",
+  "downloadUrl": "./downloads/quiddity-1.1.0.apk",
+  "releaseNotes": "Quiddity-Android v1.1.0（versionCode=5）正式版已上线。\n\n**新功能：联网搜索 RAG**\n\n- 对话时 AI 可实时联网检索最新信息，给出可点击的来源链接\n- 每条联网回复可展开「来源」列表（标题 / URL / 摘要）\n- 手动 / 自动模式：可设置每条消息默认联网，或仅在需要时点工具栏 🌐 按钮触发\n- 搜索范围控制：全网 / 近一天 / 近一周 / 近一月 / 近一年\n- 同一会话内相同/相似 query 自动复用结果（缓存去重）\n\n**体验优化：**\n- 联网开关状态在会话内保持，跨会话恢复上次选择\n- 网络异常时回退到普通模式 + 友好提示，不打断对话流\n- 来源链接长按复制 / 点击跳转浏览器\n\n**修复：**\n- 修复联网回复偶发的 Markdown 渲染错位（来源列表与正文分离）\n- 修复搜索请求超时（默认 10s，可配置 5/15/30s）\n\nQuiddity-Chat 与 Quiddity-Agent 为两个不同定位的桌面产品，下载通道目前临时关闭（维护中）。\n\n**当前可用下载：**\n- Quiddity-Android v1.1.0：https://quiddity-3by.pages.dev/downloads/quiddity-1.1.0.apk\n- 在线体验（模拟 Quiddity-Chat）：https://quiddity-3by.pages.dev/#/demo\n\n**维护中：**\n- Quiddity-Chat v1.0.0 桌面端（请关注公告恢复通知）\n- Quiddity-Agent v1.0.0 桌面端（请关注公告恢复通知）\n\n**Quiddity-Android 特性：**\n- 11 家 AI 服务商接入，60+ 模型可选\n- 模型分配方案：按场景自动匹配最优模型\n- 多轮对话 / 上下文记忆 / 角色卡 / Markdown / Vision\n- 暗黑 / 浅色主题 / 离线草稿 / 消息搜索\n- **联网搜索 RAG**（1.1.0 新增）\n\n**源码：**\n- Android 端：https://github.com/jiuan-9/quiddity-android\n- Chat / Agent 桌面端：源码暂未公开"
 }
