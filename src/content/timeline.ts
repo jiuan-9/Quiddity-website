@@ -65,6 +65,21 @@ export const timelineMilestones: TimelineMilestone[] = [
     ],
     color: "purple",
   },
+  {
+    version: "v1.1.2",
+    date: "2026.08.01",
+    label: { zh: "更新重构", en: "Update Overhaul" },
+    description: {
+      zh: "彻底重构应用内更新机制，绕过系统 DownloadManager，改用 OkHttp 直接下载 APK，兼容所有国产 ROM。",
+      en: "Completely overhauled the in-app update mechanism: bypassed system DownloadManager, uses OkHttp direct download, compatible with all Chinese ROMs.",
+    },
+    highlights: [
+      { icon: "Download", text: { zh: "OkHttp 直连下载", en: "OkHttp Direct Download" } },
+      { icon: "Smartphone", text: { zh: "兼容所有国产 ROM", en: "All Chinese ROMs Compatible" } },
+      { icon: "Shield", text: { zh: "多源绕底链接", en: "Multi-source Fallback URLs" } },
+    ],
+    color: "blue",
+  },
 ];
 
 /** 统计条 */

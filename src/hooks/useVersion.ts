@@ -18,7 +18,7 @@ export type VersionInfo = {
 };
 
 const DEFAULT_VERSION: VersionInfo = {
-  version: "1.1.0",
+  version: "1.1.2",
   releaseDate: "",
   downloadUrl: "#download",
   releaseNotes: "",
