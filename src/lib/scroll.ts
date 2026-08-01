@@ -5,13 +5,35 @@
  * 但实际 dev/prod 环境中 CSS 有时不生效，导致"按钮没反应"的视觉错觉
  *
  * 新版：用 getBoundingClientRect + window.scrollTo 手动计算偏移，不依赖 CSS
- *   - 减去 Navbar 高度（80px），确保 section 标题不被遮挡
+ *   - 动态读取 Navbar 实际高度（避免硬编码 80px 与实际不符）
  *   - supportsReduceMotion 检测：reduced motion 时直接跳转（无动画）
+ *   - 同步更新 URL hash（让用户能清楚看到当前位置）
+ *   - 闪烁高亮目标 section 1.5s（让用户明确感知滚动到了哪里）
  */
 
 import type { NavigateFunction } from "react-router-dom";
 
-const NAVBAR_HEIGHT = 80;
+const MOBILE_BREAKPOINT = 768;
+const FLASH_CLASS = "scroll-flash-highlight";
+const FLASH_DURATION_MS = 1500;
+
+function getNavbarHeight(): number {
+  if (typeof document === "undefined") return 80;
+  const isMobile = window.innerWidth < MOBILE_BREAKPOINT;
+  const nav = document.querySelector("nav");
+  if (nav) {
+    const h = nav.getBoundingClientRect().height;
+    if (h > 0) return h;
+  }
+  return isMobile ? 64 : 80;
+}
+
+function flashElement(el: HTMLElement): void {
+  el.classList.add(FLASH_CLASS);
+  window.setTimeout(() => {
+    el.classList.remove(FLASH_CLASS);
+  }, FLASH_DURATION_MS);
+}
 
 export function scrollToSection(id: string): void {
   if (typeof document === "undefined") return;
@@ -23,10 +45,10 @@ export function scrollToSection(id: string): void {
     return;
   }
 
+  const navHeight = getNavbarHeight();
   const rect = el.getBoundingClientRect();
-  const targetTop = window.scrollY + rect.top - NAVBAR_HEIGHT;
+  const targetTop = window.scrollY + rect.top - navHeight - 8;
 
-  // 检测 prefers-reduced-motion
   const prefersReducedMotion =
     typeof window !== "undefined" &&
     window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
@@ -36,6 +58,16 @@ export function scrollToSection(id: string): void {
   } else {
     window.scrollTo({ top: targetTop, behavior: "smooth" });
   }
+
+  try {
+    if (window.history && window.history.replaceState) {
+      window.history.replaceState(null, "", `#${id}`);
+    }
+  } catch (_) {
+    // 忽略
+  }
+
+  flashElement(el);
 }
 
 /**
@@ -77,7 +109,6 @@ export function navigateToSection(
     return;
   }
 
-  // 子路由 → 先回 Home，等渲染完成后滚动
   navigate("/");
   RETRY_DELAYS.forEach((delay) => {
     setTimeout(() => {
