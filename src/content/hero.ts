@@ -6,8 +6,8 @@ import type { I18nText } from "./types";
  * 注意：版本号统一从 public/version.json 读取，不在内容里硬编码
  */
 export const heroBadge: I18nText = {
-  zh: "全新 v1.1.2 · 已发布",
-  en: "New v1.1.2 · Released",
+  zh: "全新 v1.1.0 · 已发布",
+  en: "New v1.1.0 · Released",
 };
 
 export const heroTitle: I18nText = {

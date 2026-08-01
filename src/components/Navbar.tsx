@@ -110,7 +110,11 @@ export default function Navbar() {
         ease: easing.outQuart,
       }}
     >
-      <div className="container mx-auto flex items-center justify-between h-16 sm:h-18 px-4 sm:px-6">
+      <div
+        id="navbar-bar"
+        data-testid="navbar-bar"
+        className="container mx-auto flex items-center justify-between h-16 sm:h-18 px-4 sm:px-6"
+      >
         {/* Logo —— 用 button 代替 a，避免 href="#hero" 触发 hash 变化 */}
         <button
           type="button"

@@ -1,14 +1,16 @@
 /**
  * scrollToSection — 平滑滚动到指定 section
  *
- * 修复（阶段 D）：原版用 el.scrollIntoView，依赖 CSS scroll-margin-top 才能避开 fixed Navbar
- * 但实际 dev/prod 环境中 CSS 有时不生效，导致"按钮没反应"的视觉错觉
+ * 修复（阶段 E，移动端锚点跳转修复）：
+ *   v3.0 之前的 bug：当用户在移动端打开汉堡菜单后点击"下载应用"，
+ *   - setMobileOpen(false) 触发菜单退出动画，但菜单 DOM 仍存在
+ *   - scrollToSection 同步执行，nav.getBoundingClientRect().height 包含了
+ *     正在退出/未退出的移动菜单高度（~500-600px）
+ *   - 实际顶栏高度只有 64px，导致目标位置被多减 500+px
+ *   - 视觉表现：滚到了 download 之前的内容（agent 板块）
  *
- * 新版：用 getBoundingClientRect + window.scrollTo 手动计算偏移，不依赖 CSS
- *   - 动态读取 Navbar 实际高度（避免硬编码 80px 与实际不符）
- *   - supportsReduceMotion 检测：reduced motion 时直接跳转（无动画）
- *   - 同步更新 URL hash（让用户能清楚看到当前位置）
- *   - 闪烁高亮目标 section 1.5s（让用户明确感知滚动到了哪里）
+ *   修复：使用专用的 #navbar-bar 元素 ID，仅读取顶栏容器高度，
+ *   永远不受移动菜单 DOM 状态影响。
  */
 
 import type { NavigateFunction } from "react-router-dom";
@@ -17,15 +19,37 @@ const MOBILE_BREAKPOINT = 768;
 const FLASH_CLASS = "scroll-flash-highlight";
 const FLASH_DURATION_MS = 1500;
 
+/**
+ * 读取顶栏精确高度。
+ *
+ * 关键设计：
+ *   1. 优先通过 #navbar-bar 读取（专属 ID，不受移动菜单 DOM 状态影响）
+ *   2. 兜底：document.querySelector("nav")，但这种情况只发生在 #navbar-bar
+ *      不存在时（如测试环境或 SSR），此时选择 nav 第一个子元素
+ *   3. 最后兜底：基于移动端断点返回固定值
+ */
 function getNavbarHeight(): number {
   if (typeof document === "undefined") return 80;
-  const isMobile = window.innerWidth < MOBILE_BREAKPOINT;
-  const nav = document.querySelector("nav");
-  if (nav) {
-    const h = nav.getBoundingClientRect().height;
+
+  // 主路径：通过专属 ID 读取顶栏高度（不受移动菜单影响）
+  const bar = document.getElementById("navbar-bar");
+  if (bar) {
+    const h = bar.getBoundingClientRect().height;
     if (h > 0) return h;
   }
-  return isMobile ? 64 : 80;
+
+  // 兜底路径：取 nav 元素的第一个子元素（顶栏容器）高度
+  const nav = document.querySelector("nav");
+  if (nav) {
+    const firstChild = nav.firstElementChild as HTMLElement | null;
+    if (firstChild) {
+      const h = firstChild.getBoundingClientRect().height;
+      if (h > 0) return h;
+    }
+    // 最后兜底：直接读 nav 高度（会包含菜单，应避免走到这里）
+  }
+
+  return window.innerWidth < MOBILE_BREAKPOINT ? 64 : 72;
 }
 
 function flashElement(el: HTMLElement): void {
