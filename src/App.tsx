@@ -6,7 +6,6 @@ const Demo = lazy(() => import("@/pages/Demo"));
 const Timeline = lazy(() => import("@/pages/Timeline"));
 const Legal = lazy(() => import("@/pages/legal/Legal"));
 const Privacy = lazy(() => import("@/pages/Privacy"));
-const Announcements = lazy(() => import("@/pages/Announcements"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
 export default function App() {
@@ -18,7 +17,6 @@ export default function App() {
         <Route path="/timeline" element={<Timeline />} />
         <Route path="/legal" element={<Legal />} />
         <Route path="/privacy" element={<Privacy />} />
-        <Route path="/announcements" element={<Announcements />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>

@@ -1,7 +1,8 @@
 {
-  "version": "1.1.2",
-  "releaseDate": "2026-08-01",
-  "releaseNotes": "Quiddity-Android v1.1.2 正式版（versionCode=7）已上线。\n\n**修复：**\n- **彻底修复** 应用内更新下载失败的问题：完全绕过系统 DownloadManager，改用 OkHttp 直接下载 APK 到 app 内部存储，兼容所有国产 ROM（MIUI、ColorOS 等），不再受 DownloadManager 魔改影响\n- **修复** 部分手机「检查更新」直接失败的问题：检测源由单一 GitHub raw 改为多源 fallback（Cloudflare Pages → GitHub Pages → raw.githubusercontent.com），任一源成功即返回\n- **修复** 部分手机「启动下载失败」的问题：installApk 改用 FileProvider.getUriForFile() 统一包装本地 APK，移除无效的 grantUriPermission 自我授权，依赖 Intent 的 FLAG_GRANT_READ_URI_PERMISSION 授权\n- **增强** 多源 APK 直链兜底（Cloudflare CDN + GitHub Releases 两条预置链接）\n\n**兼容性：**\n- v1.0.0 ~ v1.1.1 用户的本地数据、会话、API Key、设置等完全保留，可直接覆盖安装\n- 系统要求不变：Android 8.0（API 26）及以上",
+  "version": "1.2.0",
+  "versionCode": 8,
+  "releaseDate": "2026-08-02",
+  "releaseNotes": "Quiddity-Android v1.2.0 正式版（versionCode=8）已上线。\n\n**新功能：**\n- **新增** 主动消息（时间库）功能：AI 会在每天指定时间主动向你发送消息\n  - 总设置开关：开启后需在对应会话中单独启用时间库\n  - 会话级开关：开启即生效，自动生成今日时间库并注册闹钟\n  - 每天仅首次打开该会话时生成时间库；界面会提示「正在整理前一天的记忆！」\n  - 到达时间点后由系统闹钟触发后台决策，AI 根据当前未压缩聊天记录决定是否发送\n  - 延迟补偿：误差 ≤5 分钟自动补发；>5 分钟放弃\n  - 网络异常自动重试 1 次（5 秒延迟），仍失败则视为放弃\n  - 每日首次启动 App 自动重置所有 done → pending\n\n**兼容性：**\n- v1.0.0 ~ v1.1.2 用户的本地数据、会话、API Key、设置等完全保留，可直接覆盖安装\n- 系统要求不变：Android 8.0（API 26）及以上",
   "assets": [
     {
       "platform": "windows",
@@ -14,13 +15,13 @@
     {
       "platform": "android",
       "arch": "arm64",
-      "label": "quiddity-1.1.2.apk",
-      "url": "./downloads/quiddity-1.1.2.apk",
-      "mirrorUrl": "https://github.com/jiuan-9/Quiddity-website/releases/download/v1.1.2/quiddity-1.1.2.apk",
-      "size": 2898709,
+      "label": "quiddity-1.2.0.apk",
+      "url": "./downloads/quiddity-1.2.0.apk",
+      "mirrorUrl": "https://github.com/jiuan-9/Quiddity-website/releases/download/v1.2.0/quiddity-1.2.0.apk",
+      "size": 2917289,
       "contentType": "application/vnd.android.package-archive"
     }
   ],
   "fallbackUrl": "https://github.com/jiuan-9/Quiddity-website/releases/latest",
-  "lastSyncedAt": "2026-08-01T06:00:00.000Z"
+  "lastSyncedAt": "2026-08-02T00:00:00.000Z"
 }

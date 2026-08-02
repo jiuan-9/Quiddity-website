@@ -13,7 +13,6 @@ export * from "./stats";
 export * from "./footer-links";
 export * from "./quiddity-preview";
 export * from "./demo-chats";
-export * from "./announcements";
 export * from "./app-preview";
 export * from "./use-cases";
 export * from "./how-it-works";

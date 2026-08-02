@@ -12,9 +12,8 @@ import ProviderShowcase from "@/components/ProviderShowcase";
 import Stats from "@/components/Stats";
 import FAQ from "@/components/FAQ";
 import QuiddityPreview from "@/components/QuiddityPreview";
-import DownloadSection from "@/components/Download";
+import DownloadSection from "@/components/download";
 import Footer from "@/components/Footer";
-import Announcements from "@/components/Announcements";
 import { ScrollProgress, FilmGrain } from "@/components/animation";
 
 function Divider() {
@@ -62,8 +61,6 @@ export default function Home() {
       <Navbar />
       {/* 内容流直接排列（移除 GlobalTilt 3D 倾斜：用户反馈"太晃了"，破坏稳重感） */}
       <Hero />
-      <Divider />
-      <Announcements />
       <Divider />
       <Features />
       <Divider />

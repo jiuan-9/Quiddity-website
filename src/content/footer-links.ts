@@ -17,7 +17,6 @@ export const footerLinks: FooterGroup[] = [
     links: [
       { label: { zh: "常见问题", en: "FAQ" }, href: "#faq" },
       { label: { zh: "版本历程", en: "Changelog" }, href: "#/timeline" },
-      { label: { zh: "公告中心", en: "Announcements" }, href: "#/announcements" },
     ],
   },
   {

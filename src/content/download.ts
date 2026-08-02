@@ -14,8 +14,8 @@ export const downloadSectionTitle: I18nText = {
 
 /** 下载区副标题 */
 export const downloadSectionSubtitle: I18nText = {
-  zh: "Quiddity-Android 已正式上线，可直接下载。Quiddity-Chat 桌面端下载通道临时关闭（维护中），恢复时间另行通知。Android、Chat、Agent 为三个独立产品，数据互不互通。",
-  en: "Quiddity-Android is live and ready to download. The Quiddity-Chat desktop download channel is temporarily closed (under maintenance); restoration will be announced separately. Android, Chat, and Agent are three independent products with no data sync.",
+  zh: "Quiddity-Android 已正式上线，可直接下载。Android、Chat、Agent 为三个独立产品，数据互不互通。",
+  en: "Quiddity-Android is live and ready to download. Android, Chat, and Agent are three independent products with no data sync.",
 };
 
 /** Quiddity-Chat 桌面端 */
@@ -46,8 +46,8 @@ export const desktopMaintenanceVersion: I18nText = {
 };
 
 export const desktopMaintenanceNote: I18nText = {
-  zh: "Quiddity-Chat 下载通道暂时关闭，正在紧急修复中。恢复时间另行通知，敬请关注公告。",
-  en: "The Quiddity-Chat download channel is temporarily closed and is under urgent repair. Restoration time will be announced separately — please check the announcements.",
+  zh: "Quiddity-Chat 下载通道暂时关闭，正在紧急修复中。",
+  en: "The Quiddity-Chat download channel is temporarily closed and is under urgent repair.",
 };
 
 /** 在线体验 */
@@ -78,8 +78,8 @@ export const mobileBadge: I18nText = {
 };
 
 export const mobileVersion: I18nText = {
-  zh: "v1.1.2 · Android 8.0+",
-  en: "v1.1.2 · Android 8.0+",
+  zh: "v1.2.0 · Android 8.0+",
+  en: "v1.2.0 · Android 8.0+",
 };
 
 /** Android 安装提示 */
@@ -102,7 +102,7 @@ export const androidIndependentNote: I18nText = {
 
 /** 底部 meta tags */
 export const downloadMetaTags: { icon: string; label: I18nText }[] = [
-  { icon: "Sparkles", label: { zh: "版本 1.1.2", en: "Version 1.1.2" } },
+  { icon: "Sparkles", label: { zh: "版本 1.2.0", en: "Version 1.2.0" } },
   { icon: "Dot", label: { zh: "Windows 10+", en: "Windows 10+" } },
   { icon: "Dot", label: { zh: "完全免费", en: "Completely Free" } },
   { icon: "Dot", label: { zh: "无需注册", en: "No Sign-up" } },
