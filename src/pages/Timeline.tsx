@@ -216,8 +216,8 @@ function ProductRail({
         </div>
       </div>
 
-      {/* 详情卡：绝对定位贴在被聚焦节点正下方，智能避边 */}
-      <div className="relative mt-4" style={{ minHeight: 0 }}>
+      {/* 详情卡：保留行内空间，不覆盖下一行节点；用 inline 流式布局让出文档空间 */}
+      <div className="mt-4 relative min-h-[20px]">
         {group.versions.map((v) => {
           const key = `${group.product.id}-${v.version}`;
           const isActive = activeKey === key;
@@ -227,28 +227,34 @@ function ProductRail({
           return (
             <div
               key={key}
-              className="absolute top-0 z-20"
-              style={{
-                left: `${pct}%`,
-                transform:
-                  pct < 25
-                    ? "translateX(0)"
-                    : pct > 75
-                      ? "translateX(-100%)"
-                      : "translateX(-50%)",
-              }}
+              className="relative pt-3"
               role="tooltip"
             >
-              <div className="relative">
-                <div
-                  className="absolute -top-1.5 w-3 h-3 rotate-45 bg-white/[0.03] border-l border-t border-white/[0.08]"
-                  style={{
-                    left: "50%",
-                    transform: "translateX(-50%)",
-                  }}
-                />
-                <VersionCard v={v} color={v.color} />
+              <div
+                className="absolute top-0 z-20"
+                style={{
+                  left: `${pct}%`,
+                  transform:
+                    pct < 25
+                      ? "translateX(0)"
+                      : pct > 75
+                        ? "translateX(-100%)"
+                        : "translateX(-50%)",
+                }}
+              >
+                <div className="relative">
+                  <div
+                    className="absolute -top-1.5 w-3 h-3 rotate-45 bg-white/[0.03] border-l border-t border-white/[0.08]"
+                    style={{
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                    }}
+                  />
+                  <VersionCard v={v} color={v.color} />
+                </div>
               </div>
+              {/* 撑开高度的占位符：让父级占真实空间，下一行节点不会被覆盖 */}
+              <div className="invisible pointer-events-none" style={{ height: 140 }} />
             </div>
           );
         })}
