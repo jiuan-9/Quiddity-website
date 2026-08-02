@@ -1,22 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowLeft,
   Smartphone,
   Monitor,
   Bot,
-  Bell,
-  Clock,
-  Lock,
-  ListChecks,
-  Workflow,
-  Globe,
-  Layers,
-  Palette,
   Wrench,
   Activity,
   BarChart3,
   Sliders,
-  Link,
+  Link as LinkIcon,
+  Workflow,
+  ListChecks,
+  Lock,
+  Layers,
+  Bell,
   CheckCircle2,
   AlertTriangle,
   Hourglass,
@@ -29,8 +26,8 @@ import { timelineTitle, timelineBackHomeLabel, timelineProductGroups, statusLabe
 import type { TimelineHighlight, TimelineProductGroup, TimelineVersion } from "@/content/timeline";
 
 const iconMap: Record<string, React.ComponentType<{ size?: number | string; className?: string }>> = {
-  Globe, Palette, Layers, Smartphone, Monitor, Bot,
-  Bell, Clock, Lock, ListChecks, Workflow, Wrench, Activity, BarChart3, Sliders, Link,
+  Smartphone, Monitor, Bot,
+  Bell, Lock, ListChecks, Workflow, Wrench, Activity, BarChart3, Sliders, LinkIcon, Layers,
 };
 
 const productIconMap = { Smartphone, Monitor, Bot } as const;
@@ -48,35 +45,35 @@ const statusMap = {
   upcoming:    { icon: Hourglass,     cls: "bg-blue-500/10 text-blue-300 border-blue-500/20" },
 } as const;
 
-function HighlightIcon({ icon }: { icon: TimelineHighlight["icon"] }) {
-  const Icon = iconMap[icon];
-  if (!Icon) return null;
-  return <Icon size={10} className="text-dark-500" />;
-}
-
 function ProductHeader({ icon }: { icon: keyof typeof productIconMap }) {
   const Icon = productIconMap[icon];
   return Icon ? <Icon size={16} className="text-brand-400" /> : null;
 }
 
+function HighlightIcon({ icon }: { icon: TimelineHighlight["icon"] }) {
+  const Icon = iconMap[icon];
+  if (!Icon) return null;
+  return <Icon size={10} className="text-dark-400" />;
+}
+
 function VersionCard({ v, color }: { v: TimelineVersion; color: VersionColor }) {
   const c = colorMap[color];
   return (
-    <div className="glass rounded-xl p-4 border border-white/[0.06] h-full">
-      <div className="flex items-center gap-2 mb-2 flex-wrap">
-        <span className="text-base font-bold text-white tracking-wide">{v.version}</span>
-        <span className={`inline-flex items-center px-2 py-0.5 rounded-md text-[10px] font-semibold border ${c.badge}`}>
+    <div className="rounded-xl p-3 border border-white/[0.08] bg-white/[0.03] w-[240px]">
+      <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+        <span className="text-sm font-bold text-white">{v.version}</span>
+        <span className={`inline-flex items-center px-1.5 py-0.5 rounded-md text-[9px] font-semibold border ${c.badge}`}>
           {v.label.zh}
         </span>
-        <span className="text-[10px] text-dark-500 ml-auto">{v.date}</span>
+        <span className="text-[9px] text-dark-500 ml-auto">{v.date}</span>
       </div>
-      <p className="text-xs text-dark-300 leading-relaxed mb-3">{v.description.zh}</p>
+      <p className="text-[11px] text-dark-300 leading-relaxed mb-2">{v.description.zh}</p>
       {v.highlights.length > 0 && (
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap gap-1">
           {v.highlights.map((h) => (
             <span
               key={h.text.zh}
-              className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-white/[0.03] border border-white/[0.05] text-[11px] text-dark-300"
+              className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-white/[0.02] border border-white/[0.05] text-[10px] text-dark-400"
             >
               <HighlightIcon icon={h.icon} />
               {h.text.zh}
@@ -91,6 +88,8 @@ function VersionCard({ v, color }: { v: TimelineVersion; color: VersionColor }) 
 export default function Timeline() {
   const navigate = useNavigate();
   const { t } = useI18n();
+  /* 当前聚焦的产品-版本 key（点击节点后展开详情卡） */
+  const [activeKey, setActiveKey] = useState<string | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -125,10 +124,15 @@ export default function Timeline() {
             <h1 className="text-2xl md:text-3xl font-bold text-white">{t(timelineTitle)}</h1>
           </div>
 
-          <div className="rounded-2xl glass p-5 md:p-6 border border-white/[0.06]">
-            <div className="flex flex-col gap-10">
+          <div className="rounded-2xl glass p-5 md:p-7 border border-white/[0.06]">
+            <div className="flex flex-col gap-12">
               {timelineProductGroups.map((g) => (
-                <ProductRail key={g.product.id} group={g} />
+                <ProductRail
+                  key={g.product.id}
+                  group={g}
+                  activeKey={activeKey}
+                  setActiveKey={setActiveKey}
+                />
               ))}
             </div>
           </div>
@@ -140,14 +144,21 @@ export default function Timeline() {
   );
 }
 
-function ProductRail({ group }: { group: TimelineProductGroup }) {
+function ProductRail({
+  group,
+  activeKey,
+  setActiveKey,
+}: {
+  group: TimelineProductGroup;
+  activeKey: string | null;
+  setActiveKey: (k: string | null) => void;
+}) {
   const { t } = useI18n();
   const StatusIcon = statusMap[group.product.status].icon;
   const n = group.versions.length;
   const firstColor: VersionColor = group.versions[0]?.color ?? "blue";
   const c = colorMap[firstColor];
 
-  /* 节点等距分布：5% ~ 95% */
   function nodeLeftPct(i: number): number {
     if (n <= 1) return 50;
     return 5 + (90 * i) / (n - 1);
@@ -155,7 +166,7 @@ function ProductRail({ group }: { group: TimelineProductGroup }) {
 
   return (
     <div>
-      <div className="flex items-center gap-2 mb-4">
+      <div className="flex items-center gap-2 mb-5">
         <div className="w-7 h-7 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center shrink-0">
           <ProductHeader icon={group.product.icon} />
         </div>
@@ -166,33 +177,60 @@ function ProductRail({ group }: { group: TimelineProductGroup }) {
         </span>
       </div>
 
-      {/* 时间线：横向节点 */}
-      <div className="relative h-7 mb-6">
+      {/* 横向节点（点击聚焦） */}
+      <div className="relative h-6">
         <div className={`absolute left-0 right-0 top-1/2 -translate-y-1/2 h-px ${c.rail}`} />
         <div className="relative h-full">
           {group.versions.map((v, i) => {
             const pct = nodeLeftPct(i);
+            const key = `${group.product.id}-${v.version}`;
+            const isActive = activeKey === key;
             return (
-              <div
-                key={v.version}
-                className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex flex-col items-center"
+              <button
+                type="button"
+                key={key}
+                onClick={() => setActiveKey(isActive ? null : key)}
+                className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex flex-col items-center group focus:outline-none"
                 style={{ left: `${pct}%` }}
+                aria-label={`${group.product.id} ${v.version}`}
+                aria-expanded={isActive}
               >
-                <span className={`block w-3 h-3 rounded-full ${c.dot} ring-4 ring-dark-950`} />
-                <span className="mt-2 text-[10px] font-semibold tracking-wide text-white whitespace-nowrap">
+                <span
+                  className={`block w-3 h-3 rounded-full ${c.dot} ring-4 ring-dark-950 transition-all ${
+                    isActive ? `scale-150 ring-4 ${c.ring}` : "group-hover:scale-125"
+                  }`}
+                />
+                <span
+                  className={`mt-2 text-[10px] font-semibold tracking-wide whitespace-nowrap transition-colors ${
+                    isActive ? "text-white" : "text-dark-500 group-hover:text-dark-300"
+                  }`}
+                >
                   {v.version}
                 </span>
-              </div>
+              </button>
             );
           })}
         </div>
       </div>
 
-      {/* 版本卡：网格并排（1/2/3 列自适应） */}
-      <div className={`grid gap-3 ${n === 1 ? "grid-cols-1" : n === 2 ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1 md:grid-cols-3"}`}>
-        {group.versions.map((v) => (
-          <VersionCard key={v.version} v={v} color={v.color} />
-        ))}
+      {/* 详情区：固定高度槽位，仅活动节点显示卡片 */}
+      <div className="mt-6 min-h-[120px]">
+        {group.versions.map((v) => {
+          const key = `${group.product.id}-${v.version}`;
+          const isActive = activeKey === key;
+          return (
+            <div
+              key={key}
+              className={`transition-opacity duration-150 ${isActive ? "opacity-100" : "opacity-0 pointer-events-none h-0 overflow-hidden"}`}
+              aria-hidden={!isActive}
+            >
+              {isActive && <VersionCard v={v} color={v.color} />}
+            </div>
+          );
+        })}
+        {!group.versions.some((v) => activeKey === `${group.product.id}-${v.version}`) && (
+          <p className="text-[11px] text-dark-500">点击节点查看详情</p>
+        )}
       </div>
     </div>
   );
