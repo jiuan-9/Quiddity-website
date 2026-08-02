@@ -1,8 +1,7 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowLeft,
   Smartphone,
-  Globe,
   Monitor,
   Bot,
   Bell,
@@ -10,12 +9,9 @@ import {
   Lock,
   ListChecks,
   Workflow,
-  Languages,
-  Wrench,
-  Code,
-  Palette,
+  Globe,
   Layers,
-  Sparkles,
+  Palette,
   CheckCircle2,
   AlertTriangle,
   Hourglass,
@@ -24,27 +20,25 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { useI18n } from "@/store/i18n";
-import { timelineTitle, timelineBackHomeLabel, timelineProductGroups, timelineStats, statusLabel } from "@/content";
+import { timelineTitle, timelineBackHomeLabel, timelineProductGroups, statusLabel } from "@/content";
 import type { TimelineHighlight, TimelineProductGroup, TimelineVersion } from "@/content/timeline";
 
 const iconMap: Record<string, React.ComponentType<{ size?: number | string; className?: string }>> = {
-  Globe, Wrench, Code, Palette, Layers, Smartphone, Monitor, Bot,
-  Bell, Clock, Lock, ListChecks, Workflow, Languages, Sparkles,
+  Globe, Palette, Layers, Smartphone, Monitor, Bot,
+  Bell, Clock, Lock, ListChecks, Workflow,
 };
 
-const productIconMap = { Smartphone, Globe, Monitor, Bot } as const;
+const productIconMap = { Smartphone, Monitor, Bot } as const;
 
 const colorMap = {
-  blue:    { badge: "bg-blue-500/10 text-blue-300 border-blue-500/20",    rail: "bg-blue-500",     dot: "bg-blue-400",     glow: "shadow-blue-500/40",     bar: "from-blue-500/0 via-blue-500/30 to-blue-500/0" },
-  purple:  { badge: "bg-purple-500/10 text-purple-300 border-purple-500/20", rail: "bg-purple-500",   dot: "bg-purple-400",   glow: "shadow-purple-500/40",   bar: "from-purple-500/0 via-purple-500/30 to-purple-500/0" },
-  emerald: { badge: "bg-emerald-500/10 text-emerald-300 border-emerald-500/20", rail: "bg-emerald-500", dot: "bg-emerald-400", glow: "shadow-emerald-500/40", bar: "from-emerald-500/0 via-emerald-500/30 to-emerald-500/0" },
-  amber:   { badge: "bg-amber-500/10 text-amber-300 border-amber-500/20",   rail: "bg-amber-500",    dot: "bg-amber-400",    glow: "shadow-amber-500/40",    bar: "from-amber-500/0 via-amber-500/30 to-amber-500/0" },
+  blue:    { badge: "bg-blue-500/10 text-blue-300 border-blue-500/20",    rail: "bg-blue-500",     dot: "bg-blue-400" },
+  emerald: { badge: "bg-emerald-500/10 text-emerald-300 border-emerald-500/20", rail: "bg-emerald-500", dot: "bg-emerald-400" },
 } as const;
 
 const statusMap = {
-  live:        { icon: CheckCircle2,   cls: "bg-emerald-500/10 text-emerald-300 border-emerald-500/20" },
-  maintenance: { icon: AlertTriangle,  cls: "bg-amber-500/10 text-amber-300 border-amber-500/20" },
-  upcoming:    { icon: Hourglass,      cls: "bg-blue-500/10 text-blue-300 border-blue-500/20" },
+  live:        { icon: CheckCircle2,  cls: "bg-emerald-500/10 text-emerald-300 border-emerald-500/20" },
+  maintenance: { icon: AlertTriangle, cls: "bg-amber-500/10 text-amber-300 border-amber-500/20" },
+  upcoming:    { icon: Hourglass,     cls: "bg-blue-500/10 text-blue-300 border-blue-500/20" },
 } as const;
 
 function HighlightIcon({ icon }: { icon: TimelineHighlight["icon"] }) {
@@ -58,37 +52,31 @@ function ProductHeader({ icon }: { icon: keyof typeof productIconMap }) {
   return Icon ? <Icon size={16} className="text-brand-400" /> : null;
 }
 
-/* 日期 → 时间轴 0~100 的位置百分比 */
-function dateToPct(date: string, minMs: number, maxMs: number): number {
-  const d = new Date(date.replace(/\./g, "-"));
-  if (Number.isNaN(d.getTime())) return 0;
-  const ms = d.getTime();
-  if (maxMs === minMs) return 0;
-  return Math.max(0, Math.min(100, ((ms - minMs) / (maxMs - minMs)) * 100));
-}
-
 function VersionCard({ v, color }: { v: TimelineVersion; color: keyof typeof colorMap }) {
   const c = colorMap[color];
   return (
-    <div className="glass rounded-xl p-3 border border-white/[0.05]">
+    <div className="glass rounded-xl p-3.5 border border-white/[0.06] w-[260px]">
       <div className="flex items-center gap-2 mb-1.5 flex-wrap">
         <span className="text-sm font-bold text-white tracking-wide">{v.version}</span>
         <span className={`inline-flex items-center px-1.5 py-0.5 rounded-md text-[9px] font-semibold border ${c.badge}`}>
-          {v.label.zh.length > 16 ? v.label.zh.slice(0, 16) + "…" : v.label.zh}
+          {v.label.zh}
         </span>
+        <span className="text-[9px] text-dark-500 ml-auto">{v.date}</span>
       </div>
-      <p className="text-[11px] text-dark-400 leading-relaxed mb-2 line-clamp-3">{v.description.zh}</p>
-      <div className="flex flex-wrap gap-1.5">
-        {v.highlights.map((h) => (
-          <span
-            key={h.text.zh}
-            className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-white/[0.03] border border-white/[0.05] text-[10px] text-dark-300"
-          >
-            <HighlightIcon icon={h.icon} />
-            {h.text.zh}
-          </span>
-        ))}
-      </div>
+      <p className="text-[11px] text-dark-400 leading-relaxed mb-2">{v.description.zh}</p>
+      {v.highlights.length > 0 && (
+        <div className="flex flex-wrap gap-1.5">
+          {v.highlights.map((h) => (
+            <span
+              key={h.text.zh}
+              className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-white/[0.03] border border-white/[0.05] text-[10px] text-dark-300"
+            >
+              <HighlightIcon icon={h.icon} />
+              {h.text.zh}
+            </span>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -97,33 +85,10 @@ export default function Timeline() {
   const navigate = useNavigate();
   const { t } = useI18n();
   const [tooltipKey, setTooltipKey] = useState<string | null>(null);
-  const [now] = useState(() => new Date("2026-08-02").getTime());
-  const trackRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  /* 时间轴起止 = 4 个产品线中所有版本的最早 / 最晚日期 */
-  const { minMs, maxMs, tickDates } = useMemo(() => {
-    const allDates = timelineProductGroups.flatMap((g) =>
-      g.versions.map((v) => new Date(v.date.replace(/\./g, "-")).getTime()).filter((x) => !Number.isNaN(x))
-    );
-    const min = Math.min(...allDates);
-    const max = Math.max(...allDates, now);
-    /* 5 个等距刻度：min → max */
-    const ticks: { date: string; pct: number }[] = [];
-    for (let i = 0; i <= 4; i++) {
-      const pct = (i / 4) * 100;
-      const ms = min + ((max - min) * i) / 4;
-      const d = new Date(ms);
-      const y = d.getFullYear();
-      const m = String(d.getMonth() + 1).padStart(2, "0");
-      const day = String(d.getDate()).padStart(2, "0");
-      ticks.push({ date: `${y}.${m}.${day}`, pct });
-    }
-    return { minMs: min, maxMs: max, tickDates: ticks };
-  }, [now]);
 
   function handleBack() {
     if (window.history.length > 1) {
@@ -131,6 +96,15 @@ export default function Timeline() {
     } else {
       navigate("/");
     }
+  }
+
+  /* 节点等距分布：每个产品线内的小版本按 1/n 比例等距分布
+   * 加上左右各 5% padding，节点永远不会贴边 */
+  function nodeLeftPct(indexInProduct: number, totalInProduct: number): number {
+    if (totalInProduct <= 1) return 50;
+    const usable = 90; // 5% padding on each side
+    const base = 5;
+    return base + (usable * indexInProduct) / (totalInProduct - 1);
   }
 
   return (
@@ -154,49 +128,17 @@ export default function Timeline() {
             <h1 className="text-2xl md:text-3xl font-bold text-white">{t(timelineTitle)}</h1>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-10">
-            {timelineStats.map((stat) => (
-              <div key={stat.label.zh} className="text-center py-4 px-3 rounded-2xl glass">
-                <div className="text-2xl md:text-3xl font-bold text-white mb-1">{stat.value}</div>
-                <div className="text-[11px] text-dark-400">{t(stat.label)}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* 多线式时间线（横向：时间从左到右 / 多产品独立轨道） */}
-          <div className="rounded-2xl glass p-4 md:p-6 border border-white/[0.06]">
-            {/* Date ticks（顶部时间刻度） */}
-            <div ref={trackRef} className="relative h-6 mb-2">
-              {tickDates.map((t) => (
-                <div
-                  key={t.date}
-                  className="absolute top-0 -translate-x-1/2 text-[10px] text-dark-500 whitespace-nowrap"
-                  style={{ left: `${t.pct}%` }}
-                >
-                  {t.date}
-                </div>
+          <div className="rounded-2xl glass p-5 md:p-6 border border-white/[0.06]">
+            <div className="flex flex-col gap-8">
+              {timelineProductGroups.map((g) => (
+                <ProductRail
+                  key={g.product.id}
+                  group={g}
+                  tooltipKey={tooltipKey}
+                  setTooltipKey={setTooltipKey}
+                  nodeLeftPct={nodeLeftPct}
+                />
               ))}
-              <div className="absolute left-0 right-0 top-3 h-px bg-white/[0.06]" />
-            </div>
-
-            {/* 4 条产品轨道 */}
-            <div className="flex flex-col gap-5">
-              {timelineProductGroups.map((g) => {
-                const StatusIcon = statusMap[g.product.status].icon;
-                return (
-                  <ProductRail
-                    key={g.product.id}
-                    group={g}
-                    minMs={minMs}
-                    maxMs={maxMs}
-                    now={now}
-                    tooltipKey={tooltipKey}
-                    setTooltipKey={setTooltipKey}
-                    StatusIcon={StatusIcon}
-                  />
-                );
-              })}
             </div>
           </div>
         </div>
@@ -209,119 +151,92 @@ export default function Timeline() {
 
 function ProductRail({
   group,
-  minMs,
-  maxMs,
-  now,
   tooltipKey,
   setTooltipKey,
-  StatusIcon,
+  nodeLeftPct,
 }: {
   group: TimelineProductGroup;
-  minMs: number;
-  maxMs: number;
-  now: number;
   tooltipKey: string | null;
   setTooltipKey: React.Dispatch<React.SetStateAction<string | null>>;
-  StatusIcon: React.ComponentType<{ size?: number | string; className?: string }>;
+  nodeLeftPct: (i: number, n: number) => number;
 }) {
   const { t } = useI18n();
   const c = colorMap[group.versions[0]?.color ?? "blue"];
-  const statusLabelText = t(statusLabel[group.product.status]);
+  const StatusIcon = statusMap[group.product.status].icon;
+  const n = group.versions.length;
 
   return (
-    <div className="relative">
-      {/* 左侧产品标签 */}
-      <div className="flex items-stretch gap-3">
-        <div className="w-28 md:w-36 shrink-0 py-3">
-          <div className="flex items-center gap-1.5 mb-1">
-            <div className="w-7 h-7 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center shrink-0">
-              <ProductHeader icon={group.product.icon} />
-            </div>
-            <div className="min-w-0">
-              <div className="text-xs font-semibold text-white truncate">{t(group.product.name)}</div>
-              <div className="text-[9px] text-dark-500 truncate">v{group.versions.length} version</div>
-            </div>
-          </div>
-          <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[9px] font-semibold border ${statusMap[group.product.status].cls}`}>
-            <StatusIcon size={9} className="shrink-0" />
-            {statusLabelText}
-          </span>
+    <div>
+      <div className="flex items-center gap-2 mb-3">
+        <div className="w-7 h-7 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center shrink-0">
+          <ProductHeader icon={group.product.icon} />
         </div>
+        <h2 className="text-sm font-semibold text-white">{t(group.product.name)}</h2>
+        <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded-full text-[9px] font-semibold border ${statusMap[group.product.status].cls}`}>
+          <StatusIcon size={9} className="shrink-0" />
+          {t(statusLabel[group.product.status])}
+        </span>
+      </div>
 
-        {/* 轨道 + 节点 */}
-        <div className="flex-1 relative pt-3">
-          {/* 横线 */}
-          <div className={`absolute left-0 right-0 top-[18px] h-px ${c.rail} opacity-30`} />
-          <div className={`absolute left-0 right-0 top-[18px] h-px bg-gradient-to-r ${c.bar}`} />
+      <div className="relative pl-1">
+        <div className={`absolute left-0 right-0 top-[8px] h-px ${c.rail} opacity-25`} />
 
-          {/* 节点 */}
-          <div className="relative h-9">
-            {group.versions.map((v) => {
-              const pct = dateToPct(v.date, minMs, maxMs);
-              const key = `${group.product.id}-${v.version}`;
-              const isActive = tooltipKey === key;
-              return (
-                <button
-                  type="button"
-                  key={key}
-                  onMouseEnter={() => setTooltipKey(key)}
-                  onMouseLeave={() => setTooltipKey((cur) => (cur === key ? null : cur))}
-                  onClick={() => setTooltipKey((cur) => (cur === key ? null : key))}
-                  className="absolute top-[12px] -translate-x-1/2 group focus:outline-none"
-                  style={{ left: `${pct}%` }}
-                  aria-label={`${group.product.id} ${v.version}`}
-                >
-                  <span
-                    className={`block w-3 h-3 rounded-full ${c.dot} ring-4 ring-dark-950 transition-all ${
-                      isActive ? `scale-150 shadow-lg ${c.glow}` : ""
-                    }`}
-                  />
-                </button>
-              );
-            })}
-
-            {/* 当前时间标记（NOW 线） */}
-            {now >= minMs && now <= maxMs && (() => {
-              const nowPct = dateToPct(new Date(now).toISOString().slice(0, 10), minMs, maxMs);
-              return (
-                <div
-                  className="absolute top-[4px] bottom-0 -translate-x-1/2 pointer-events-none"
-                  style={{ left: `${nowPct}%` }}
-                >
-                  <div className="w-px h-full bg-white/30" />
-                  <div className="absolute -top-1 left-1/2 -translate-x-1/2 px-1 py-0.5 rounded text-[8px] font-bold text-dark-950 bg-white whitespace-nowrap">
-                    NOW
-                  </div>
-                </div>
-              );
-            })()}
-          </div>
-
-          {/* 节点下方的版本详情（hover / click 展开） */}
-          {group.versions.map((v) => {
-            const pct = dateToPct(v.date, minMs, maxMs);
+        <div className="relative h-6">
+          {group.versions.map((v, i) => {
+            const pct = nodeLeftPct(i, n);
             const key = `${group.product.id}-${v.version}`;
             const isActive = tooltipKey === key;
             return (
-              <div
-                key={`${key}-detail`}
-                className={`relative mt-2 transition-opacity ${isActive ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+              <button
+                type="button"
+                key={key}
+                onMouseEnter={() => setTooltipKey(key)}
+                onMouseLeave={() => setTooltipKey((cur) => (cur === key ? null : cur))}
+                onClick={() => setTooltipKey((cur) => (cur === key ? null : key))}
+                className="absolute top-[2px] -translate-x-1/2 group focus:outline-none"
+                style={{ left: `${pct}%` }}
+                aria-label={`${group.product.id} ${v.version}`}
               >
-                <div
-                  className="absolute -top-1 w-2 h-2 rotate-45 bg-white/[0.04] border-l border-t border-white/[0.05]"
-                  style={{ left: `calc(${pct}% - 4px)` }}
+                <span
+                  className={`block w-3 h-3 rounded-full ${c.dot} ring-4 ring-dark-950 transition-all ${
+                    isActive ? "scale-150 shadow-lg shadow-white/30" : ""
+                  }`}
                 />
-                <div
-                  className="ml-2"
-                  style={pct > 70 ? { marginRight: 0 } : undefined}
+                <span
+                  className={`absolute top-5 left-1/2 -translate-x-1/2 text-[9px] font-semibold tracking-wide whitespace-nowrap transition-colors ${
+                    isActive ? "text-white" : "text-dark-500"
+                  }`}
                 >
-                  <VersionCard v={v} color={v.color} />
-                  <div className="text-[9px] text-dark-500 mt-1">{v.date}</div>
-                </div>
-              </div>
+                  {v.version}
+                </span>
+              </button>
             );
           })}
         </div>
+
+        {group.versions.map((v, i) => {
+          const pct = nodeLeftPct(i, n);
+          const key = `${group.product.id}-${v.version}`;
+          const isActive = tooltipKey === key;
+          const anchorRight = pct > 50;
+          return (
+            <div
+              key={`${key}-detail`}
+              className={`relative mt-7 transition-opacity ${isActive ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+            >
+              <div
+                className="absolute -top-1.5 w-3 h-3 rotate-45 bg-white/[0.04] border-l border-t border-white/[0.06]"
+                style={anchorRight ? { right: `calc(${100 - pct}% - 6px)` } : { left: `calc(${pct}% - 6px)` }}
+              />
+              <div
+                className="absolute w-[260px]"
+                style={anchorRight ? { right: `calc(${100 - pct}% - 130px)` } : { left: `calc(${pct}% - 130px)` }}
+              >
+                <VersionCard v={v} color={v.color} />
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

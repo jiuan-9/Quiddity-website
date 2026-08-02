@@ -24,7 +24,7 @@ export interface TimelineProduct {
   name: I18nText;
   description: I18nText;
   /** lucide 图标名 */
-  icon: "Smartphone" | "Globe" | "Monitor" | "Bot";
+  icon: "Smartphone" | "Monitor" | "Bot";
   /** 状态徽章 */
   status: "live" | "maintenance" | "upcoming";
 }
@@ -42,8 +42,8 @@ export interface TimelineVersion {
   label: I18nText;
   description: I18nText;
   highlights: TimelineHighlight[];
-  /** 主题色：blue=移动端、purple=网站、emerald=桌面、amber=桌面维护 */
-  color: "blue" | "purple" | "emerald" | "amber";
+  /** 主题色：blue=移动端、emerald=桌面端 */
+  color: "blue" | "emerald";
 }
 
 /** 产品 → 版本列表 */
@@ -110,65 +110,6 @@ export const timelineProductGroups: TimelineProductGroup[] = [
           { icon: "Lock", text: { zh: "本地加密存储", en: "Encrypted Local Storage" } },
         ],
         color: "blue",
-      },
-    ],
-  },
-  {
-    product: {
-      id: "website",
-      name: { zh: "Quiddity 官网", en: "Quiddity Website" },
-      description: {
-        zh: "Quiddity 官方产品站点（v1.x 系列），含下载、版本历程、在线体验等。",
-        en: "Official Quiddity product site (v1.x series) — downloads, changelog, online demo.",
-      },
-      icon: "Globe",
-      status: "live",
-    },
-    versions: [
-      {
-        version: "v2.0.0",
-        date: "2026.08.01",
-        label: { zh: "全新官网", en: "Brand New Website" },
-        description: {
-          zh: "全新官网（v2.0）上线：黑 + 蓝主色、14 类动画体系、中英双语、版本历程、下载页与下载资源统一管理；移除 /admin 路由，统一通过独立管理后台维护数据。",
-          en: "v2.0 website launched: black + blue palette, 14 animation categories, bilingual (zh/en), changelog page, unified download & asset management; removed /admin route, data is maintained via standalone admin backend.",
-        },
-        highlights: [
-          { icon: "Palette", text: { zh: "黑 + 蓝主色重构", en: "Black + Blue Redesign" } },
-          { icon: "Sparkles", text: { zh: "14 类动画体系", en: "14 Animation Categories" } },
-          { icon: "Languages", text: { zh: "中英双语", en: "Bilingual zh / en" } },
-        ],
-        color: "purple",
-      },
-      {
-        version: "v1.1.0",
-        date: "2026.07.09",
-        label: { zh: "能力跃升", en: "Capability Leap" },
-        description: {
-          zh: "新增代码高亮显示、Agent 能力接口预留、自动更新检测，大幅提升开发体验与产品可持续性。",
-          en: "Added code highlighting, Agent capability interfaces, and automatic update detection, greatly improving developer experience and product sustainability.",
-        },
-        highlights: [
-          { icon: "Code", text: { zh: "代码高亮显示", en: "Code Highlighting" } },
-          { icon: "Zap", text: { zh: "Agent 能力预留", en: "Agent Capabilities Reserved" } },
-          { icon: "Shield", text: { zh: "自动更新检测", en: "Auto Update Detection" } },
-        ],
-        color: "purple",
-      },
-      {
-        version: "v1.0.0",
-        date: "2026.07.08",
-        label: { zh: "正式启航", en: "Official Launch" },
-        description: {
-          zh: "Quiddity 1.0.0 官网正式部署上线，同步开放安装包下载。首版即带来 AI 人设精调引擎，支持 11 家国内主流 AI 服务商、62 款大语言模型。",
-          en: "Quiddity 1.0.0 official website deployed and downloads opened. The first release brings the AI persona tuning engine, supporting 11 mainstream domestic AI providers and 62 large language models.",
-        },
-        highlights: [
-          { icon: "Globe", text: { zh: "官网上线 & 开放下载", en: "Website Live & Downloads Open" } },
-          { icon: "Palette", text: { zh: "AI 人设精调引擎", en: "AI Persona Tuning Engine" } },
-          { icon: "Layers", text: { zh: "11 家 AI 服务商", en: "11 AI Providers" } },
-        ],
-        color: "purple",
       },
     ],
   },

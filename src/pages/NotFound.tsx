@@ -8,6 +8,7 @@ import {
   notFoundBackHome,
   notFoundBackPrev,
 } from "@/content";
+import { scrollToSection } from "@/lib/scroll";
 
 /**
  * 404 页面 — 极简黑蓝主题
@@ -21,6 +22,28 @@ export default function NotFound() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  /* 智能回退：检测 hash 路由是否实际是首页 anchor。
+   * 例如用户访问 /#/download 会被当作 404，
+   * 但 #download 实际是 Home 内的 anchor（下载区）。
+   * 自动导航到首页并滚动到对应 section。 */
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash && hash.startsWith("#") && !hash.startsWith("#/")) {
+      const id = hash.slice(1);
+      const target = document.getElementById(id);
+      if (target) {
+        navigate("/", { replace: true });
+        return;
+      }
+    }
+    /* hash 路由形式 #/xxx：尝试以同 id 滚到首页（兼容被误用的 anchor） */
+    if (hash.startsWith("#/") && hash.length > 2) {
+      const id = hash.slice(2);
+      navigate("/", { replace: true });
+      window.setTimeout(() => scrollToSection(id), 50);
+    }
+  }, [navigate]);
 
   return (
     <div className="min-h-screen bg-dark-950 flex items-center justify-center px-6 overflow-hidden relative">
