@@ -6,12 +6,6 @@ export const timelineTitle: I18nText = {
   en: "Changelog",
 };
 
-/** 页面副标题 */
-export const timelineSubtitle: I18nText = {
-  zh: " ",
-  en: " ",
-};
-
 /** 返回首页 aria-label */
 export const timelineBackHomeLabel: I18nText = {
   zh: "返回首页",
@@ -23,9 +17,7 @@ export interface TimelineProduct {
   id: string;
   name: I18nText;
   description: I18nText;
-  /** lucide 图标名 */
   icon: "Smartphone" | "Monitor" | "Bot";
-  /** 状态徽章 */
   status: "live" | "maintenance" | "upcoming";
 }
 
@@ -71,8 +63,8 @@ export const timelineProductGroups: TimelineProductGroup[] = [
         date: "2026.08.02",
         label: { zh: "主动消息", en: "Proactive Messages" },
         description: {
-          zh: "全新主动消息（时间库）功能：AI 在每天指定时间主动向你发消息。总设置开启后，会话级开启即生成今日时间库并由系统闹钟触发；决策由 AI 基于未压缩聊天记录自主判断是否发送。",
-          en: "New Proactive Messages (Time Library) feature: the AI sends you messages on a daily schedule. After enabling the global toggle, turn it on per conversation to generate today's time library and register system alarms; the AI decides whether to send based on uncompressed chat history.",
+          zh: "新增「主动消息（时间库）」功能：AI 在每天指定时间主动向你发消息。总设置开启后，会话级开启即生成今日时间库并由系统闹钟触发；决策由 AI 基于未压缩聊天记录自主判断是否发送。",
+          en: "New Proactive Messages (Time Library): the AI sends you messages on a daily schedule. After enabling the global toggle, turn it on per conversation to generate today's time library and register system alarms; the AI decides whether to send based on uncompressed chat history.",
         },
         highlights: [
           { icon: "Bell", text: { zh: "主动消息（时间库）", en: "Proactive Messages (Time Library)" } },
@@ -84,15 +76,30 @@ export const timelineProductGroups: TimelineProductGroup[] = [
       {
         version: "v1.1.0",
         date: "2026.08.01",
-        label: { zh: "联网搜索 RAG", en: "Web Search RAG" },
+        label: { zh: "联网搜索", en: "Web Search RAG" },
         description: {
-          zh: "全新联网搜索（RAG）功能：AI 可实时检索网络信息并在回答中显示来源链接；支持手动 / 自动模式、全网 / 时间范围过滤，结果缓存去重。MessageStreamCoordinator 重构使流式输出更稳定。",
-          en: "New Web Search (RAG) capability: real-time retrieval with source links; manual/auto mode, scope filters, result dedup; MessageStreamCoordinator refactored for stable streaming.",
+          zh: "「联网搜索 RAG」首版（v1.1.0）正式发布。AI 可实时联网检索最新信息并给出可点击的来源链接；支持手动 / 自动模式、全网 / 近一天 / 近一周 / 近一月 / 近一年范围控制，同一会话内相似 query 自动复用缓存。v1.1.1 进一步修复了部分手机「检查更新」失败（UpdateChecker 多源 fallback：Cloudflare Pages → GitHub Pages → raw.githubusercontent）、「启动下载失败」（installApk 改用 FileProvider.getUriForFile）、downloadApk 路径兼容性（落地到 Android/data/<package>/files/）。",
+          en: "Web Search RAG: real-time retrieval with source links; manual/auto mode, scope filters, result dedup. v1.1.1 fixed multi-source update checker fallback (Cloudflare Pages → GitHub Pages → raw.githubusercontent), installApk using FileProvider.getUriForFile, and downloadApk path compatibility.",
         },
         highlights: [
           { icon: "Globe", text: { zh: "联网搜索 RAG", en: "Web Search RAG" } },
           { icon: "ListChecks", text: { zh: "来源面板 & 缓存", en: "Source Panel & Cache" } },
-          { icon: "Workflow", text: { zh: "MessageStreamCoordinator 重构", en: "MessageStreamCoordinator Refactor" } },
+          { icon: "Wrench", text: { zh: "应用内更新修复", en: "In-App Update Fixes" } },
+        ],
+        color: "blue",
+      },
+      {
+        version: "v1.0.3",
+        date: "2026.07.31",
+        label: { zh: "应用内更新", en: "In-App Update" },
+        description: {
+          zh: "重写 UpdateChecker：使用系统 DownloadManager + FileProvider，APK 下载完成后可直接在应用内唤起安装，无需跳浏览器。修复 Android 7.0+ FileUriExposedException（必须用 content:// URI）、Android 13+ RECEIVER_NOT_EXPORTED（DownloadManager.ACTION_DOWNLOAD_COMPLETE 广播必须新签名注册）。下载体验优化：实时进度条 + 状态回调（pending / running / paused / successful / failed / canceled），下载失败可一键重试。",
+          en: "Rewrote UpdateChecker with system DownloadManager + FileProvider for in-app APK install (no browser hop). Fixed Android 7.0+ FileUriExposedException (must use content:// URI) and Android 13+ RECEIVER_NOT_EXPORTED for DownloadManager.ACTION_DOWNLOAD_COMPLETE broadcast. Optimized download experience with real-time progress bar and state callbacks (pending / running / paused / successful / failed / canceled).",
+        },
+        highlights: [
+          { icon: "Wrench", text: { zh: "DownloadManager + FileProvider", en: "DownloadManager + FileProvider" } },
+          { icon: "Activity", text: { zh: "应用内安装（无需跳浏览器）", en: "In-App Install (No Browser)" } },
+          { icon: "BarChart", text: { zh: "下载进度条 + 状态回调", en: "Progress Bar + State Callbacks" } },
         ],
         color: "blue",
       },
@@ -101,13 +108,13 @@ export const timelineProductGroups: TimelineProductGroup[] = [
         date: "2026.07.31",
         label: { zh: "正式上线", en: "Official Launch" },
         description: {
-          zh: "Quiddity-Android 正式版首发：11 家 AI 服务商、60+ 模型可选，模型分配方案自动匹配最优模型；多轮对话、上下文记忆、会话压缩（记忆库）、角色卡 / System Prompt、Markdown + 代码高亮、Vision 多模态、暗黑 / 浅色主题、本地加密存储等。",
-          en: "Quiddity-Android first official release: 11 AI providers, 60+ models with auto-routing, multi-turn chat, context memory, compression (memory bank), persona cards, Markdown + code highlighting, Vision, light/dark themes, encrypted local storage.",
+          zh: "Quiddity-Android 首发。核心能力：11 家 AI 服务商、60+ 模型可选（基础级 / 进阶级 / 完整级 / 视觉级），模型分配方案按场景自动匹配；多轮对话 + 上下文记忆（1-200 轮可配）；会话压缩（记忆库）基础级 12 轮 / 进阶级 40 轮 / 完整级 80 轮自动触发；角色卡 / System Prompt；Markdown + 代码高亮；图像识别（Vision 模型）；暗黑 / 浅色主题；离线草稿 / 消息搜索 / 会话导出；API Key 与对话记录使用 EncryptedFile（AES256-GCM）加密保存。v1.0.1 / v1.0.2 为 versionCode 递增重新签名发布。",
+          en: "First official release: 11 AI providers, 60+ models (BASIC / ADVANCED / FULL / VISION), scenario-based auto-routing, multi-turn chat with configurable context (1-200 rounds), memory-bank compression (BASIC 12 / ADVANCED 40 / FULL 80 rounds), persona cards, Markdown + code highlighting, Vision, light/dark themes, offline drafts, message search, export, EncryptedFile (AES256-GCM) for API keys. v1.0.1 / v1.0.2 are versionCode bumps with re-signed releases.",
         },
         highlights: [
           { icon: "Layers", text: { zh: "11 家服务商 / 60+ 模型", en: "11 Providers / 60+ Models" } },
-          { icon: "Palette", text: { zh: "AI 人设精调引擎", en: "AI Persona Tuning Engine" } },
-          { icon: "Lock", text: { zh: "本地加密存储", en: "Encrypted Local Storage" } },
+          { icon: "ListChecks", text: { zh: "会话压缩（记忆库）", en: "Memory-Bank Compression" } },
+          { icon: "Lock", text: { zh: "API Key 本地加密", en: "API Key Encrypted" } },
         ],
         color: "blue",
       },
@@ -168,18 +175,6 @@ export const timelineProductGroups: TimelineProductGroup[] = [
     ],
   },
 ];
-
-/** 顶部统计条（按当前 milestone 总数动态计算） */
-export const timelineStats = (() => {
-  const total = timelineProductGroups.reduce((sum, g) => sum + g.versions.length, 0);
-  const products = timelineProductGroups.length;
-  return [
-    { value: String(total), label: { zh: "小版本发布", en: "Minor Releases" } },
-    { value: String(products), label: { zh: "产品线", en: "Product Lines" } },
-    { value: "11", label: { zh: "AI 服务商", en: "AI Providers" } },
-    { value: "60+", label: { zh: "大语言模型", en: "LLMs" } },
-  ];
-})();
 
 /** 状态徽章文案 */
 export const statusLabel: Record<TimelineProduct["status"], I18nText> = {
