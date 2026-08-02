@@ -151,7 +151,7 @@ function ProductRail({
 }: {
   group: TimelineProductGroup;
   activeKey: string | null;
-  setActiveKey: (k: string | null) => void;
+  setActiveKey: React.Dispatch<React.SetStateAction<string | null>>;
 }) {
   const { t } = useI18n();
   const StatusIcon = statusMap[group.product.status].icon;
@@ -177,7 +177,7 @@ function ProductRail({
         </span>
       </div>
 
-      {/* 横向节点（点击聚焦） */}
+      {/* 横向节点（hover 聚焦） */}
       <div className="relative h-6">
         <div className={`absolute left-0 right-0 top-1/2 -translate-y-1/2 h-px ${c.rail}`} />
         <div className="relative h-full">
@@ -189,7 +189,10 @@ function ProductRail({
               <button
                 type="button"
                 key={key}
-                onClick={() => setActiveKey(isActive ? null : key)}
+                onMouseEnter={() => setActiveKey(key)}
+                onMouseLeave={() => setActiveKey((cur) => (cur === key ? null : cur))}
+                onFocus={() => setActiveKey(key)}
+                onBlur={() => setActiveKey((cur) => (cur === key ? null : cur))}
                 className="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 flex flex-col items-center group focus:outline-none"
                 style={{ left: `${pct}%` }}
                 aria-label={`${group.product.id} ${v.version}`}
