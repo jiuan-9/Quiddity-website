@@ -216,24 +216,42 @@ function ProductRail({
         </div>
       </div>
 
-      {/* 详情区：固定高度槽位，仅活动节点显示卡片 */}
-      <div className="mt-6 min-h-[120px]">
+      {/* 详情卡：绝对定位贴在被聚焦节点正下方，智能避边 */}
+      <div className="relative mt-4" style={{ minHeight: 0 }}>
         {group.versions.map((v) => {
           const key = `${group.product.id}-${v.version}`;
           const isActive = activeKey === key;
+          if (!isActive) return null;
+          const idx = group.versions.findIndex((x) => x.version === v.version);
+          const pct = nodeLeftPct(idx);
           return (
             <div
               key={key}
-              className={`transition-opacity duration-150 ${isActive ? "opacity-100" : "opacity-0 pointer-events-none h-0 overflow-hidden"}`}
-              aria-hidden={!isActive}
+              className="absolute top-0 z-20"
+              style={{
+                left: `${pct}%`,
+                transform:
+                  pct < 25
+                    ? "translateX(0)"
+                    : pct > 75
+                      ? "translateX(-100%)"
+                      : "translateX(-50%)",
+              }}
+              role="tooltip"
             >
-              {isActive && <VersionCard v={v} color={v.color} />}
+              <div className="relative">
+                <div
+                  className="absolute -top-1.5 w-3 h-3 rotate-45 bg-white/[0.03] border-l border-t border-white/[0.08]"
+                  style={{
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                  }}
+                />
+                <VersionCard v={v} color={v.color} />
+              </div>
             </div>
           );
         })}
-        {!group.versions.some((v) => activeKey === `${group.product.id}-${v.version}`) && (
-          <p className="text-[11px] text-dark-500">点击节点查看详情</p>
-        )}
       </div>
     </div>
   );
