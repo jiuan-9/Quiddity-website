@@ -8,8 +8,8 @@ export const timelineTitle: I18nText = {
 
 /** 页面副标题 */
 export const timelineSubtitle: I18nText = {
-  zh: "记录 Quiddity 全产品线每一次小版本发布",
-  en: "Every minor release across the Quiddity product line",
+  zh: " ",
+  en: " ",
 };
 
 /** 返回首页 aria-label */
@@ -177,11 +177,11 @@ export const timelineProductGroups: TimelineProductGroup[] = [
       id: "chat",
       name: { zh: "Quiddity-Chat", en: "Quiddity-Chat" },
       description: {
-        zh: "桌面端轻量聊天客户端，定位日常 AI 对话。下载通道目前维护中。",
-        en: "Lightweight desktop chat client. Download channel is currently under maintenance.",
+        zh: "桌面端轻量聊天客户端，定位日常 AI 对话。",
+        en: "Lightweight desktop chat client for everyday AI conversations.",
       },
       icon: "Monitor",
-      status: "maintenance",
+      status: "live",
     },
     versions: [
       {
@@ -189,14 +189,13 @@ export const timelineProductGroups: TimelineProductGroup[] = [
         date: "2026.07.15",
         label: { zh: "首发便携版", en: "Initial Portable Release" },
         description: {
-          zh: "Quiddity-Chat v1.0.0 便携版（Jiuyu-1.0.0.exe）首发，面向日常 AI 对话场景。当前因稳定性问题临时关闭下载通道进行修复，已下载用户的本地数据不受影响。",
-          en: "Quiddity-Chat v1.0.0 portable release (Jiuyu-1.0.0.exe) — daily AI chat scenarios. The download channel is temporarily closed for stability fixes; existing user data is unaffected.",
+          zh: "Quiddity-Chat v1.0.0 便携版（Jiuyu-1.0.0.exe）首发，面向日常 AI 对话场景。",
+          en: "Quiddity-Chat v1.0.0 portable release (Jiuyu-1.0.0.exe) — daily AI chat scenarios.",
         },
         highlights: [
           { icon: "Monitor", text: { zh: "Windows 便携版首发", en: "Windows Portable Launch" } },
-          { icon: "Wrench", text: { zh: "维护中：稳定性修复", en: "Maintenance: Stability Fixes" } },
         ],
-        color: "amber",
+        color: "emerald",
       },
     ],
   },
@@ -205,8 +204,8 @@ export const timelineProductGroups: TimelineProductGroup[] = [
       id: "agent",
       name: { zh: "Quiddity-Agent", en: "Quiddity-Agent" },
       description: {
-        zh: "桌面端本地进阶 Agent，定位复杂任务自动化。下载通道目前维护中。",
-        en: "Local advanced desktop Agent for complex task automation. Download channel is currently under maintenance.",
+        zh: "桌面端本地进阶 Agent，定位复杂任务自动化。",
+        en: "Local advanced desktop Agent for complex task automation.",
       },
       icon: "Bot",
       status: "upcoming",
@@ -215,14 +214,13 @@ export const timelineProductGroups: TimelineProductGroup[] = [
       {
         version: "v1.0.0",
         date: "2026.07.20",
-        label: { zh: "内测筹备", en: "Closed Beta Prep" },
+        label: { zh: "正式立项", en: "Project Kickoff" },
         description: {
-          zh: "Quiddity-Agent 桌面端 v1.0.0 内部筹备，定位本地进阶 Agent；下载通道暂未开放，待 Chat 端稳定性问题修复后启动内测。",
-          en: "Quiddity-Agent desktop v1.0.0 internal preparation as a local advanced Agent; download channel not yet open. Closed beta will start after Chat stability issues are fixed.",
+          zh: "Quiddity-Agent 桌面端 v1.0.0 正式立项，定位本地进阶 Agent。",
+          en: "Quiddity-Agent desktop v1.0.0 officially launched as a local advanced Agent project.",
         },
         highlights: [
           { icon: "Bot", text: { zh: "本地进阶 Agent 定位", en: "Local Advanced Agent" } },
-          { icon: "Clock", text: { zh: "内测筹备中", en: "Closed Beta in Preparation" } },
         ],
         color: "emerald",
       },
