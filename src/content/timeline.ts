@@ -78,13 +78,13 @@ export const timelineProductGroups: TimelineProductGroup[] = [
         date: "2026.08.01",
         label: { zh: "联网搜索", en: "Web Search RAG" },
         description: {
-          zh: "「联网搜索 RAG」首版（v1.1.0）正式发布。AI 可实时联网检索最新信息并给出可点击的来源链接；支持手动 / 自动模式、全网 / 近一天 / 近一周 / 近一月 / 近一年范围控制，同一会话内相似 query 自动复用缓存。v1.1.1 进一步修复了部分手机「检查更新」失败（UpdateChecker 多源 fallback：Cloudflare Pages → GitHub Pages → raw.githubusercontent）、「启动下载失败」（installApk 改用 FileProvider.getUriForFile）、downloadApk 路径兼容性（落地到 Android/data/<package>/files/）。",
-          en: "Web Search RAG: real-time retrieval with source links; manual/auto mode, scope filters, result dedup. v1.1.1 fixed multi-source update checker fallback (Cloudflare Pages → GitHub Pages → raw.githubusercontent), installApk using FileProvider.getUriForFile, and downloadApk path compatibility.",
+          zh: "新增「联网搜索 RAG」能力：对话时 AI 可实时联网检索最新信息，并给出可点击的来源链接（基于搜索引擎 + LLM 总结）。支持手动 / 自动模式（每条消息默认联网，或仅在需要时点工具栏「🌐」按钮触发）、搜索范围控制（可选「全网」「近一天」「近一周」「近一月」「近一年」）、同一会话内相似 query 缓存去重。体验优化：联网开关状态在会话内保持、跨会话恢复上次选择；网络异常时回退到普通模式 + 友好提示，不打断对话流；来源链接支持长按复制 / 点击跳转浏览器。修复：联网回复偶发的 Markdown 渲染错位（来源列表与正文分离）、搜索请求超时（默认 10s，可配置 5/15/30s）。",
+          en: "Web Search RAG: real-time retrieval with clickable source links (search engine + LLM summarization); manual/auto mode (per-message default vs. 🌐 toolbar trigger), scope filters (all / 1d / 1w / 1m / 1y), per-session dedup. UX: per-conversation toggle persistence, graceful fallback on network errors, source links support long-press copy / tap-to-open in browser. Fixes: occasional Markdown rendering misalignment of source list, configurable search timeout (default 10s, options 5/15/30s).",
         },
         highlights: [
           { icon: "Globe", text: { zh: "联网搜索 RAG", en: "Web Search RAG" } },
-          { icon: "ListChecks", text: { zh: "来源面板 & 缓存", en: "Source Panel & Cache" } },
-          { icon: "Wrench", text: { zh: "应用内更新修复", en: "In-App Update Fixes" } },
+          { icon: "ListChecks", text: { zh: "来源面板 & 缓存去重", en: "Source Panel & Cache" } },
+          { icon: "Sliders", text: { zh: "5 种范围 + 手动/自动", en: "5 Scopes + Manual/Auto" } },
         ],
         color: "blue",
       },

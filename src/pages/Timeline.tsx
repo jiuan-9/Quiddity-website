@@ -15,6 +15,7 @@ import {
   Wrench,
   Activity,
   BarChart3,
+  Sliders,
   CheckCircle2,
   AlertTriangle,
   Hourglass,
@@ -28,7 +29,7 @@ import type { TimelineHighlight, TimelineProductGroup, TimelineVersion } from "@
 
 const iconMap: Record<string, React.ComponentType<{ size?: number | string; className?: string }>> = {
   Globe, Palette, Layers, Smartphone, Monitor, Bot,
-  Bell, Clock, Lock, ListChecks, Workflow, Wrench, Activity, BarChart3,
+  Bell, Clock, Lock, ListChecks, Workflow, Wrench, Activity, BarChart3, Sliders,
 };
 
 const productIconMap = { Smartphone, Monitor, Bot } as const;
