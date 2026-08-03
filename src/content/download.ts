@@ -78,8 +78,8 @@ export const mobileBadge: I18nText = {
 };
 
 export const mobileVersion: I18nText = {
-  zh: "v1.3.0 · Android 8.0+",
-  en: "v1.3.0 · Android 8.0+",
+  zh: "v1.3.1 · Android 8.0+",
+  en: "v1.3.1 · Android 8.0+",
 };
 
 /** Android 安装提示 */
@@ -102,7 +102,7 @@ export const androidIndependentNote: I18nText = {
 
 /** 底部 meta tags */
 export const downloadMetaTags: { icon: string; label: I18nText }[] = [
-  { icon: "Sparkles", label: { zh: "版本 1.3.0", en: "Version 1.3.0" } },
+  { icon: "Sparkles", label: { zh: "版本 1.3.1", en: "Version 1.3.1" } },
   { icon: "Dot", label: { zh: "Windows 10+", en: "Windows 10+" } },
   { icon: "Dot", label: { zh: "完全免费", en: "Completely Free" } },
   { icon: "Dot", label: { zh: "无需注册", en: "No Sign-up" } },
