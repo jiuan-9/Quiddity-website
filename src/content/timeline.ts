@@ -59,6 +59,20 @@ export const timelineProductGroups: TimelineProductGroup[] = [
     },
     versions: [
       {
+        version: "v1.3.0",
+        date: "2026.08.03",
+        label: { zh: "角色库与数据升级", en: "Character Library & Data v2" },
+        description: {
+          zh: "为 2.0.0 的群聊、角色库和记忆调用式预留好数据契约与接口，先把底子打好。新增角色库，备份导出升级为 v2 格式，旧的 v1 备份也能导入并自动迁移。",
+          en: "Laid down the data contracts and interfaces for 2.0.0's group chats, character library, and memory tools. Added a character library, upgraded backup export to the v2 format, and old v1 backups still import and migrate automatically.",
+        },
+        highlights: [
+          { icon: "ListChecks", text: { zh: "角色库 + 数据契约 v2", en: "Character Library + Data Contract v2" } },
+          { icon: "Workflow", text: { zh: "为群聊 / 记忆调用预留接口", en: "Interfaces Reserved for Groups & Memory Tools" } },
+        ],
+        color: "blue",
+      },
+      {
         version: "v1.2.0",
         date: "2026.08.02",
         label: { zh: "主动消息", en: "Proactive Messages" },
