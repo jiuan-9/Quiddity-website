@@ -45,11 +45,6 @@ export const desktopMaintenanceVersion: I18nText = {
   en: "Download unavailable · Under repair",
 };
 
-export const desktopMaintenanceNote: I18nText = {
-  zh: "Quiddity-Chat 下载通道暂时关闭，正在紧急修复中。",
-  en: "The Quiddity-Chat download channel is temporarily closed and is under urgent repair.",
-};
-
 /** 在线体验 */
 export const demoTitle: I18nText = {
   zh: "在线体验",
@@ -78,14 +73,8 @@ export const mobileBadge: I18nText = {
 };
 
 export const mobileVersion: I18nText = {
-  zh: "v1.3.2 · Android 8.0+",
-  en: "v1.3.2 · Android 8.0+",
-};
-
-/** Android 安装提示 */
-export const androidNote: I18nText = {
-  zh: "注意：Quiddity-Android、Quiddity-Chat、Quiddity-Agent 为三个独立产品，会话、API Key 等数据互不互通。首次安装需在系统设置中允许「安装来自此来源的应用」，APK 已被官方签名，可放心安装。",
-  en: "Note: Quiddity-Android, Quiddity-Chat, and Quiddity-Agent are three independent products — sessions and API keys do not sync. On first install, allow \"Install from this source\" in system settings. The APK is officially signed and safe to install.",
+  zh: "v1.4.0 · Android 8.0+",
+  en: "v1.4.0 · Android 8.0+",
 };
 
 /** Android 备用下载（GitHub Releases 兜底） */
@@ -102,7 +91,7 @@ export const androidIndependentNote: I18nText = {
 
 /** 底部 meta tags */
 export const downloadMetaTags: { icon: string; label: I18nText }[] = [
-  { icon: "Sparkles", label: { zh: "版本 1.3.2", en: "Version 1.3.2" } },
+  { icon: "Sparkles", label: { zh: "版本 1.4.0", en: "Version 1.4.0" } },
   { icon: "Dot", label: { zh: "Windows 10+", en: "Windows 10+" } },
   { icon: "Dot", label: { zh: "完全免费", en: "Completely Free" } },
   { icon: "Dot", label: { zh: "无需注册", en: "No Sign-up" } },

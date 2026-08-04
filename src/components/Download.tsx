@@ -11,14 +11,12 @@ import {
   desktopBadge,
   desktopMaintenanceBadge,
   desktopMaintenanceVersion,
-  desktopMaintenanceNote,
   demoTitle,
   demoDesc,
   mobileTitle,
   mobileDesc,
   mobileBadge,
   mobileVersion,
-  androidNote,
   androidMirrorLabel,
   downloadMetaTags,
 } from "@/content";
@@ -137,7 +135,6 @@ export default function DownloadSection() {
                 role="status"
                 aria-disabled="true"
                 className="group relative flex items-center gap-3 px-4 sm:px-5 py-3.5 sm:py-4 rounded-xl glass border border-amber-500/20 w-full overflow-hidden min-h-[64px] cursor-not-allowed select-none"
-                title={t(desktopMaintenanceNote)}
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-amber-500/[0.02] via-transparent to-amber-500/[0.02] opacity-60" />
                 <div className="relative w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center shrink-0">
@@ -226,21 +223,6 @@ export default function DownloadSection() {
               </div>
             </a>
           </div>
-
-          {/* 桌面端维护公告（仅在关闭时显示） */}
-          {!DESKTOP_AVAILABLE && (
-            <p className="text-[11px] sm:text-xs text-amber-300/80 max-w-xl mx-auto mb-4 sm:mb-5 px-3 leading-relaxed flex items-start gap-1.5 justify-center text-center">
-              <Wrench size={11} className="mt-0.5 shrink-0" />
-              <span>{t(desktopMaintenanceNote)}</span>
-            </p>
-          )}
-
-          {/* Android 安装提示 */}
-          {androidUrl && (
-            <p className="text-[11px] sm:text-xs text-dark-500 max-w-xl mx-auto mb-6 sm:mb-8 px-3 leading-relaxed">
-              {t(androidNote)}
-            </p>
-          )}
 
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[10px] sm:text-[11px] text-dark-500 px-2">
             {downloadMetaTags.map((tag, idx) => (
