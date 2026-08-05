@@ -59,6 +59,20 @@ export const timelineProductGroups: TimelineProductGroup[] = [
     },
     versions: [
       {
+        version: "v1.4.0",
+        date: "2026.08.04",
+        label: { zh: "导出长图 + 记录搜索", en: "Long-image Export & History Search" },
+        description: {
+          zh: "聊天记录可以一键导出成长图，直接分享到微信 / QQ 或存进相册；搜索也升级了，既能全局搜所有会话的消息，也能在当前会话里搜，点一下结果直接跳到对应消息。更新下载和 API 密钥存储也做了加固。",
+          en: "Export chats as a shareable long image for WeChat/QQ or your gallery. Search now covers all conversations globally or within the current chat, jumping straight to the matched message. Also hardened in-app updates and API key storage.",
+        },
+        highlights: [
+          { icon: "Image", text: { zh: "对话一键导出长图", en: "One-tap Long-image Export" } },
+          { icon: "Search", text: { zh: "全局 / 会话内记录搜索", en: "Global & In-chat Search" } },
+        ],
+        color: "blue",
+      },
+      {
         version: "v1.3.0",
         date: "2026.08.03",
         label: { zh: "角色库与数据升级", en: "Character Library & Data v2" },
