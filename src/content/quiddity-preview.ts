@@ -118,8 +118,8 @@ export const quiddityCtaTitle = {
 };
 
 export const quiddityCtaSubtitle = {
-  zh: "2027 年前上线，敬请期待",
-  en: "Launching before 2027 — stay tuned",
+  zh: "2028 年前上线，敬请期待",
+  en: "Launching before 2028 — stay tuned",
 };
 
 export const quiddityCtaButton = {
