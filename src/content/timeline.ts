@@ -59,6 +59,20 @@ export const timelineProductGroups: TimelineProductGroup[] = [
     },
     versions: [
       {
+        version: "v1.5.0",
+        date: "2026.08.10",
+        label: { zh: "群聊", en: "Group Chat" },
+        description: {
+          zh: "群聊功能正式落地。首页分私聊 / 群聊两个列表，新建群聊后可在设置里添加 1～3 个成员；点成员头像就能让 TA 接话，最多一人回复、两人排队，还能随时停止或自动重试。群聊消息带头像和名字，设置里可调整上下文条数、管理成员，聊天记录多了会自动压缩。",
+          en: "Group chat is here. The home screen splits into Private / Group tabs — create a group, add 1–3 members in settings, then tap a member's avatar to have them reply (one replying, up to two queued), with stop and auto-retry support. Group messages show avatars and names; tune context length and manage members in settings, and long chats auto-compress.",
+        },
+        highlights: [
+          { icon: "Users", text: { zh: "私聊 / 群聊双 Tab", en: "Private & Group Tabs" } },
+          { icon: "MessageSquare", text: { zh: "点头像让成员接话", en: "Tap Avatar to Reply" } },
+        ],
+        color: "blue",
+      },
+      {
         version: "v1.4.0",
         date: "2026.08.04",
         label: { zh: "导出长图 + 记录搜索", en: "Long-image Export & History Search" },
