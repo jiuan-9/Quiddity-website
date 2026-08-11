@@ -300,8 +300,8 @@ test.describe("首页与手机版详情页", () => {
     await expect(page.locator("#download")).toBeVisible();
     await expect(page.locator("nav").first()).toBeVisible();
     await expect(page.locator("footer")).toBeVisible();
-    // 首页不再展示 Android 客户端卡片与安卓 FAQ
-    await expect(page.locator("text=Android 客户端")).toHaveCount(0);
+    // 首页包含 Android 客户端下载卡片；FAQ 不再包含安卓问题
+    await expect(page.locator("text=Android 客户端").first()).toBeVisible();
     await expect(page.locator("text=安卓端支持哪些系统？鸿蒙可以吗？")).toHaveCount(0);
   });
 

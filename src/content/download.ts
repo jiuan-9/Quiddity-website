@@ -14,8 +14,8 @@ export const downloadSectionTitle: I18nText = {
 
 /** 下载区副标题 */
 export const downloadSectionSubtitle: I18nText = {
-  zh: "Quiddity 桌面端（Windows）目前处于维护中，下载暂不可用；可在浏览器中直接在线体验。",
-  en: "The Quiddity desktop app (Windows) is currently under maintenance with downloads unavailable; try the online demo in your browser.",
+  zh: "Quiddity-Android 已正式上线，可直接下载。Android、Chat、Agent 为三个独立产品，数据互不互通。",
+  en: "Quiddity-Android is live and ready to download. Android, Chat, and Agent are three independent products with no data sync.",
 };
 
 /** Quiddity-Chat 桌面端 */
