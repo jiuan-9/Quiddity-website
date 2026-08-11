@@ -156,7 +156,7 @@ test.describe("Demo 返回", () => {
 
     if (isMobileProject(testInfo)) {
       // 移动端返回后展示手机版
-      await page.waitForSelector("text=Quiddity-Android", { timeout: 10000 });
+      await page.waitForSelector("text=Android 手机版", { timeout: 10000 });
     } else {
       // 桌面端返回后展示 Home
       await page.waitForSelector("#hero", { timeout: 10000 });
@@ -283,7 +283,7 @@ test.describe("404 路由", () => {
 
     await expect(page).toHaveURL(/\/$/);
     if (isMobileProject(testInfo)) {
-      await page.waitForSelector("text=Quiddity-Android", { timeout: 10000 });
+      await page.waitForSelector("text=Android 手机版", { timeout: 10000 });
     } else {
       await page.waitForSelector("#hero", { timeout: 10000 });
     }
@@ -300,9 +300,13 @@ test.describe("PC / 手机端分流", () => {
     await page.goto("/", { waitUntil: "networkidle" });
 
     if (mobile) {
-      // 手机版首页：有首屏 / 导航 / 页脚 / APK 下载，且不含电脑版内容
-      await page.waitForSelector("text=Quiddity-Android", { timeout: 15000 });
+      // 手机版首页：与桌面版同构（首屏 / 功能 / 场景 / FAQ / 下载 / 导航 / 页脚），内容为手机版
+      await page.waitForSelector("text=Android 手机版", { timeout: 15000 });
       await expect(page.locator("#hero")).toBeVisible();
+      await expect(page.locator("#features")).toBeVisible();
+      await expect(page.locator("#usecases")).toBeVisible();
+      await expect(page.locator("#faq")).toBeVisible();
+      await expect(page.locator("#download")).toBeVisible();
       await expect(page.locator("nav")).toBeVisible();
       await expect(page.locator("footer")).toBeVisible();
       await expect(
