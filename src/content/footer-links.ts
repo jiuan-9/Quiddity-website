@@ -10,8 +10,6 @@ export const footerLinks: FooterGroup[] = [
       { label: { zh: "功能特色", en: "Features" }, href: "#features" },
       { label: { zh: "应用场景", en: "Use Cases" }, href: "#usecases" },
       { label: { zh: "下载应用", en: "Download" }, href: "#download" },
-      { label: { zh: "Android 手机版", en: "Android App" }, href: "#/mobile" },
-      { label: { zh: "Shizuku APK", en: "Shizuku APK" }, href: "#/shizuku" },
     ],
   },
   {

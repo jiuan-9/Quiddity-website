@@ -18,6 +18,7 @@ export * from "./use-cases";
 export * from "./how-it-works";
 export * from "./provider-showcase";
 export * from "./download";
+export * from "./assistant";
 export * from "./mobile";
 export * from "./shizuku";
 export * from "./demo";
