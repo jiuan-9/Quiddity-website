@@ -1,0 +1,10 @@
+deployed=2026-07-31T20:00:00Z
+sync-script=fetchAllReleases
+windows-asset=Jiuyu-1.0.0.exe
+android-asset=quiddity-1.0.1.apk
+latest-release=v1.0.1
+latest-version=1.0.1
+android-size=2882105
+android-sha256=04e43aa7f42506c43ddafa23603500c209292c047492d917820f9913d5f0f3e5
+android-url=https://github.com/jiuan-9/Quiddity-website/releases/download/v1.0.1/quiddity-1.0.1.apk
+status=android-v1.0.1-live
