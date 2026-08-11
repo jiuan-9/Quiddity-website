@@ -19,8 +19,8 @@ export const assistantPageTitle: I18nText = {
 
 /** 页面副标题 */
 export const assistantPageSubtitle: I18nText = {
-  zh: "电脑端一键激活 Shizuku · 适用 Android 8–10 · USB 连接",
-  en: "One-click Shizuku activation on PC · Android 8–10 · USB",
+  zh: "电脑端一键激活 Shizuku · 支持 Windows 7 SP1+ · 适用 Android 8–10 · USB 连接",
+  en: "One-click Shizuku activation on PC · Windows 7 SP1+ · Android 8–10 · USB",
 };
 
 /** 下载按钮 */
@@ -31,8 +31,8 @@ export const assistantDownloadButton: I18nText = {
 
 /** 文件大小 */
 export const assistantSize: I18nText = {
-  zh: "17,536,661 字节（≈ 16.7 MB）",
-  en: "17,536,661 bytes (≈ 16.7 MB)",
+  zh: "14,298,085 字节（≈ 13.6 MB）",
+  en: "14,298,085 bytes (≈ 13.6 MB)",
 };
 
 /** SHA256 标题 */
@@ -43,13 +43,13 @@ export const assistantShaTitle: I18nText = {
 
 /** SHA256 值 */
 export const assistantShaValue: I18nText = {
-  zh: "1A40D54668C18DDCD89E929D8AF2176C5027266306E42D2737E50F22CEE0AFF0",
-  en: "1A40D54668C18DDCD89E929D8AF2176C5027266306E42D2737E50F22CEE0AFF0",
+  zh: "65542E7C3741ED4DD38B3E5426896F6AEFEEE803C65EF65527EC733F2E176FFC",
+  en: "65542E7C3741ED4DD38B3E5426896F6AEFEEE803C65EF65527EC733F2E176FFC",
 };
 
 /** 信息 chips */
 export const assistantMetaTags: I18nText[] = [
-  { zh: "Windows 10 / 11", en: "Windows 10 / 11" },
+  { zh: "Windows 7 SP1+ / 10 / 11", en: "Windows 7 SP1+ / 10 / 11" },
   { zh: "免安装便携版", en: "Portable, no install" },
   { zh: "无需管理员权限", en: "No admin required" },
   { zh: "无联网依赖", en: "Offline, no network" },
@@ -64,7 +64,7 @@ export const assistantScopeTitle: I18nText = {
 export const assistantScope: AssistantInfoItem[] = [
   {
     title: { zh: "运行环境", en: "Runtime" },
-    desc: { zh: "Windows 10 / 11 电脑，便携式 exe，免安装。", en: "Windows 10 / 11 PC; portable exe, no installation." },
+    desc: { zh: "Windows 7 SP1（x64）/ 10 / 11 电脑，便携式 exe，免安装。", en: "Windows 7 SP1 (x64) / 10 / 11 PC; portable exe, no installation." },
   },
   {
     title: { zh: "目标手机", en: "Target phones" },
@@ -97,7 +97,11 @@ export const assistantFeatures: AssistantInfoItem[] = [
   },
   {
     title: { zh: "内置官方组件", en: "Bundled official components" },
-    desc: { zh: "内置官方 platform-tools 的 adb（exe + 2 个 DLL）和官方 Shizuku APK v13.6.0，无运行时联网依赖。", en: "Bundles official platform-tools adb (exe + 2 DLLs) and official Shizuku APK v13.6.0; no runtime network dependency." },
+    desc: { zh: "内置官方 platform-tools r34.0.4 的 adb（exe + 2 个 DLL，Win7 兼容版）和官方 Shizuku APK v13.6.0，无运行时联网依赖。", en: "Bundles official platform-tools r34.0.4 adb (exe + 2 DLLs, Win7-compatible) and official Shizuku APK v13.6.0; no runtime network dependency." },
+  },
+  {
+    title: { zh: "Win7 兼容构建", en: "Win7-compatible build" },
+    desc: { zh: "使用 Python 3.8 + PyInstaller 5.13.2 兼容工具链打包，确保 Windows 7 SP1+ 可运行。", en: "Built with the Python 3.8 + PyInstaller 5.13.2 Win7-compatible toolchain so it runs on Windows 7 SP1+." },
   },
   {
     title: { zh: "离线品牌教程", en: "Offline per-brand tutorials" },
