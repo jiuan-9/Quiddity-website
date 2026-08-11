@@ -1,7 +1,7 @@
 import type { Faq } from "./types";
 
 /**
- * 常见问题（6 项）
+ * 常见问题（5 项，仅桌面端；手机版问题见手机版页面）
  * 注意：
  * 1. 版本号不再硬编码，统一从 public/version.json 通过 useVersion hook 读取
  * 2. "AES 加密" 已修正为 "系统级加密"（Windows DPAPI / macOS Keychain）
@@ -60,17 +60,6 @@ export const faqs: Faq[] = [
     answer: {
       zh: "目前提供 Windows 便携版（.exe），可直接运行无需安装。macOS 与 Linux 版本正在规划中，敬请期待。下载地址会随 GitHub Release 同步更新。",
       en: "Currently we provide a Windows portable (.exe) that runs without installation. macOS and Linux versions are in planning. Download URLs sync automatically with GitHub Releases.",
-    },
-  },
-  {
-    id: "android-harmonyos",
-    question: {
-      zh: "安卓端支持哪些系统？鸿蒙可以吗？",
-      en: "Which Android systems are supported? Does HarmonyOS work?",
-    },
-    answer: {
-      zh: "Quiddity-Android 支持 Android 8.0 及以上版本；兼容 Android 应用的鸿蒙系统（如鸿蒙 2 / 3 / 4）可以正常使用。纯血鸿蒙（HarmonyOS NEXT）不兼容 Android 应用，无法安装 Quiddity-Android，请勿下载。",
-      en: "Quiddity-Android supports Android 8.0 and above. HarmonyOS versions compatible with Android apps (e.g. HarmonyOS 2/3/4) work normally. Pure HarmonyOS (HarmonyOS NEXT) is not compatible with Android apps and cannot install Quiddity-Android.",
     },
   },
 ];

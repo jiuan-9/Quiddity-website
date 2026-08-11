@@ -8,6 +8,7 @@ import {
   notFoundBackHome,
   notFoundBackPrev,
 } from "@/content";
+import { navLinks } from "@/content/nav-links";
 import { scrollToSection } from "@/lib/scroll";
 
 /**
@@ -37,11 +38,15 @@ export default function NotFound() {
         return;
       }
     }
-    /* hash 路由形式 #/xxx：尝试以同 id 滚到首页（兼容被误用的 anchor） */
+    /* hash 路由形式 #/xxx：仅当 id 是首页已知 section 时回到首页并滚动（兼容被误用的 anchor），
+     * 其余未匹配路由正常展示 404 页面 */
     if (hash.startsWith("#/") && hash.length > 2) {
       const id = hash.slice(2);
-      navigate("/", { replace: true });
-      window.setTimeout(() => scrollToSection(id), 50);
+      const isKnownSection = id === "hero" || navLinks.some((link) => link.id === id);
+      if (isKnownSection) {
+        navigate("/", { replace: true });
+        window.setTimeout(() => scrollToSection(id), 50);
+      }
     }
   }, [navigate]);
 

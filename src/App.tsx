@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
+import useIsTouchDevice from "@/hooks/useIsTouchDevice";
 
 const Home = lazy(() => import("@/pages/Home"));
 const Demo = lazy(() => import("@/pages/Demo"));
@@ -12,10 +13,16 @@ const Privacy = lazy(() => import("@/pages/Privacy"));
 const NotFound = lazy(() => import("@/pages/NotFound"));
 
 export default function App() {
+  const location = useLocation();
+  const isTouch = useIsTouchDevice();
+
+  // 设备分流：手机 / 平板访问首页时展示手机版，电脑端展示桌面版
+  const homeElement = isTouch && location.pathname === "/" ? <Mobile /> : <Home />;
+
   return (
     <Suspense fallback={null}>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={homeElement} />
         <Route path="/demo" element={<Demo />} />
         <Route path="/timeline" element={<Timeline />} />
         <Route path="/assistant" element={<Assistant />} />

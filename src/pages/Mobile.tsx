@@ -5,7 +5,6 @@ import {
   ExternalLink,
   History,
   MessageSquare,
-  Monitor,
   ShieldCheck,
   Smartphone,
   AlertTriangle,
@@ -25,8 +24,6 @@ import {
   mobileMetaTags,
   mobileRequirementsTitle,
   mobileRequirements,
-  mobileDesktopTitle,
-  mobileDesktopPoints,
   mobileLatestTitle,
   mobileLatestChanges,
   mobileChatTitle,
@@ -150,15 +147,10 @@ export default function Mobile() {
         </div>
 
         <div className="space-y-6">
-          {/* 系统要求 + 与电脑版关系 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Section icon={<Smartphone size={17} className="text-brand-400" />} title={t(mobileRequirementsTitle)}>
-              <InfoList items={mobileRequirements} />
-            </Section>
-            <Section icon={<Monitor size={17} className="text-brand-400" />} title={t(mobileDesktopTitle)}>
-              <InfoList items={mobileDesktopPoints} />
-            </Section>
-          </div>
+          {/* 系统要求 */}
+          <Section icon={<Smartphone size={17} className="text-brand-400" />} title={t(mobileRequirementsTitle)}>
+            <InfoList items={mobileRequirements} />
+          </Section>
 
           {/* v1.5.1 更新 */}
           <Section icon={<MessageSquare size={17} className="text-brand-400" />} title={t(mobileLatestTitle)}>
