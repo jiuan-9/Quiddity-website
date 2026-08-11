@@ -300,12 +300,14 @@ test.describe("PC / 手机端分流", () => {
     await page.goto("/", { waitUntil: "networkidle" });
 
     if (mobile) {
-      // 手机版：展示 Quiddity-Android 下载页，不展示桌面 Hero
+      // 手机版首页：有首屏 / 导航 / 页脚 / APK 下载，且不含电脑版内容
       await page.waitForSelector("text=Quiddity-Android", { timeout: 15000 });
+      await expect(page.locator("#hero")).toBeVisible();
+      await expect(page.locator("nav")).toBeVisible();
+      await expect(page.locator("footer")).toBeVisible();
       await expect(
-        page.locator('a[download="quiddity-1.5.1.apk"]')
+        page.locator('a[download="quiddity-1.5.1.apk"]').first()
       ).toBeVisible();
-      await expect(page.locator("#hero")).toHaveCount(0);
       await expect(page.locator("text=和电脑版的关系")).toHaveCount(0);
     } else {
       // 桌面版：展示桌面 Hero，不展示 Android 内容

@@ -180,7 +180,10 @@ export default function Demo() {
 
   // UI 状态
   const [input, setInput] = useState("");
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  // 桌面端默认展开侧边栏；移动端默认收起（避免抽屉遮住返回按钮）
+  const [sidebarOpen, setSidebarOpen] = useState(() =>
+    typeof window !== "undefined" && window.innerWidth >= 768
+  );
   const [compileEnabled, setCompileEnabled] = useState(true);
 
   // 更新检测
