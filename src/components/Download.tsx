@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Download, Monitor, Smartphone, Globe, Sparkles, Wrench, Lock, ExternalLink } from "lucide-react";
+import { Download, Monitor, Smartphone, Globe, Wrench, Lock, ExternalLink } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 import { useI18n } from "@/store/i18n";
 import {
@@ -18,7 +18,6 @@ import {
   mobileBadge,
   mobileVersion,
   androidMirrorLabel,
-  downloadMetaTags,
 } from "@/content";
 
 /**
@@ -224,14 +223,6 @@ export default function DownloadSection() {
             </a>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[10px] sm:text-[11px] text-dark-500 px-2">
-            {downloadMetaTags.map((tag, idx) => (
-              <span key={tag.label.zh} className="flex items-center gap-1">
-                {idx === 0 ? <Sparkles size={10} className="text-brand-400" /> : <span className="w-1 h-1 rounded-full bg-dark-700 hidden sm:inline" />}
-                {t(tag.label)}
-              </span>
-            ))}
-          </div>
         </ScrollReveal>
       </div>
     </section>
