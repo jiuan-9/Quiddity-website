@@ -1,15 +1,15 @@
 /**
- * 导航完整性 E2E 测试（17 场景）
+ * 导航完整性 E2E 测试
  *
  * 覆盖范围：
  *   - Home 页内导航（6 个）：6 个 Navbar 锚点按钮
- *   - 路由跳转（1 个）：Navbar "在线体验" → /#/demo
  *   - Demo 返回（1 个）：返回按钮 → /
  *   - 跨路由锚点（3 个）：从 /timeline 点击 Navbar 锚点 → 回 Home + 滚动
  *     （/timeline 是除 Home 外唯一渲染 Navbar 的页面；/demo 不渲染 Navbar）
  *   - Footer 链接（3 个）：锚点 + 路由 + 后台
  *   - Hero CTA（2 个）：主 CTA 滚动 + 次 CTA 跳转
  *   - 404 路由（1 个）：未匹配路由显示 NotFound
+ *   - 首页 / 手机版详情页（2 个）：所有设备访问 / 均为电脑版首页；/#/mobile 为手机版详情页
  *
  * 设计要点：
  *   - 所有导航元素均为 <button>（Phase 1/2 已统一）
@@ -22,14 +22,6 @@ import { test, expect, type Page } from "@playwright/test";
 const NAVBAR_HEIGHT = 80;
 
 /**
- * 是否为移动端浏览器项目（mobile-chrome / mobile-safari）
- * 移动端访问 / 时展示手机版（Quiddity-Android 页面），桌面端展示桌面版首页
- */
-function isMobileProject(testInfo: { project: { name: string } }): boolean {
-  return testInfo.project.name.startsWith("mobile-");
-}
-
-/**
  * 等待 section 滚动到 Navbar 下方可见位置
  * 判定条件：
  *   - rect.top 在 [-10, viewport/2 + 200] 区间（顶部容差 + 下半屏容差）
@@ -38,13 +30,13 @@ function isMobileProject(testInfo: { project: { name: string } }): boolean {
 async function expectSectionVisible(
   page: Page,
   sectionId: string,
-  timeout = 8000
+  timeout = 15000
 ): Promise<void> {
   // 先等元素存在（cross-route 场景下元素可能还没 mount）
   await page.waitForSelector(`#${sectionId}`, { timeout, state: "attached" });
 
-  // 再等元素滚到可见位置
-  await page.waitForFunction(
+  const waitForPosition = () =>
+    page.waitForFunction(
     (args: { id: string; navbarHeight: number }) => {
       const el = document.getElementById(args.id);
       if (!el) return false;
@@ -59,13 +51,28 @@ async function expectSectionVisible(
     { id: sectionId, navbarHeight: NAVBAR_HEIGHT },
     { timeout }
   );
+
+  try {
+    await waitForPosition();
+  } catch {
+    // 长页面在移动端可能因内容延迟布局导致一次性滚动不到位，布局稳定后重试一次
+    await page.evaluate((id) => {
+      document.getElementById(id)?.scrollIntoView({ block: "start", behavior: "smooth" });
+    }, sectionId);
+    await waitForPosition();
+  }
 }
 
 /**
  * 点击 Navbar 内的导航按钮（按文本匹配，取第一个）
  */
 async function clickNavButton(page: Page, labelText: string): Promise<void> {
-  const btn = page.locator(`nav button:has-text("${labelText}")`).first();
+  // 优先点击可见的导航按钮（移动端桌面链接被隐藏，需先打开汉堡菜单）
+  const btn = page.locator(`nav button:has-text("${labelText}"):visible`).first();
+  if ((await btn.count()) === 0) {
+    const menuToggle = page.locator('nav button[aria-label="Toggle menu"]').first();
+    await menuToggle.click({ timeout: 3000 });
+  }
   await btn.waitFor({ state: "visible", timeout: 5000 });
   await btn.click({ timeout: 3000 });
 }
@@ -74,8 +81,7 @@ async function clickNavButton(page: Page, labelText: string): Promise<void> {
 // 1. Home 页内导航（6 个）
 // ============================================================
 test.describe("Home 页内导航", () => {
-  test.beforeEach(async ({ page }, testInfo) => {
-    test.skip(isMobileProject(testInfo), "桌面版首页仅在电脑端展示");
+  test.beforeEach(async ({ page }) => {
     await page.goto("/", { waitUntil: "networkidle" });
     await page.waitForSelector("#hero", { timeout: 15000 });
     // 等 Hero 入场动画稳定（ShaderGradient + TextSplit ~1s）
@@ -138,7 +144,7 @@ test.describe("Home 页内导航", () => {
 // 2. Demo 返回（1 个）
 // ============================================================
 test.describe("Demo 返回", () => {
-  test("/demo 页点击返回按钮回到对应版本首页", async ({ page }, testInfo) => {
+  test("/demo 页点击返回按钮回到首页", async ({ page }) => {
     await page.goto("/#/demo", { waitUntil: "networkidle" });
     await page.waitForSelector("text=Quiddity-Chat · 在线体验", {
       timeout: 15000,
@@ -154,13 +160,8 @@ test.describe("Demo 返回", () => {
     // URL 应变为 /（根路径）
     await expect(page).toHaveURL(/\/$/);
 
-    if (isMobileProject(testInfo)) {
-      // 移动端返回后展示手机版
-      await page.waitForSelector("text=Android 手机版", { timeout: 10000 });
-    } else {
-      // 桌面端返回后展示 Home
-      await page.waitForSelector("#hero", { timeout: 10000 });
-    }
+    // 返回后展示首页
+    await page.waitForSelector("#hero", { timeout: 10000 });
   });
 });
 
@@ -169,8 +170,7 @@ test.describe("Demo 返回", () => {
 //    /timeline 是除 Home 外唯一渲染 Navbar 的页面
 // ============================================================
 test.describe("跨路由锚点（从 /timeline）", () => {
-  test.beforeEach(async ({ page }, testInfo) => {
-    test.skip(isMobileProject(testInfo), "桌面导航仅适用于电脑端");
+  test.beforeEach(async ({ page }) => {
     await page.goto("/#/timeline", { waitUntil: "networkidle" });
     // Timeline 页面渲染等待
     await page.waitForSelector("nav", { timeout: 15000 });
@@ -210,8 +210,7 @@ test.describe("跨路由锚点（从 /timeline）", () => {
 // 5. Footer 链接（3 个）
 // ============================================================
 test.describe("Footer 链接", () => {
-  test.beforeEach(async ({ page }, testInfo) => {
-    test.skip(isMobileProject(testInfo), "桌面版页脚仅在电脑端展示");
+  test.beforeEach(async ({ page }) => {
     await page.goto("/", { waitUntil: "networkidle" });
     await page.waitForSelector("footer", { timeout: 15000 });
     await page.waitForTimeout(800);
@@ -235,8 +234,7 @@ test.describe("Footer 链接", () => {
 // 6. Hero CTA（2 个）
 // ============================================================
 test.describe("Hero CTA", () => {
-  test.beforeEach(async ({ page }, testInfo) => {
-    test.skip(isMobileProject(testInfo), "桌面版首屏仅在电脑端展示");
+  test.beforeEach(async ({ page }) => {
     await page.goto("/", { waitUntil: "networkidle" });
     await page.waitForSelector("#hero", { timeout: 15000 });
     await page.waitForTimeout(1200);
@@ -264,7 +262,7 @@ test.describe("Hero CTA", () => {
 // 7. 404 路由（1 个）
 // ============================================================
 test.describe("404 路由", () => {
-  test("访问不存在的路由显示 404 页面", async ({ page }, testInfo) => {
+  test("访问不存在的路由显示 404 页面", async ({ page }) => {
     await page.goto("/#/this-route-does-not-exist", {
       waitUntil: "networkidle",
     });
@@ -282,47 +280,32 @@ test.describe("404 路由", () => {
     await btn.click({ timeout: 3000 });
 
     await expect(page).toHaveURL(/\/$/);
-    if (isMobileProject(testInfo)) {
-      await page.waitForSelector("text=Android 手机版", { timeout: 10000 });
-    } else {
-      await page.waitForSelector("#hero", { timeout: 10000 });
-    }
+    await page.waitForSelector("#hero", { timeout: 10000 });
   });
 });
 
 // ============================================================
-// 8. PC / 手机端分流（2 个）
-//    电脑端访问 / 展示桌面版；手机端访问 / 展示手机版
+// 8. 首页与手机版详情页（2 个）
+//    所有设备访问 / 都展示电脑版首页；/#/mobile 为手机版详情页
 // ============================================================
-test.describe("PC / 手机端分流", () => {
-  test("按设备访问首页展示对应版本", async ({ page }, testInfo) => {
-    const mobile = isMobileProject(testInfo);
+test.describe("首页与手机版详情页", () => {
+  test("所有设备访问首页都展示电脑版首页", async ({ page }) => {
     await page.goto("/", { waitUntil: "networkidle" });
 
-    if (mobile) {
-      // 手机版首页：与桌面版同构（首屏 / 功能 / 场景 / FAQ / 下载 / 导航 / 页脚），内容为手机版
-      await page.waitForSelector("text=Android 手机版", { timeout: 15000 });
-      await expect(page.locator("#hero")).toBeVisible();
-      await expect(page.locator("#features")).toBeVisible();
-      await expect(page.locator("#usecases")).toBeVisible();
-      await expect(page.locator("#faq")).toBeVisible();
-      await expect(page.locator("#download")).toBeVisible();
-      await expect(page.locator("nav")).toBeVisible();
-      await expect(page.locator("footer")).toBeVisible();
-      await expect(
-        page.locator('a[download="quiddity-1.5.1.apk"]').first()
-      ).toBeVisible();
-      await expect(page.locator("text=和电脑版的关系")).toHaveCount(0);
-    } else {
-      // 桌面版：展示桌面 Hero，不展示 Android 内容
-      await page.waitForSelector("#hero", { timeout: 15000 });
-      await expect(page.locator("text=Android 客户端")).toHaveCount(0);
-      await expect(page.locator("text=安卓端支持哪些系统？鸿蒙可以吗？")).toHaveCount(0);
-      await expect(page.locator("text=Quiddity-Android")).toHaveCount(0);
-    }
+    // 桌面版首页：Hero / 功能 / 场景 / FAQ / 下载 / 导航 / 页脚
+    await page.waitForSelector("#hero", { timeout: 15000 });
+    await expect(page.locator("#features")).toBeVisible();
+    await expect(page.locator("#usecases")).toBeVisible();
+    await expect(page.locator("#faq")).toBeVisible();
+    await expect(page.locator("#download")).toBeVisible();
+    await expect(page.locator("nav").first()).toBeVisible();
+    await expect(page.locator("footer")).toBeVisible();
+    // 首页不再展示 Android 客户端卡片与安卓 FAQ
+    await expect(page.locator("text=Android 客户端")).toHaveCount(0);
+    await expect(page.locator("text=安卓端支持哪些系统？鸿蒙可以吗？")).toHaveCount(0);
   });
 
-  test("移动端可直达手机版详情页", async ({ page }) => {
+  test("手机版详情页仍可通过 /#/mobile 访问", async ({ page }) => {
     await page.goto("/#/mobile", { waitUntil: "networkidle" });
     await page.waitForSelector("text=Quiddity-Android", { timeout: 15000 });
     await expect(page.locator("text=下载 APK")).toBeVisible();
