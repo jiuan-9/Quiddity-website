@@ -1,8 +1,8 @@
 {
-  "version": "1.5.0",
-  "versionCode": 13,
-  "releaseDate": "2026-08-10",
-  "releaseNotes": "Quiddity-Android v1.5.0 正式版（versionCode=13）已上线。\n\n**本版本内容：**\n- 群聊：私聊 / 群聊双 Tab，建群加成员，点成员头像让 TA 接话，支持停止与重试\n- 小应用：主页下拉进入小应用中心，内置棋盘（五子棋 / 围棋）等，可与好友、电脑或 AI 对弈\n- 采样温度：模型回复温度可调（支持 DeepSeek 官方温度参数）\n\n**兼容性：**\n- v1.0.0 ~ v1.4.0 用户的本地数据、会话、API Key、设置等完全保留，可直接覆盖安装\n- 系统要求不变：Android 8.0（API 26）及以上",
+  "version": "1.5.1",
+  "versionCode": 14,
+  "releaseDate": "2026-08-11",
+  "releaseNotes": "Quiddity-Android v1.5.1（versionCode=14）已上线。\n\n**本版本内容：**\n- 温度设置调整：API 名册不再单独设置温度，采样温度统一在总设置和会话内调整，对所有模型生效\n- 选择框重做：服务商 / 模型选择更清晰，选项横线分割，服务商用常用叫法（DeepSeek、Kimi、豆包、通义千问）\n- 更新弹窗升级：更新内容按「新增 / 优化 / 修复」分区展示，可滚动查看\n\n**兼容性：**\n- v1.0.0 ~ v1.5.0 用户的本地数据、会话、API Key、设置等完全保留，可直接覆盖安装\n- 系统要求不变：Android 8.0（API 26）及以上",
   "assets": [
     {
       "platform": "windows",
@@ -15,13 +15,13 @@
     {
       "platform": "android",
       "arch": "arm64",
-      "label": "quiddity-1.5.0.apk",
-      "url": "./downloads/quiddity-1.5.0.apk",
-      "mirrorUrl": "https://github.com/jiuan-9/Quiddity-website/releases/download/v1.5.0/quiddity-1.5.0.apk",
+      "label": "quiddity-1.5.1.apk",
+      "url": "./downloads/quiddity-1.5.1.apk",
+      "mirrorUrl": "https://github.com/jiuan-9/Quiddity-website/releases/download/v1.5.1/quiddity-1.5.1.apk",
       "size": 4082121,
       "contentType": "application/vnd.android.package-archive"
     }
   ],
   "fallbackUrl": "https://github.com/jiuan-9/Quiddity-website/releases/latest",
-  "lastSyncedAt": "2026-08-10T00:00:00.000Z"
+  "lastSyncedAt": "2026-08-11T00:00:00.000Z"
 }
