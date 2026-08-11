@@ -80,6 +80,155 @@ function Section({
   );
 }
 
+/** 如何开始（添加 API）区块 */
+function HowToStart() {
+  const { t } = useI18n();
+  const base = import.meta.env.BASE_URL;
+
+  const steps: Array<{
+    img: string;
+    title: { zh: string; en: string };
+    desc: { zh: string; en: string };
+  }> = [
+    {
+      img: `${base}images/howto/01-home.png`,
+      title: { zh: "打开设置", en: "Open Settings" },
+      desc: {
+        zh: "打开 App，点左上角的「设置」齿轮图标。",
+        en: "Open the app and tap the gear icon (Settings) in the top-left.",
+      },
+    },
+    {
+      img: `${base}images/howto/02-settings.png`,
+      title: { zh: "找到「模型配置」", en: "Find Model Config" },
+      desc: {
+        zh: "在设置里往下翻，找到「模型配置」，点进去。",
+        en: "Scroll down in Settings and tap \"Model Config\".",
+      },
+    },
+    {
+      img: `${base}images/howto/03-model-list.png`,
+      title: { zh: "点「新建」", en: "Tap New" },
+      desc: {
+        zh: "在模型配置列表点右上角「新建」，选择服务商（DeepSeek、Kimi、豆包、通义千问等）。",
+        en: "Tap \"New\" in the top-right, then pick a provider (DeepSeek, Kimi, Doubao, Qwen, etc.).",
+      },
+    },
+    {
+      img: `${base}images/howto/04-new-form.png`,
+      title: { zh: "确认配置", en: "Check the Config" },
+      desc: {
+        zh: "选好服务商后接口地址和模型会自动填好，名称随便起一个。",
+        en: "The API URL and model are filled in automatically; just give it a name.",
+      },
+    },
+    {
+      img: `${base}images/howto/05-key-input.png`,
+      title: { zh: "填入 API Key", en: "Enter Your API Key" },
+      desc: {
+        zh: "在「接口密钥」粘贴你的 API Key（去服务商官网申请，如 platform.deepseek.com），点「保存」。",
+        en: "Paste your API key in the \"API Key\" field (get one from your provider, e.g. platform.deepseek.com), then tap Save.",
+      },
+    },
+    {
+      img: `${base}images/howto/06-error.png`,
+      title: { zh: "发条消息试试", en: "Try a Message" },
+      desc: {
+        zh: "回到聊天页发一条消息测试。如果报错，看下面的「报错说明」。",
+        en: "Go back to chat and send a message. If it errors, check the error guide below.",
+      },
+    },
+  ];
+
+  const errors: Array<{
+    code: string;
+    name: { zh: string; en: string };
+    why: { zh: string; en: string };
+    fix: { zh: string; en: string };
+  }> = [
+    {
+      code: "401",
+      name: { zh: "密钥不对", en: "Bad key" },
+      why: { zh: "API Key 填错、复制不完整或已过期。", en: "The API key is wrong, incomplete, or expired." },
+      fix: { zh: "重新复制完整的 Key，确认没多空格、没填错位置。", en: "Re-copy the full key and make sure there are no extra spaces." },
+    },
+    {
+      code: "402",
+      name: { zh: "余额不足", en: "No balance" },
+      why: { zh: "服务商账户里没钱了（充值余额用尽）。", en: "Your provider account balance has run out." },
+      fix: { zh: "去服务商平台充值后再试。", en: "Top up at the provider's platform and retry." },
+    },
+    {
+      code: "429",
+      name: { zh: "请求太频繁", en: "Too many requests" },
+      why: { zh: "短时间内发的请求太多，被限流了。", en: "Too many requests in a short time; rate-limited." },
+      fix: { zh: "等一两分钟再发。", en: "Wait a minute or two and try again." },
+    },
+    {
+      code: "5xx",
+      name: { zh: "服务商故障", en: "Provider error" },
+      why: { zh: "服务商服务器出问题了（500/502/503）。", en: "The provider's server is having issues (500/502/503)." },
+      fix: { zh: "不是你的问题，稍后再试。", en: "It's not on your side — retry later." },
+    },
+    {
+      code: "网络",
+      name: { zh: "网络错误", en: "Network error" },
+      why: { zh: "连不上网络，或接口地址填错了。", en: "Can't reach the network, or the API URL is wrong." },
+      fix: { zh: "检查网络，确认接口地址以 /chat/completions 结尾。", en: "Check your network and make sure the URL ends with /chat/completions." },
+    },
+  ];
+
+  return (
+    <Section
+      icon={<Smartphone size={17} className="text-brand-400" />}
+      title={t({ zh: "如何开始 · 添加 API 密钥", en: "How to Start · Add an API Key" })}
+    >
+      <ol className="space-y-6">
+        {steps.map((step, i) => (
+          <li key={step.img} className="flex gap-3">
+            <div className="shrink-0">
+              <div className="w-7 h-7 rounded-lg bg-brand-500/10 border border-brand-500/20 flex items-center justify-center text-sm font-bold text-brand-400">
+                {i + 1}
+              </div>
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="text-sm font-semibold text-white mb-1">{t(step.title)}</div>
+              <p className="text-xs text-dark-400 leading-relaxed mb-3">{t(step.desc)}</p>
+              <img
+                src={step.img}
+                alt={t(step.title)}
+                loading="lazy"
+                className="w-full max-w-[240px] rounded-xl border border-white/[0.08] shadow-lg shadow-black/40"
+              />
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <div className="mt-8">
+        <h3 className="text-sm font-bold text-white mb-3">
+          {t({ zh: "API 报错说明", en: "API Error Guide" })}
+        </h3>
+        <ul className="space-y-2.5">
+          {errors.map((e) => (
+            <li key={e.code} className="flex gap-2.5 rounded-xl bg-white/[0.02] border border-white/[0.05] p-3">
+              <span className="shrink-0 text-[11px] font-bold text-amber-300 bg-amber-500/10 border border-amber-500/20 rounded-md px-1.5 py-0.5 h-fit">
+                {e.code}
+              </span>
+              <div className="min-w-0">
+                <div className="text-xs font-semibold text-white">{t(e.name)}</div>
+                <div className="text-[11px] text-dark-400 leading-relaxed mt-0.5">
+                  {t(e.why)} {t(e.fix)}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </Section>
+  );
+}
+
 export default function Mobile() {
   const { t } = useI18n();
   const navigate = useNavigate();
@@ -151,6 +300,9 @@ export default function Mobile() {
           <Section icon={<Smartphone size={17} className="text-brand-400" />} title={t(mobileRequirementsTitle)}>
             <InfoList items={mobileRequirements} />
           </Section>
+
+          {/* 如何开始 · 添加 API 密钥 */}
+          <HowToStart />
 
           {/* v1.5.1 更新 */}
           <Section icon={<MessageSquare size={17} className="text-brand-400" />} title={t(mobileLatestTitle)}>

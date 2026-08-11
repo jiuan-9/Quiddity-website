@@ -309,5 +309,9 @@ test.describe("首页与手机版详情页", () => {
     await page.goto("/#/mobile", { waitUntil: "networkidle" });
     await page.waitForSelector("text=Quiddity-Android", { timeout: 15000 });
     await expect(page.locator("text=下载 APK")).toBeVisible();
+    // 如何开始区块：添加 API 步骤 + 报错说明
+    await expect(page.locator("text=如何开始 · 添加 API 密钥")).toBeVisible();
+    await expect(page.locator("text=API 报错说明")).toBeVisible();
+    await expect(page.locator("text=402")).toBeVisible();
   });
 });
