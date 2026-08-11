@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Download, Monitor, Smartphone, Globe, Wrench, Lock, ExternalLink } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import ScrollReveal from "./ScrollReveal";
 import { useI18n } from "@/store/i18n";
 import {
@@ -18,6 +19,7 @@ import {
   mobileBadge,
   mobileVersion,
   androidMirrorLabel,
+  mobileDetailLabel,
 } from "@/content";
 
 /**
@@ -73,6 +75,7 @@ function useDownloadsInfo() {
 
 export default function DownloadSection() {
   const { t } = useI18n();
+  const navigate = useNavigate();
   const dlInfo = useDownloadsInfo();
   const windowsAsset = dlInfo?.assets.find((a) => a.platform === "windows");
   const androidAsset = dlInfo?.assets.find((a) => a.platform === "android");
@@ -194,6 +197,14 @@ export default function DownloadSection() {
                     <span>{t(androidMirrorLabel)}</span>
                   </a>
                 )}
+                <button
+                  type="button"
+                  onClick={() => navigate("/mobile")}
+                  className="relative z-10 inline-flex items-center gap-1 self-end text-[10px] sm:text-[11px] text-brand-400/80 hover:text-brand-400 transition-colors px-1 py-0.5 rounded -mr-1 mt-0.5"
+                >
+                  <Smartphone size={10} className="shrink-0" />
+                  <span>{t(mobileDetailLabel)}</span>
+                </button>
               </div>
             ) : (
               <div className="relative flex items-center gap-3 px-4 sm:px-5 py-3.5 sm:py-4 rounded-xl glass border border-white/[0.05] w-full">

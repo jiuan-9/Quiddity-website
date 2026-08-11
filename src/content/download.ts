@@ -83,6 +83,12 @@ export const androidMirrorLabel: I18nText = {
   en: "Slow? Use GitHub mirror",
 };
 
+/** Android 手机版详情入口 */
+export const mobileDetailLabel: I18nText = {
+  zh: "手机版详情",
+  en: "Mobile Details",
+};
+
 /** 桌面 / Android 关系说明（tooltip 备用） */
 export const androidIndependentNote: I18nText = {
   zh: "Android 与 Chat、Agent 桌面端不互通数据",
