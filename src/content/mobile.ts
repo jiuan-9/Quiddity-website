@@ -19,8 +19,8 @@ export const mobilePageTitle: I18nText = {
 
 /** 页面副标题（以最新版为准） */
 export const mobilePageSubtitle: I18nText = {
-  zh: "手机专用版本 · 最新版 v1.6.0（2026-08-22 发布）",
-  en: "Mobile version · Latest v1.6.0 (released 2026-08-22)",
+  zh: "手机专用版本 · 最新版 v1.6.1（2026-08-22 发布）",
+  en: "Mobile version · Latest v1.6.1 (released 2026-08-22)",
 };
 
 /** 下载按钮 */
@@ -49,14 +49,14 @@ export const mobileShaTitle: I18nText = {
 
 /** SHA256 值 */
 export const mobileShaValue: I18nText = {
-  zh: "12BE3826AB37525E6CF9988F4ADD4193D21C1AC1023DF2585E1086DBDB3E42CA",
-  en: "12BE3826AB37525E6CF9988F4ADD4193D21C1AC1023DF2585E1086DBDB3E42CA",
+  zh: "2EF19A1518982F4A434A9471BEA4434B2C6A5E2257CBDDB0D4DF9B9D10BF38A2",
+  en: "2EF19A1518982F4A434A9471BEA4434B2C6A5E2257CBDDB0D4DF9B9D10BF38A2",
 };
 
 /** 版本信息 chips */
 export const mobileMetaTags: I18nText[] = [
-  { zh: "最新版 v1.6.0", en: "Latest v1.6.0" },
-  { zh: "versionCode 16", en: "versionCode 16" },
+  { zh: "最新版 v1.6.1", en: "Latest v1.6.1" },
+  { zh: "versionCode 17", en: "versionCode 17" },
   { zh: "Android 8.0+", en: "Android 8.0+" },
   { zh: "完全免费", en: "Completely Free" },
 ];
@@ -109,22 +109,18 @@ export const mobileDesktopPoints: MobileInfoItem[] = [
 
 /** 最新版更新内容标题 */
 export const mobileLatestTitle: I18nText = {
-  zh: "最新版 v1.6.0 更新内容",
-  en: "What's new in v1.6.0",
+  zh: "最新版 v1.6.1 更新内容",
+  en: "What's new in v1.6.1",
 };
 
 export const mobileLatestChanges: MobileInfoItem[] = [
   {
-    title: { zh: "Agent 模式（三 Tab）", en: "Agent mode (three tabs)" },
-    desc: { zh: "主页改为「私聊 / 群聊 / Agent」三个 Tab；Agent 内置 16 个工具（读屏、通知、用量、文件、Shizuku 授权写入）、权限中心与本地思考。", en: "Home now has 私聊 / 群聊 / Agent tabs; Agent packs 16 tools (screen, notifications, usage, files, Shizuku-approved writes), a permission center, and local reasoning." },
+    title: { zh: "修复 Shizuku 授权误报", en: "Fix Shizuku permission false alarm" },
+    desc: { zh: "修复「Shizuku 已授权仍无法开启工具分类」：剪贴板读写、打开应用、定时消息、睡眠、OCR 等无需系统权限的工具不再被误判为需要 Shizuku 授权，分类主开关恢复正常。", en: "Fixed 'Shizuku granted but tool categories still locked': tools that need no system permission (clipboard, open app, scheduled messages, sleep, OCR) are no longer misreported as requiring Shizuku, and category master switches work again." },
   },
   {
-    title: { zh: "快速设定大幅强化", en: "Quick Setup upgraded" },
-    desc: { zh: "描述再模糊也能剖析成结构化角色卡；只给一个名字时，会按最热门的那位检索补全，字段含义清晰、人设立体不崩塌、自动省 token。", en: "Even vague descriptions become a structured character card; a bare name is filled in from the most popular reference, with clear fields, a consistent persona, and token savings." },
-  },
-  {
-    title: { zh: "回复与列表优化", en: "Reply & list polish" },
-    desc: { zh: "新建会话后自动滚动到会话顶部；修复 AI 回复偶发「动作旁白 + 台词」重复的问题。", en: "New conversations auto-scroll to the top; fixed the occasional 'action narration + line' repetition in AI replies." },
+    title: { zh: "新增 DeepSeek 多模态模型", en: "New DeepSeek multimodal model" },
+    desc: { zh: "接入 DeepSeek 官方最新多模态模型 deepseek-v4-flash-vision-exp（实验版视觉理解）：选中该模型对话时发送图片直接识图，无需再配置视觉 OCR 兜底。", en: "Added DeepSeek's newest multimodal model deepseek-v4-flash-vision-exp (experimental vision): send images straight in chat for recognition — no separate vision OCR fallback needed." },
   },
 ];
 

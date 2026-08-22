@@ -1,8 +1,8 @@
 {
-  "version": "1.6.0",
-  "versionCode": 16,
+  "version": "1.6.1",
+  "versionCode": 17,
   "releaseDate": "2026-08-22",
-  "releaseNotes": "Quiddity-Android v1.6.0（versionCode=16）已上线。\n\n**本版本内容：**\n- 主页改版为「私聊 / 群聊 / Agent」三 Tab：Agent 模式内置 16 个工具 + 权限中心 + 本地思考\n- 快速设定大幅强化：模糊描述也能剖析成结构化角色卡，仅给名字时按最热门指代检索补全\n- 新建会话后自动滚动到会话顶部\n- 修复 AI 回复偶发「动作旁白 + 台词」重复\n\n**兼容性：**\n- v1.0.0 ~ v1.5.2 用户的本地数据、会话、API Key、设置等完全保留，可直接覆盖安装\n- 系统要求不变：Android 8.0（API 26）及以上",
+  "releaseNotes": "Quiddity-Android v1.6.1（versionCode=17）已上线。\n\n**本版本内容：**\n- 修复「Shizuku 已授权仍无法开启工具分类」：无需系统权限的工具不再被误判为需要 Shizuku 授权\n- 新增 DeepSeek 官方最新多模态模型 deepseek-v4-flash-vision-exp（实验版视觉理解），对话中发图直接识图\n\n**兼容性：**\n- v1.0.0 ~ v1.6.0 用户的本地数据、会话、API Key、设置等完全保留，可直接覆盖安装\n- 系统要求不变：Android 8.0（API 26）及以上",
   "assets": [
     {
       "platform": "windows",
@@ -15,9 +15,9 @@
     {
       "platform": "android",
       "arch": "arm64",
-      "label": "quiddity-1.6.0.apk",
-      "url": "./downloads/quiddity-1.6.0.apk",
-      "mirrorUrl": "https://github.com/jiuan-9/Quiddity-website/releases/download/v1.5.2/quiddity-1.5.2.apk",
+      "label": "quiddity-1.6.1.apk",
+      "url": "./downloads/quiddity-1.6.1.apk",
+      "mirrorUrl": "https://github.com/jiuan-9/Quiddity-website/releases/download/v1.6.1/quiddity-1.6.1.apk",
       "size": 4332741,
       "contentType": "application/vnd.android.package-archive"
     }
