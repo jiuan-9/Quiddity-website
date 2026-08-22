@@ -19,8 +19,8 @@ export const mobilePageTitle: I18nText = {
 
 /** 页面副标题（以最新版为准） */
 export const mobilePageSubtitle: I18nText = {
-  zh: "手机专用版本 · 最新版 v1.5.1（2026-08-11 发布）",
-  en: "Mobile version · Latest v1.5.1 (released 2026-08-11)",
+  zh: "手机专用版本 · 最新版 v1.6.0（2026-08-22 发布）",
+  en: "Mobile version · Latest v1.6.0 (released 2026-08-22)",
 };
 
 /** 下载按钮 */
@@ -31,8 +31,8 @@ export const mobileDownloadButton: I18nText = {
 
 /** 文件大小 */
 export const mobileSize: I18nText = {
-  zh: "4,082,121 字节（≈ 3.89 MB）",
-  en: "4,082,121 bytes (≈ 3.89 MB)",
+  zh: "4,332,741 字节（≈ 4.13 MB）",
+  en: "4,332,741 bytes (≈ 4.13 MB)",
 };
 
 /** GitHub 备用下载 */
@@ -49,14 +49,14 @@ export const mobileShaTitle: I18nText = {
 
 /** SHA256 值 */
 export const mobileShaValue: I18nText = {
-  zh: "6446F538C189B20BAA2F34737DD472B457A2B2D549D3A8C5B3B9129CADF32D9E",
-  en: "6446F538C189B20BAA2F34737DD472B457A2B2D549D3A8C5B3B9129CADF32D9E",
+  zh: "12BE3826AB37525E6CF9988F4ADD4193D21C1AC1023DF2585E1086DBDB3E42CA",
+  en: "12BE3826AB37525E6CF9988F4ADD4193D21C1AC1023DF2585E1086DBDB3E42CA",
 };
 
 /** 版本信息 chips */
 export const mobileMetaTags: I18nText[] = [
-  { zh: "最新版 v1.5.1", en: "Latest v1.5.1" },
-  { zh: "versionCode 14", en: "versionCode 14" },
+  { zh: "最新版 v1.6.0", en: "Latest v1.6.0" },
+  { zh: "versionCode 16", en: "versionCode 16" },
   { zh: "Android 8.0+", en: "Android 8.0+" },
   { zh: "完全免费", en: "Completely Free" },
 ];
@@ -109,22 +109,22 @@ export const mobileDesktopPoints: MobileInfoItem[] = [
 
 /** 最新版更新内容标题 */
 export const mobileLatestTitle: I18nText = {
-  zh: "最新版 v1.5.1 更新内容",
-  en: "What's new in v1.5.1",
+  zh: "最新版 v1.6.0 更新内容",
+  en: "What's new in v1.6.0",
 };
 
 export const mobileLatestChanges: MobileInfoItem[] = [
   {
-    title: { zh: "温度设置调整", en: "Temperature settings" },
-    desc: { zh: "API 名册不再单独设置温度，采样温度统一在总设置和会话内调整，对所有模型生效。", en: "Temperature is no longer set per API entry; sampling temperature is now unified in global settings and per-session, applying to all models." },
+    title: { zh: "Agent 模式（三 Tab）", en: "Agent mode (three tabs)" },
+    desc: { zh: "主页改为「私聊 / 群聊 / Agent」三个 Tab；Agent 内置 16 个工具（读屏、通知、用量、文件、Shizuku 授权写入）、权限中心与本地思考。", en: "Home now has 私聊 / 群聊 / Agent tabs; Agent packs 16 tools (screen, notifications, usage, files, Shizuku-approved writes), a permission center, and local reasoning." },
   },
   {
-    title: { zh: "选择框重做", en: "Redesigned selectors" },
-    desc: { zh: "服务商 / 模型选择更清晰，选项横线分割，服务商用常用叫法（DeepSeek、Kimi、豆包、通义千问）。", en: "Provider/model selectors are clearer with separated options and common names (DeepSeek, Kimi, Doubao, Qwen)." },
+    title: { zh: "快速设定大幅强化", en: "Quick Setup upgraded" },
+    desc: { zh: "描述再模糊也能剖析成结构化角色卡；只给一个名字时，会按最热门的那位检索补全，字段含义清晰、人设立体不崩塌、自动省 token。", en: "Even vague descriptions become a structured character card; a bare name is filled in from the most popular reference, with clear fields, a consistent persona, and token savings." },
   },
   {
-    title: { zh: "更新弹窗升级", en: "Upgraded update dialog" },
-    desc: { zh: "更新内容按「新增 / 优化 / 修复」分区展示，支持滚动查看，并自动清理 Markdown 符号。", en: "Release notes are grouped into New/Improved/Fixed sections, scrollable, with Markdown symbols cleaned up automatically." },
+    title: { zh: "回复与列表优化", en: "Reply & list polish" },
+    desc: { zh: "新建会话后自动滚动到会话顶部；修复 AI 回复偶发「动作旁白 + 台词」重复的问题。", en: "New conversations auto-scroll to the top; fixed the occasional 'action narration + line' repetition in AI replies." },
   },
 ];
 

@@ -59,6 +59,21 @@ export const timelineProductGroups: TimelineProductGroup[] = [
     },
     versions: [
       {
+        version: "v1.6.0",
+        date: "2026.08.22",
+        label: { zh: "Agent 模式 + 快速设定大升级", en: "Agent Mode & Quick Setup Upgrade" },
+        description: {
+          zh: "主页改成「私聊 / 群聊 / Agent」三 Tab。Agent 模式内置 16 个工具（读屏、通知、用量、文件、Shizuku 授权写入等）、权限中心与本地思考。快速设定大幅强化：描述再模糊也能剖析成结构化角色卡，只给一个名字时就按最有名的那位补全；新建会话自动滚到列表顶部；还修复了 AI 回复偶发「动作旁白 + 台词」重复的问题。",
+          en: "Home now has three tabs: 私聊 / 群聊 / Agent. Agent mode packs 16 tools (screen reading, notifications, usage, files, Shizuku-approved writes), a permission center, and local reasoning. Quick Setup got a big upgrade: it turns even vague descriptions into a structured character card — a bare name is filled in from the most popular reference. New conversations auto-scroll to the top, and AI replies no longer repeat an action narration before the line.",
+        },
+        highlights: [
+          { icon: "Bot", text: { zh: "Agent 模式（三 Tab + 16 工具）", en: "Agent Mode (three tabs & 16 tools)" } },
+          { icon: "Layers", text: { zh: "快速设定模糊输入也能成卡", en: "Quick Setup cards from vague input" } },
+          { icon: "Sliders", text: { zh: "新建会话自动滚顶", en: "New chat auto-scrolls to top" } },
+        ],
+        color: "blue",
+      },
+      {
         version: "v1.5.0",
         date: "2026.08.10",
         label: { zh: "群聊 + 小应用", en: "Group Chat & Mini Apps" },

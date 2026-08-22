@@ -1,8 +1,8 @@
 {
-  "version": "1.5.2",
-  "versionCode": 15,
-  "releaseDate": "2026-08-12",
-  "releaseNotes": "Quiddity-Android v1.5.2（versionCode=15）已上线。\n\n**本版本内容：**\n- 小应用：棋盘支持自选棋盘大小；谁是卧底支持空位加入和角色卡选择\n- 更新弹窗：同步 1.5.1 的 Markdown 清理修复（标题 / 列表 / 加粗 / 代码转纯文本分区展示）\n\n**兼容性：**\n- v1.0.0 ~ v1.5.1 用户的本地数据、会话、API Key、设置等完全保留，可直接覆盖安装\n- 系统要求不变：Android 8.0（API 26）及以上",
+  "version": "1.6.0",
+  "versionCode": 16,
+  "releaseDate": "2026-08-22",
+  "releaseNotes": "Quiddity-Android v1.6.0（versionCode=16）已上线。\n\n**本版本内容：**\n- 主页改版为「私聊 / 群聊 / Agent」三 Tab：Agent 模式内置 16 个工具 + 权限中心 + 本地思考\n- 快速设定大幅强化：模糊描述也能剖析成结构化角色卡，仅给名字时按最热门指代检索补全\n- 新建会话后自动滚动到会话顶部\n- 修复 AI 回复偶发「动作旁白 + 台词」重复\n\n**兼容性：**\n- v1.0.0 ~ v1.5.2 用户的本地数据、会话、API Key、设置等完全保留，可直接覆盖安装\n- 系统要求不变：Android 8.0（API 26）及以上",
   "assets": [
     {
       "platform": "windows",
@@ -15,13 +15,13 @@
     {
       "platform": "android",
       "arch": "arm64",
-      "label": "quiddity-1.5.2.apk",
-      "url": "./downloads/quiddity-1.5.2.apk",
+      "label": "quiddity-1.6.0.apk",
+      "url": "./downloads/quiddity-1.6.0.apk",
       "mirrorUrl": "https://github.com/jiuan-9/Quiddity-website/releases/download/v1.5.2/quiddity-1.5.2.apk",
-      "size": 4082121,
+      "size": 4332741,
       "contentType": "application/vnd.android.package-archive"
     }
   ],
   "fallbackUrl": "https://github.com/jiuan-9/Quiddity-website/releases/latest",
-  "lastSyncedAt": "2026-08-12T00:00:00.000Z"
+  "lastSyncedAt": "2026-08-22T00:00:00.000Z"
 }
