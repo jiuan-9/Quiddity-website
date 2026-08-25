@@ -1,7 +1,7 @@
 {
-  "version": "1.6.1",
-  "versionCode": 17,
-  "releaseDate": "2026-08-22",
-  "downloadUrl": "https://quiddity-3by.pages.dev/downloads/quiddity-1.6.1.apk",
-  "releaseNotes": "Quiddity-Android v1.6.1（versionCode=17）修复版已上线。\n\n**本版本内容：**\n- 修复「Shizuku 已授权仍无法开启工具分类」：剪贴板读写、打开应用、定时消息、睡眠、OCR 等无需系统权限的工具曾被误判为需要 Shizuku 授权，导致分类主开关提示「Shizuku 授权未开启」；现已按实际授权状态判定\n- 新增 DeepSeek 官方最新多模态模型 deepseek-v4-flash-vision-exp（实验版视觉理解模型）：选中该模型对话时发送图片直接识图，无需再配置视觉 OCR 兜底\n\n**兼容性：**\n- v1.0.0 ~ v1.6.0 用户的本地数据、会话、API Key、设置等完全保留，可直接覆盖安装\n- 系统要求不变：Android 8.0（API 26）及以上\n\n**下载：**\n- v1.6.1：https://quiddity-3by.pages.dev/downloads/quiddity-1.6.1.apk\n- 历史版本（v1.0.0 ~ v1.6.0）仍可在对应 GitHub Release 中继续下载\n\n**当前可用下载：**\n- Quiddity-Android v1.6.1：https://quiddity-3by.pages.dev/downloads/quiddity-1.6.1.apk\n- 在线体验（模拟 Quiddity-Chat）：https://quiddity-3by.pages.dev/#/demo\n\n**维护中：**\n- Quiddity-Chat 桌面端\n- Quiddity-Agent 桌面端\n\n**源码：**\n- Android 端：https://github.com/jiuan-9/quiddity-android\n- Chat / Agent 桌面端：源码暂未公开"
+  "version": "1.6.2",
+  "versionCode": 18,
+  "releaseDate": "2026-08-25",
+  "downloadUrl": "https://quiddity-3by.pages.dev/downloads/quiddity-1.6.2.apk",
+  "releaseNotes": "Quiddity-Android v1.6.2（versionCode=18）修复版已上线。\n\n**本版本内容：**\n- 修复 DeepSeek 思考模式下「群聊容易报 400，提示思考内容需要回传」的问题：携带工具的请求现在会把历史中自己发言的思考原文原样回传，群聊 / Agent / 工具检索记忆 / 官方联网搜索四条路径全部修复；思考原文仅用于请求回传，不展示、不压缩、不导出\n\n**兼容性：**\n- v1.0.0 ~ v1.6.1 用户的本地数据、会话、API Key、设置等完全保留，可直接覆盖安装\n- 系统要求不变：Android 8.0（API 26）及以上\n\n**下载：**\n- v1.6.2：https://quiddity-3by.pages.dev/downloads/quiddity-1.6.2.apk\n- 历史版本（v1.0.0 ~ v1.6.1）仍可在对应 GitHub Release 中继续下载\n\n**当前可用下载：**\n- Quiddity-Android v1.6.2：https://quiddity-3by.pages.dev/downloads/quiddity-1.6.2.apk\n- 在线体验（模拟 Quiddity-Chat）：https://quiddity-3by.pages.dev/#/demo\n\n**维护中：**\n- Quiddity-Chat 桌面端\n- Quiddity-Agent 桌面端\n\n**源码：**\n- Android 端：https://github.com/jiuan-9/quiddity-android\n- Chat / Agent 桌面端：源码暂未公开"
 }

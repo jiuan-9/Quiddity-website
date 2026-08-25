@@ -37,9 +37,9 @@ import {
   type MobileInfoItem,
 } from "@/content";
 
-const APK_URL = `${import.meta.env.BASE_URL}downloads/quiddity-1.6.1.apk`;
+const APK_URL = `${import.meta.env.BASE_URL}downloads/quiddity-1.6.2.apk`;
 const APK_MIRROR_URL =
-  "https://github.com/jiuan-9/Quiddity-website/releases/download/v1.6.1/quiddity-1.6.1.apk";
+  "https://github.com/jiuan-9/quiddity-android/releases/download/v1.6.2/app-release.apk";
 
 function InfoList({ items }: { items: MobileInfoItem[] }) {
   const { t } = useI18n();
@@ -267,7 +267,7 @@ export default function Mobile() {
 
           <a
             href={APK_URL}
-            download="quiddity-1.6.1.apk"
+            download="quiddity-1.6.2.apk"
             className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 text-white font-semibold text-base shadow-lg shadow-brand-500/25 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brand-500/35 active:scale-[0.98]"
           >
             <Download size={20} className="group-hover:translate-y-0.5 transition-transform" />

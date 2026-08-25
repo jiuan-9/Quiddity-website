@@ -19,8 +19,8 @@ export const mobilePageTitle: I18nText = {
 
 /** 页面副标题（以最新版为准） */
 export const mobilePageSubtitle: I18nText = {
-  zh: "手机专用版本 · 最新版 v1.6.1（2026-08-22 发布）",
-  en: "Mobile version · Latest v1.6.1 (released 2026-08-22)",
+  zh: "手机专用版本 · 最新版 v1.6.2（2026-08-25 发布）",
+  en: "Mobile version · Latest v1.6.2 (released 2026-08-25)",
 };
 
 /** 下载按钮 */
@@ -49,14 +49,14 @@ export const mobileShaTitle: I18nText = {
 
 /** SHA256 值 */
 export const mobileShaValue: I18nText = {
-  zh: "2EF19A1518982F4A434A9471BEA4434B2C6A5E2257CBDDB0D4DF9B9D10BF38A2",
-  en: "2EF19A1518982F4A434A9471BEA4434B2C6A5E2257CBDDB0D4DF9B9D10BF38A2",
+  zh: "63DED13646324A01F1486A119D7CD11EE37B0B19FF6FFF4BF1A80ADBAA7676DC",
+  en: "63DED13646324A01F1486A119D7CD11EE37B0B19FF6FFF4BF1A80ADBAA7676DC",
 };
 
 /** 版本信息 chips */
 export const mobileMetaTags: I18nText[] = [
-  { zh: "最新版 v1.6.1", en: "Latest v1.6.1" },
-  { zh: "versionCode 17", en: "versionCode 17" },
+  { zh: "最新版 v1.6.2", en: "Latest v1.6.2" },
+  { zh: "versionCode 18", en: "versionCode 18" },
   { zh: "Android 8.0+", en: "Android 8.0+" },
   { zh: "完全免费", en: "Completely Free" },
 ];
@@ -109,18 +109,18 @@ export const mobileDesktopPoints: MobileInfoItem[] = [
 
 /** 最新版更新内容标题 */
 export const mobileLatestTitle: I18nText = {
-  zh: "最新版 v1.6.1 更新内容",
-  en: "What's new in v1.6.1",
+  zh: "最新版 v1.6.2 更新内容",
+  en: "What's new in v1.6.2",
 };
 
 export const mobileLatestChanges: MobileInfoItem[] = [
   {
-    title: { zh: "修复 Shizuku 授权误报", en: "Fix Shizuku permission false alarm" },
-    desc: { zh: "修复「Shizuku 已授权仍无法开启工具分类」：剪贴板读写、打开应用、定时消息、睡眠、OCR 等无需系统权限的工具不再被误判为需要 Shizuku 授权，分类主开关恢复正常。", en: "Fixed 'Shizuku granted but tool categories still locked': tools that need no system permission (clipboard, open app, scheduled messages, sleep, OCR) are no longer misreported as requiring Shizuku, and category master switches work again." },
+    title: { zh: "修复 DeepSeek 思考模式 400 报错", en: "Fix DeepSeek thinking-mode 400 errors" },
+    desc: { zh: "修复 DeepSeek 思考模式下「群聊容易报 400，提示思考内容需要回传」：携带工具的请求现在会把历史中自己发言的思考原文原样回传，群聊 / Agent / 工具检索记忆 / 官方联网搜索四条路径全部修复。", en: "Fixed DeepSeek thinking-mode 400 'reasoning content must be returned' errors: tool-carrying requests now echo back the stored reasoning of your own previous replies, across group chat / Agent / tool-based memory / official web search." },
   },
   {
-    title: { zh: "新增 DeepSeek 多模态模型", en: "New DeepSeek multimodal model" },
-    desc: { zh: "接入 DeepSeek 官方最新多模态模型 deepseek-v4-flash-vision-exp（实验版视觉理解）：选中该模型对话时发送图片直接识图，无需再配置视觉 OCR 兜底。", en: "Added DeepSeek's newest multimodal model deepseek-v4-flash-vision-exp (experimental vision): send images straight in chat for recognition — no separate vision OCR fallback needed." },
+    title: { zh: "思考内容静默持久化", en: "Silent reasoning persistence" },
+    desc: { zh: "思考原文仅在请求中回传使用，不在界面展示、不参与上下文压缩、不随数据导出，旧数据自动兼容。", en: "Reasoning text is only echoed in requests — never shown in the UI, never compressed, never exported; existing data stays compatible." },
   },
 ];
 
@@ -221,8 +221,8 @@ export const mobileKnownLimits: MobileInfoItem[] = [
 
 /** 覆盖安装提示 */
 export const mobileUpgradeTip: I18nText = {
-  zh: "v1.0.0 ~ v1.5.0 用户可直接覆盖安装，本地数据、会话、API Key、设置等完全保留。",
-  en: "Users on v1.0.0 – v1.5.0 can install over directly; local data, conversations, API keys, and settings are fully preserved.",
+  zh: "v1.0.0 ~ v1.6.1 用户可直接覆盖安装，本地数据、会话、API Key、设置等完全保留。",
+  en: "Users on v1.0.0 – v1.6.1 can install over directly; local data, conversations, API keys, and settings are fully preserved.",
 };
 
 /** 返回首页 */
