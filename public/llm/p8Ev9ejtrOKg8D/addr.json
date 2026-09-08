@@ -1,7 +1,7 @@
 {
-  "ipv6": "2409:8a60:2c74:b2f0:4c0d:2c60:7a1:673a",
+  "ipv6": "2409:8a60:2c74:b2f0:d842:d3e6:ab4d:1d95",
   "port": 26016,
   "tls": true,
-  "ts": 1788859256,
-  "hmac": "cd8e134c88f0274e904eeef92ecf754b60852ab8e1300164e84be4f3c403682e"
+  "ts": 1788862343,
+  "hmac": "cb83b5b7f987bc1ef16632bafa1d5c7ae7e2ca2a393bf53d11bc7a46c2a467f7"
 }
